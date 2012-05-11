@@ -51,6 +51,7 @@ class MultiTableUpdateExecutor extends AbstractSqlExecutor
         $em = $sqlWalker->getEntityManager();
         $conn = $em->getConnection();
         $platform = $conn->getDatabasePlatform();
+        $prefersJoins = $platform->prefersJoinsOverSubqueries();
 
         $updateClause = $AST->updateClause;
 
@@ -84,7 +85,8 @@ class MultiTableUpdateExecutor extends AbstractSqlExecutor
         foreach (array_reverse($classNames) as $className) {
             $affected = false;
             $class = $em->getClassMetadata($className);
-            $updateSql = 'UPDATE ' . $class->getQuotedTableName($platform) . ' SET ';
+            $updateSql = 'UPDATE ' . $class->getQuotedTableName($platform) . ' r';
+            $setPartSql = ' SET ';
 
             foreach ($updateItems as $updateItem) {
                 $field = $updateItem->pathExpression->field;
@@ -97,10 +99,10 @@ class MultiTableUpdateExecutor extends AbstractSqlExecutor
                         $affected = true;
                         ++$i;
                     } else {
-                        $updateSql .= ', ';
+                        $setPartSql .= ', ';
                     }
 
-                    $updateSql .= $sqlWalker->walkUpdateItem($updateItem);
+                    $setPartSql .= 'r.' . $sqlWalker->walkUpdateItem($updateItem);
 
                     //FIXME: parameters can be more deeply nested. traverse the tree.
                     //FIXME (URGENT): With query cache the parameter is out of date. Move to execute() stage.
@@ -115,7 +117,21 @@ class MultiTableUpdateExecutor extends AbstractSqlExecutor
             }
 
             if ($affected) {
-                $this->_sqlStatements[$i] = $updateSql . ' WHERE (' . $idColumnList . ') IN (' . $idSubselect . ')';
+                if ($prefersJoins) {
+                    $this->_sqlStatements[$i] = $updateSql . ' INNER JOIN ' . $tempTable . ' j ON';
+
+                    for ($j = 0, $count = count($idColumnNames); $j < $count; ++$j) {
+                        if ($j > 0) {
+                            $this->_sqlStatements[$i] .= ' AND';
+                        }
+
+                        $this->_sqlStatements[$i] .= ' (r.' . $idColumnNames[$j] . ' = j.' . $idColumnNames[$j] . ')';
+                    }
+
+                    $this->_sqlStatements[$i] .= $setPartSql;
+                } else {
+                    $this->_sqlStatements[$i] = $updateSql . $setPartSql . ' WHERE (' . $idColumnList . ') IN (' . $idSubselect . ')';
+                }
             }
         }
 
