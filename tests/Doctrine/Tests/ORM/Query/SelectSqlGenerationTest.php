@@ -1144,6 +1144,7 @@ class SelectSqlGenerationTest extends OrmTestCase
 
     /**
      * @group DDC-431
+     * @group custom_dql_function
      */
     public function testSupportToCustomDQLFunctions()
     {

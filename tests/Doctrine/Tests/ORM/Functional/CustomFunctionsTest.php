@@ -24,6 +24,9 @@ class CustomFunctionsTest extends OrmFunctionalTestCase
         parent::setUp();
     }
 
+    /**
+     * @group custom_dql_function
+     */
     public function testCustomFunctionDefinedWithCallback()
     {
         $user = new CmsUser();
@@ -50,6 +53,9 @@ class CustomFunctionsTest extends OrmFunctionalTestCase
         self::assertSame($user, $users[0]);
     }
 
+    /**
+     * @group custom_dql_function
+     */
     public function testCustomFunctionOverride()
     {
         $user = new CmsUser();

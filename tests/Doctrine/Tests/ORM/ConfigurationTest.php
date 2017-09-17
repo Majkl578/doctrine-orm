@@ -205,6 +205,9 @@ class ConfigurationTest extends DoctrineTestCase
         $this->configuration->ensureProductionSettings();
     }
 
+    /**
+     * @group custom_dql_function
+     */
     public function testAddGetCustomStringFunction()
     {
         $this->configuration->addCustomStringFunction('FunctionName', __CLASS__);
@@ -217,6 +220,9 @@ class ConfigurationTest extends DoctrineTestCase
         self::assertSame(__CLASS__, $this->configuration->getCustomStringFunction('OtherFunctionName'));
     }
 
+    /**
+     * @group custom_dql_function
+     */
     public function testAddGetCustomNumericFunction()
     {
         $this->configuration->addCustomNumericFunction('FunctionName', __CLASS__);
@@ -229,6 +235,9 @@ class ConfigurationTest extends DoctrineTestCase
         self::assertSame(__CLASS__, $this->configuration->getCustomNumericFunction('OtherFunctionName'));
     }
 
+    /**
+     * @group custom_dql_function
+     */
     public function testAddGetCustomDatetimeFunction()
     {
         $this->configuration->addCustomDatetimeFunction('FunctionName', __CLASS__);

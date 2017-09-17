@@ -11,6 +11,10 @@ use Doctrine\ORM\Mapping\FieldMetadata;
 use Doctrine\ORM\Mapping\ToOneAssociationMetadata;
 use Doctrine\ORM\Query;
 use Doctrine\ORM\Query\AST\Functions;
+use Doctrine\ORM\Query\Parser\Visitor;
+use Hoa\Compiler\Llk\Parser as HoaParser;
+use Hoa\Compiler\Llk\Llk as HoaParserHelper;
+use Hoa\File\Read;
 
 /**
  * An LL(*) recursive-descent parser for the context-free grammar of the Doctrine Query Language.
@@ -167,6 +171,9 @@ class Parser
      */
     private $identVariableExpressions = [];
 
+    /** @var HoaParser */
+    private $languageParser;
+
     /**
      * Creates a new query parser object.
      *
@@ -174,10 +181,11 @@ class Parser
      */
     public function __construct(Query $query)
     {
-        $this->query        = $query;
-        $this->em           = $query->getEntityManager();
-        $this->lexer        = new Lexer($query->getDQL());
-        $this->parserResult = new ParserResult();
+        $this->query          = $query;
+        $this->em             = $query->getEntityManager();
+        $this->lexer          = new Lexer($query->getDQL());
+        $this->parserResult   = new ParserResult();
+        $this->languageParser = HoaParserHelper::load(new Read(__DIR__ . '/language.pp'));
     }
 
     /**
@@ -246,6 +254,9 @@ class Parser
     {
         // Parse & build AST
         $AST = $this->QueryLanguage();
+
+        $rawAST = $this->languageParser->parse($this->query->getDQL(), '#QueryLanguage');
+        (new Visitor())->visit($rawAST);
 
         // Process any deferred validations of some nodes in the AST.
         // This also allows post-processing of the AST for modification purposes.

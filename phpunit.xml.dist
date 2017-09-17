@@ -40,6 +40,7 @@
             <group>embedded</group>
             <group>performance</group>
             <group>locking_functional</group>
+            <group>custom_dql_function</group>
         </exclude>
     </groups>
 

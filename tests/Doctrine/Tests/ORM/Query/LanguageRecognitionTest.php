@@ -575,6 +575,7 @@ class LanguageRecognitionTest extends OrmTestCase
 
     /**
      * @group DDC-1091
+     * @group custom_dql_function
      */
     public function testCustomFunctionsReturningStringInStringPrimary()
     {
