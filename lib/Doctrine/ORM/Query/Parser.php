@@ -836,6 +836,7 @@ class Parser
     {
         $this->lexer->moveNext();
 
+        $statement = null;
         switch ($this->lexer->lookahead['type']) {
             case Lexer::T_SELECT:
                 $statement = $this->SelectStatement();
