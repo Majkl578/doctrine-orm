@@ -16,3 +16,4 @@ composer.lock
 /tests/Doctrine/Performance/history.db
 phpbench.phar
 phpbench.phar.pubkey
+.phpcs-cache

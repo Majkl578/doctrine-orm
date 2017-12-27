@@ -27,6 +27,7 @@
         "symfony/console": "~3.0|~4.0"
     },
     "require-dev": {
+        "doctrine/coding-standard": "dev-master",
         "phpunit/phpunit": "^6.0"
     },
     "autoload": {
