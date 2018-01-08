@@ -3,6 +3,13 @@
 declare(strict_types=1);
 
 namespace Doctrine\ORM\Query\AST;
+use function get_class;
+use const PHP_EOL;
+use function get_object_vars;
+use function str_repeat;
+use function is_array;
+use function is_object;
+use function var_export;
 
 /**
  * Abstract class of an AST node.

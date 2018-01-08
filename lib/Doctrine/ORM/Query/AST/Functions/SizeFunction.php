@@ -6,6 +6,9 @@ namespace Doctrine\ORM\Query\AST\Functions;
 
 use Doctrine\ORM\Mapping\OneToManyAssociationMetadata;
 use Doctrine\ORM\Query\Lexer;
+use Doctrine\ORM\Query\SqlWalker;
+use function sprintf;
+use Doctrine\ORM\Query\Parser;
 
 /**
  * "SIZE" "(" CollectionValuedPathExpression ")"
@@ -30,7 +33,7 @@ class SizeFunction extends FunctionNode
      * @inheritdoc
      * @todo If the collection being counted is already joined, the SQL can be simpler (more efficient).
      */
-    public function getSql(\Doctrine\ORM\Query\SqlWalker $sqlWalker)
+    public function getSql(SqlWalker $sqlWalker)
     {
         $platform          = $sqlWalker->getEntityManager()->getConnection()->getDatabasePlatform();
         $dqlAlias          = $this->collectionPathExpression->identificationVariable;
@@ -107,7 +110,7 @@ class SizeFunction extends FunctionNode
      * @override
      * @inheritdoc
      */
-    public function parse(\Doctrine\ORM\Query\Parser $parser)
+    public function parse(Parser $parser)
     {
         $parser->match(Lexer::T_IDENTIFIER);
         $parser->match(Lexer::T_OPEN_PARENTHESIS);

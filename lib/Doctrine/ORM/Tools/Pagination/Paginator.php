@@ -10,6 +10,10 @@ use Doctrine\ORM\Query;
 use Doctrine\ORM\Query\Parser;
 use Doctrine\ORM\Query\ResultSetMapping;
 use Doctrine\ORM\QueryBuilder;
+use function array_sum;
+use function array_map;
+use function count;
+use function array_key_exists;
 
 /**
  * The paginator can handle various complex scenarios with DQL.

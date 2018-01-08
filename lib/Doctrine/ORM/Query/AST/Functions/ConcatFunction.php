@@ -5,6 +5,9 @@ declare(strict_types=1);
 namespace Doctrine\ORM\Query\AST\Functions;
 
 use Doctrine\ORM\Query\Lexer;
+use Doctrine\ORM\Query\SqlWalker;
+use function call_user_func_array;
+use Doctrine\ORM\Query\Parser;
 
 /**
  * "CONCAT" "(" StringPrimary "," StringPrimary {"," StringPrimary }* ")"
@@ -29,7 +32,7 @@ class ConcatFunction extends FunctionNode
      * @override
      * @inheritdoc
      */
-    public function getSql(\Doctrine\ORM\Query\SqlWalker $sqlWalker)
+    public function getSql(SqlWalker $sqlWalker)
     {
         $platform = $sqlWalker->getConnection()->getDatabasePlatform();
 
@@ -46,7 +49,7 @@ class ConcatFunction extends FunctionNode
      * @override
      * @inheritdoc
      */
-    public function parse(\Doctrine\ORM\Query\Parser $parser)
+    public function parse(Parser $parser)
     {
         $parser->match(Lexer::T_IDENTIFIER);
         $parser->match(Lexer::T_OPEN_PARENTHESIS);

@@ -16,6 +16,10 @@ use Doctrine\ORM\Mapping\ToManyAssociationMetadata;
 use Doctrine\ORM\Mapping\ToOneAssociationMetadata;
 use Doctrine\ORM\Mapping\VersionFieldMetadata;
 use Doctrine\ORM\Utility\PersisterHelper;
+use function is_array;
+use function array_combine;
+use function array_keys;
+use function implode;
 
 /**
  * The joined subclass persister maps a single entity instance to several tables in the

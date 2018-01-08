@@ -10,6 +10,9 @@ use Doctrine\ORM\Mapping\Factory\AbstractClassMetadataFactory;
 use Doctrine\ORM\Mapping\Factory\ClassMetadataResolver;
 use Doctrine\ORM\Mapping\Factory\DefaultNamingStrategy;
 use Doctrine\ORM\Mapping\Factory\NamingStrategy;
+use function ltrim;
+use function rtrim;
+use const DIRECTORY_SEPARATOR;
 
 /**
  * Configuration container for class metadata options of Doctrine.

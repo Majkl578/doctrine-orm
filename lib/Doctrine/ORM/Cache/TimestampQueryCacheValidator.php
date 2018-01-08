@@ -4,6 +4,7 @@
 declare(strict_types=1);
 
 namespace Doctrine\ORM\Cache;
+use function microtime;
 
 /**
  * @since   2.5

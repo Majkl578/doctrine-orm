@@ -4,6 +4,14 @@
 declare(strict_types=1);
 
 namespace Doctrine\ORM\Mapping\Factory;
+use const CASE_LOWER;
+use function strpos;
+use function substr;
+use function strrpos;
+use const CASE_UPPER;
+use function preg_replace;
+use function strtoupper;
+use function strtolower;
 
 /**
  * Naming strategy implementing the underscore naming convention.

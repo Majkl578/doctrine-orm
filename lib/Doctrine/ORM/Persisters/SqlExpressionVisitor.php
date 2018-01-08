@@ -12,6 +12,9 @@ use Doctrine\Common\Collections\Expr\Comparison;
 use Doctrine\Common\Collections\Expr\Value;
 use Doctrine\Common\Collections\Expr\CompositeExpression;
 use Doctrine\ORM\Persisters\Entity\BasicEntityPersister;
+use function is_object;
+use function in_array;
+use function implode;
 
 /**
  * Visit Expressions and generate SQL WHERE conditions from them.

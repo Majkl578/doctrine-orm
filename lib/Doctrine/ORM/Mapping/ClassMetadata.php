@@ -11,6 +11,22 @@ use Doctrine\ORM\Mapping\Factory\NamingStrategy;
 use Doctrine\ORM\Reflection\ReflectionService;
 use Doctrine\ORM\Sequencing\Planning\ValueGenerationPlan;
 use Doctrine\ORM\Utility\PersisterHelper;
+use function spl_object_id;
+use function array_merge;
+use function array_filter;
+use function array_map;
+use function class_exists;
+use function in_array;
+use function count;
+use function array_intersect;
+use function array_diff;
+use function sprintf;
+use function get_class;
+use function strpos;
+use function explode;
+use function method_exists;
+use function interface_exists;
+use function is_subclass_of;
 
 /**
  * A <tt>ClassMetadata</tt> instance holds all the object-relational mapping metadata

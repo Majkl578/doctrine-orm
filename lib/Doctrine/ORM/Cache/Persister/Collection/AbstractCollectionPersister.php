@@ -17,6 +17,8 @@ use Doctrine\ORM\Mapping\ToManyAssociationMetadata;
 use Doctrine\ORM\PersistentCollection;
 use Doctrine\ORM\Persisters\Collection\CollectionPersister;
 use Doctrine\ORM\Utility\StaticClassNameConverter;
+use function array_values;
+use function count;
 
 /**
  * @author Fabio B. Silva <fabio.bat.silva@gmail.com>
@@ -166,7 +168,7 @@ abstract class AbstractCollectionPersister implements CachedCollectionPersister
         // Only preserve ordering if association configured it
         if (! ($association instanceof ToManyAssociationMetadata && $association->getIndexedBy())) {
             // Elements may be an array or a Collection
-            $elements = \array_values($elements instanceof Collection ? $elements->getValues() : $elements);
+            $elements = array_values($elements instanceof Collection ? $elements->getValues() : $elements);
         }
 
         $entry = $this->hydrator->buildCacheEntry($this->targetEntity, $key, $elements);

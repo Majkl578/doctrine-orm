@@ -3,6 +3,9 @@
 declare(strict_types=1);
 
 namespace Doctrine\ORM\Query;
+use function reset;
+use function key;
+use function next;
 
 /**
  *

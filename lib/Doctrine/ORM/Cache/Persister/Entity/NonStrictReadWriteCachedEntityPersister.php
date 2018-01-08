@@ -6,6 +6,7 @@ declare(strict_types=1);
 namespace Doctrine\ORM\Cache\Persister\Entity;
 
 use Doctrine\ORM\Cache\EntityCacheKey;
+use function get_class;
 
 /**
  * Specific non-strict read/write cached entity persister

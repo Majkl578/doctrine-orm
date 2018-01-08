@@ -11,6 +11,22 @@ use Doctrine\ORM\Cache\Region;
 use Doctrine\ORM\Cache\CacheKey;
 use Doctrine\ORM\Cache\CacheEntry;
 use Doctrine\ORM\Cache\ConcurrentRegion;
+use function is_dir;
+use function mkdir;
+use function sprintf;
+use function is_writable;
+use function is_file;
+use function unlink;
+use function time;
+use const DIRECTORY_SEPARATOR;
+use function file_get_contents;
+use function fileatime;
+use function array_filter;
+use function array_map;
+use function glob;
+use function file_put_contents;
+use const LOCK_EX;
+use function chmod;
 
 /**
  * Very naive concurrent region, based on file locks.

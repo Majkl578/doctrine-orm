@@ -13,6 +13,11 @@ use Doctrine\ORM\Query;
 use Doctrine\ORM\UnitOfWork;
 use PDO;
 use ProxyManager\Proxy\GhostObjectInterface;
+use function spl_object_id;
+use function array_keys;
+use function key;
+use function count;
+use function array_fill_keys;
 
 /**
  * The ObjectHydrator constructs an object graph out of an SQL result set.
@@ -546,7 +551,7 @@ class ObjectHydrator extends AbstractHydrator
                 $args   = $newObject['args'];
                 $obj    = $class->newInstanceArgs($args);
 
-                if ($hasNoScalars && \count($rowData['newObjects']) === 1 ) {
+                if ($hasNoScalars && count($rowData['newObjects']) === 1 ) {
                     $result[$resultKey] = $obj;
 
                     continue;

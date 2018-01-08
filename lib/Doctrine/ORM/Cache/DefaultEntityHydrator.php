@@ -13,6 +13,7 @@ use Doctrine\ORM\Mapping\OneToOneAssociationMetadata;
 use Doctrine\ORM\Mapping\ToOneAssociationMetadata;
 use Doctrine\ORM\Query;
 use Doctrine\ORM\Utility\StaticClassNameConverter;
+use function array_merge;
 
 /**
  * Default hydrator cache for entities

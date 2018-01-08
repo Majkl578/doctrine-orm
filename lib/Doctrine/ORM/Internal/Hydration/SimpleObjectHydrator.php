@@ -8,6 +8,12 @@ use Doctrine\ORM\Mapping\InheritanceType;
 use PDO;
 use Doctrine\ORM\Mapping\ClassMetadata;
 use Doctrine\ORM\Query;
+use function count;
+use function reset;
+use function array_search;
+use function key;
+use function array_keys;
+use function sprintf;
 
 class SimpleObjectHydrator extends AbstractHydrator
 {

@@ -13,6 +13,13 @@ use Doctrine\ORM\Query\FilterCollection;
 use Doctrine\ORM\Query\ResultSetMapping;
 use Doctrine\ORM\Utility\IdentifierFlattener;
 use Doctrine\ORM\Utility\StaticClassNameConverter;
+use function ltrim;
+use function is_array;
+use function is_object;
+use function array_keys;
+use function sprintf;
+use function get_class;
+use function gettype;
 
 /**
  * The EntityManager is the central access point to ORM functionality.

@@ -23,6 +23,9 @@ declare(strict_types=1);
 namespace Doctrine\ORM\Mapping\Driver;
 
 use Doctrine\ORM\Mapping;
+use function strpos;
+use function array_keys;
+use function spl_object_id;
 
 /**
  * The DriverChain allows you to add multiple other mapping drivers for

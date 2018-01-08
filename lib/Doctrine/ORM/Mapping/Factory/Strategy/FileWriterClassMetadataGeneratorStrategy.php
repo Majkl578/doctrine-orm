@@ -7,6 +7,15 @@ namespace Doctrine\ORM\Mapping\Factory\Strategy;
 
 use Doctrine\ORM\Mapping\Factory\ClassMetadataDefinition;
 use Doctrine\ORM\Mapping\Factory\ClassMetadataGenerator;
+use function dirname;
+use function uniqid;
+use function file_put_contents;
+use function chmod;
+use function rename;
+use function is_dir;
+use function mkdir;
+use function sprintf;
+use function is_writable;
 
 class FileWriterClassMetadataGeneratorStrategy implements ClassMetadataGeneratorStrategy
 {

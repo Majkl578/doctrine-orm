@@ -8,6 +8,8 @@ use Doctrine\ORM\Mapping\FieldMetadata;
 use Doctrine\ORM\UnitOfWork;
 use Doctrine\ORM\Mapping\ClassMetadata;
 use Doctrine\Common\Persistence\Mapping\ClassMetadataFactory;
+use function is_object;
+use function implode;
 
 /**
  * The IdentifierFlattener utility now houses some of the identifier manipulation logic from unit of work, so that it

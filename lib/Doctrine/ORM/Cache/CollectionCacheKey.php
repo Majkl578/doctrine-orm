@@ -4,6 +4,10 @@
 declare(strict_types=1);
 
 namespace Doctrine\ORM\Cache;
+use function ksort;
+use function str_replace;
+use function strtolower;
+use function implode;
 
 /**
  * Defines entity collection roles to be stored in the cache region.

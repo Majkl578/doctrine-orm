@@ -11,6 +11,9 @@ use Doctrine\ORM\Reflection\ReflectionService;
 use Doctrine\ORM\Reflection\RuntimeReflectionService;
 use Doctrine\ORM\Utility\StaticClassNameConverter;
 use ReflectionException;
+use function array_reverse;
+use function strpos;
+use function explode;
 
 /**
  * The ClassMetadataFactory is used to create ClassMetadata objects that contain all the

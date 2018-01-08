@@ -3,6 +3,8 @@
 declare(strict_types=1);
 
 namespace Doctrine\ORM\Query\Expr;
+use function count;
+use function implode;
 
 /**
  * Expression class for building DQL Order By parts.
@@ -68,7 +70,7 @@ class OrderBy
      */
     public function count()
     {
-        return \count($this->parts);
+        return count($this->parts);
     }
 
     /**

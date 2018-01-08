@@ -12,6 +12,15 @@ use Doctrine\DBAL\Schema\Table;
 use Doctrine\DBAL\Schema\Column;
 use Doctrine\DBAL\Types\Type;
 use Doctrine\ORM\Mapping;
+use function array_keys;
+use function strtolower;
+use function current;
+use function count;
+use function array_merge;
+use function sort;
+use function in_array;
+use function array_diff;
+use function str_replace;
 
 /**
  * The DatabaseDriver reverse engineers the mapping metadata from a database.

@@ -8,6 +8,7 @@ use Doctrine\ORM\Query\Lexer;
 use Doctrine\ORM\Query\SqlWalker;
 use Doctrine\ORM\Query\Parser;
 use Doctrine\ORM\Query\QueryException;
+use function strtolower;
 
 /**
  * "DATE_ADD" "(" ArithmeticPrimary "," ArithmeticPrimary "," StringPrimary ")"

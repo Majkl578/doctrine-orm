@@ -7,6 +7,12 @@ namespace Doctrine\ORM\Query\Exec;
 use Doctrine\DBAL\Connection;
 use Doctrine\ORM\Query\AST;
 use Throwable;
+use function implode;
+use function array_keys;
+use function sprintf;
+use function array_merge;
+use function array_map;
+use function array_reverse;
 
 /**
  * Executes the SQL statements for bulk DQL DELETE statements on classes in

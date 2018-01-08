@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace Doctrine\ORM\Tools;
 
 use Doctrine\ORM\Event\LoadClassMetadataEventArgs;
+use function ltrim;
 
 /**
  * Mechanism to programmatically attach entity listeners.

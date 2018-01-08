@@ -28,6 +28,8 @@ use ProxyManager\Factory\LazyLoadingGhostFactory;
 use ProxyManager\FileLocator\FileLocator;
 use ProxyManager\GeneratorStrategy\EvaluatingGeneratorStrategy;
 use ProxyManager\GeneratorStrategy\FileWriterGeneratorStrategy;
+use function trim;
+use function strtolower;
 
 /**
  * Configuration container for all configuration options of Doctrine.
@@ -408,7 +410,7 @@ class Configuration extends DBALConfiguration
      */
     public function addCustomStringFunction(string $functionName, $classNameOrFactory) : void
     {
-        $this->customStringFunctions[\strtolower($functionName)] = $classNameOrFactory;
+        $this->customStringFunctions[strtolower($functionName)] = $classNameOrFactory;
     }
 
     /**

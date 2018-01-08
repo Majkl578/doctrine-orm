@@ -18,6 +18,23 @@ use Doctrine\ORM\OptimisticLockException;
 use Doctrine\ORM\Query;
 use Doctrine\ORM\Utility\HierarchyDiscriminatorResolver;
 use Doctrine\ORM\Utility\PersisterHelper;
+use function array_diff;
+use function array_keys;
+use function implode;
+use function sprintf;
+use function count;
+use function reset;
+use function array_filter;
+use function array_map;
+use function array_merge;
+use function strtoupper;
+use function is_string;
+use function in_array;
+use function trim;
+use function is_float;
+use function strtolower;
+use function is_numeric;
+use function is_array;
 
 /**
  * The SqlWalker is a TreeWalker that walks over a DQL AST and constructs

@@ -4,6 +4,11 @@
 declare(strict_types=1);
 
 namespace Doctrine\ORM\Mapping;
+use function trim;
+use function is_object;
+use function sprintf;
+use function gettype;
+use function get_class;
 
 /**
  * The default DefaultEntityListener

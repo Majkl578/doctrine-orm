@@ -12,6 +12,8 @@ use Doctrine\ORM\Cache\Persister\CachedPersister;
 use Doctrine\ORM\Mapping\ToManyAssociationMetadata;
 use Doctrine\ORM\ORMInvalidArgumentException;
 use Doctrine\ORM\Utility\StaticClassNameConverter;
+use function is_array;
+use function is_object;
 
 /**
  * Provides an API for querying/managing the second level cache regions.

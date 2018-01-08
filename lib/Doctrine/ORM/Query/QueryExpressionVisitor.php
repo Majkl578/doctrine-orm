@@ -10,6 +10,9 @@ use Doctrine\Common\Collections\Expr\ExpressionVisitor;
 use Doctrine\Common\Collections\Expr\Comparison;
 use Doctrine\Common\Collections\Expr\CompositeExpression;
 use Doctrine\Common\Collections\Expr\Value;
+use function strpos;
+use function str_replace;
+use function count;
 
 /**
  * Converts Collection expressions to Query expressions.
@@ -130,7 +133,7 @@ class QueryExpressionVisitor extends ExpressionVisitor
         }
 
         $parameterName = str_replace('.', '_', $comparison->getField());
-        $parameterCount = \count($this->parameters);
+        $parameterCount = count($this->parameters);
 
         foreach ($this->parameters as $parameter) {
             if ($parameter->getName() === $parameterName) {

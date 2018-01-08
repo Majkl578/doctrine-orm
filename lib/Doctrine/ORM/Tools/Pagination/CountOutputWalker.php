@@ -8,6 +8,12 @@ use Doctrine\ORM\Mapping\AssociationMetadata;
 use Doctrine\ORM\Mapping\FieldMetadata;
 use Doctrine\ORM\Query\SqlWalker;
 use Doctrine\ORM\Query\AST\SelectStatement;
+use function sprintf;
+use function count;
+use function reset;
+use function array_keys;
+use function implode;
+use function array_diff;
 
 /**
  * Wraps the query in order to accurately count the root objects.

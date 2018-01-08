@@ -13,6 +13,9 @@ use Doctrine\ORM\Query\AST\Functions\IdentityFunction;
 use Doctrine\ORM\Query\AST\PathExpression;
 use Doctrine\ORM\Query\AST\SelectExpression;
 use Doctrine\ORM\Query\AST\SelectStatement;
+use function reset;
+use function is_string;
+use function count;
 
 /**
  * Replaces the selectClause of the AST with a SELECT DISTINCT root.id equivalent.

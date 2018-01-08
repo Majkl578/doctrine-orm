@@ -3,6 +3,10 @@
 declare(strict_types=1);
 
 namespace Doctrine\ORM\Tools\Console;
+use function iterator_to_array;
+use function count;
+use function preg_match;
+use function sprintf;
 
 /**
  * Used by CLI Tools to restrict entity-based commands to given patterns.

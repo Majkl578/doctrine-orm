@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace Doctrine\ORM\Event;
 
 use Doctrine\ORM\EntityManagerInterface;
+use Doctrine\Common\EventArgs;
 
 /**
  * Provides event arguments for the onClear event.
@@ -15,7 +16,7 @@ use Doctrine\ORM\EntityManagerInterface;
  * @author      Roman Borschel <roman@code-factory.de>
  * @author      Benjamin Eberlei <kontakt@beberlei.de>
  */
-class OnClearEventArgs extends \Doctrine\Common\EventArgs
+class OnClearEventArgs extends EventArgs
 {
     /**
      * @var EntityManagerInterface

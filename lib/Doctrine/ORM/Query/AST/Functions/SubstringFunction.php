@@ -5,6 +5,8 @@ declare(strict_types=1);
 namespace Doctrine\ORM\Query\AST\Functions;
 
 use Doctrine\ORM\Query\Lexer;
+use Doctrine\ORM\Query\SqlWalker;
+use Doctrine\ORM\Query\Parser;
 
 /**
  * "SUBSTRING" "(" StringPrimary "," SimpleArithmeticExpression "," SimpleArithmeticExpression ")"
@@ -35,7 +37,7 @@ class SubstringFunction extends FunctionNode
      * @override
      * @inheritdoc
      */
-    public function getSql(\Doctrine\ORM\Query\SqlWalker $sqlWalker)
+    public function getSql(SqlWalker $sqlWalker)
     {
         $optionalSecondSimpleArithmeticExpression = null;
         if ($this->secondSimpleArithmeticExpression !== null) {
@@ -53,7 +55,7 @@ class SubstringFunction extends FunctionNode
      * @override
      * @inheritdoc
      */
-    public function parse(\Doctrine\ORM\Query\Parser $parser)
+    public function parse(Parser $parser)
     {
         $parser->match(Lexer::T_IDENTIFIER);
         $parser->match(Lexer::T_OPEN_PARENTHESIS);

@@ -12,6 +12,8 @@ use Doctrine\ORM\Cache\CacheKey;
 use Doctrine\ORM\Cache\CollectionCacheEntry;
 use Doctrine\ORM\Cache\Lock;
 use Doctrine\ORM\Cache\Region;
+use function sprintf;
+use function get_class;
 
 /**
  * The simplest cache region compatible with all doctrine-cache drivers.

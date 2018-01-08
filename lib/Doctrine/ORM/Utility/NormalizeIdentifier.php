@@ -8,6 +8,8 @@ use Doctrine\ORM\EntityManagerInterface;
 use Doctrine\ORM\Mapping\ClassMetadata;
 use Doctrine\ORM\Mapping\FieldMetadata;
 use Doctrine\ORM\Mapping\ToOneAssociationMetadata;
+use function array_key_exists;
+use function reset;
 
 /**
  * @since  3.0
@@ -31,7 +33,7 @@ final class NormalizeIdentifier
         $normalizedAssociatedId = [];
 
         foreach ($targetClass->getDeclaredPropertiesIterator() as $name => $declaredProperty) {
-            if (! \array_key_exists($name, $flatIdentifier)) {
+            if (! array_key_exists($name, $flatIdentifier)) {
                 continue;
             }
 

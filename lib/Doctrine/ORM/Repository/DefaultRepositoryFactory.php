@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace Doctrine\ORM\Repository;
 
 use Doctrine\ORM\EntityManagerInterface;
+use function spl_object_id;
 
 /**
  * This factory is used to create default repository objects for entities at runtime.

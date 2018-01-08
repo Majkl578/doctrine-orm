@@ -6,6 +6,11 @@ declare(strict_types=1);
 namespace Doctrine\ORM\Mapping\Exporter;
 
 use Doctrine\ORM\Mapping;
+use function implode;
+use const PHP_EOL;
+use function sprintf;
+use function str_repeat;
+use function strtoupper;
 
 class ClassMetadataExporter implements Exporter
 {

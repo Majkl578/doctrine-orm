@@ -7,6 +7,7 @@ namespace Doctrine\ORM\Internal\Hydration;
 use Doctrine\ORM\EntityManagerInterface;
 use Doctrine\ORM\Events;
 use PDO;
+use function array_merge;
 
 /**
  * Base class for all hydrators. A hydrator is a class that provides some form
@@ -379,7 +380,7 @@ abstract class AbstractHydrator
                 // the current discriminator value must be saved in order to disambiguate fields hydration,
                 // should there be field name collisions
                 if ($classMetadata->getParent() && isset($this->rsm->discriminatorColumns[$ownerMap])) {
-                    return $this->cache[$key] = \array_merge(
+                    return $this->cache[$key] = array_merge(
                         $columnInfo,
                         [
                             'discriminatorColumn' => $this->rsm->discriminatorColumns[$ownerMap],

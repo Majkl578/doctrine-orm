@@ -10,6 +10,13 @@ use Doctrine\Common\Cache\CacheProvider;
 use Doctrine\Common\ClassLoader;
 use Doctrine\ORM\Configuration;
 use Doctrine\ORM\Mapping\Driver\XmlDriver;
+use function class_exists;
+use function sys_get_temp_dir;
+use function md5;
+use function extension_loaded;
+use Doctrine\Common\Cache\ApcuCache;
+use Doctrine\Common\Cache\MemcachedCache;
+use Doctrine\Common\Cache\RedisCache;
 
 /**
  * Convenience class for setting up Doctrine from different installations and configurations.
@@ -131,7 +138,7 @@ class Setup
         }
 
         if (extension_loaded('apcu')) {
-            return new \Doctrine\Common\Cache\ApcuCache();
+            return new ApcuCache();
         }
 
 
@@ -139,7 +146,7 @@ class Setup
             $memcache = new \Memcached();
             $memcache->addServer('127.0.0.1', 11211);
 
-            $cache = new \Doctrine\Common\Cache\MemcachedCache();
+            $cache = new MemcachedCache();
             $cache->setMemcache($memcache);
 
             return $cache;
@@ -149,7 +156,7 @@ class Setup
             $redis = new \Redis();
             $redis->connect('127.0.0.1');
 
-            $cache = new \Doctrine\Common\Cache\RedisCache();
+            $cache = new RedisCache();
             $cache->setRedis($redis);
 
             return $cache;

@@ -26,6 +26,8 @@ use Doctrine\ORM\Mapping\CacheUsage;
 use Doctrine\ORM\Mapping\ClassMetadata;
 use Doctrine\ORM\Persisters\Collection\CollectionPersister;
 use Doctrine\ORM\Persisters\Entity\EntityPersister;
+use function sprintf;
+use const DIRECTORY_SEPARATOR;
 
 /**
  * @since   2.5

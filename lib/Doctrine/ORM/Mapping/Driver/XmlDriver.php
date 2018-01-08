@@ -8,6 +8,18 @@ use Doctrine\DBAL\Types\Type;
 use Doctrine\ORM\Events;
 use Doctrine\ORM\Mapping;
 use SimpleXMLElement;
+use function explode;
+use function strtoupper;
+use function constant;
+use function sprintf;
+use function get_class;
+use function class_exists;
+use function in_array;
+use function strtolower;
+use function str_replace;
+use function array_filter;
+use function simplexml_load_string;
+use function file_get_contents;
 
 /**
  * XmlDriver is a metadata driver that enables mapping through XML files.

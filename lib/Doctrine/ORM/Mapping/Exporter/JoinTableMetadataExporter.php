@@ -6,6 +6,10 @@ declare(strict_types=1);
 namespace Doctrine\ORM\Mapping\Exporter;
 
 use Doctrine\ORM\Mapping\JoinTableMetadata;
+use function str_repeat;
+use function implode;
+use const PHP_EOL;
+use function sprintf;
 
 class JoinTableMetadataExporter extends TableMetadataExporter
 {

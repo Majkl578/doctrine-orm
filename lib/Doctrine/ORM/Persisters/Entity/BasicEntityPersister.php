@@ -33,6 +33,21 @@ use Doctrine\ORM\Query;
 use Doctrine\ORM\UnitOfWork;
 use Doctrine\ORM\Utility\PersisterHelper;
 use Doctrine\ORM\Utility\StaticClassNameConverter;
+use function array_map;
+use function array_keys;
+use function implode;
+use function array_values;
+use function array_merge;
+use function is_array;
+use function sprintf;
+use function array_combine;
+use function strtoupper;
+use function trim;
+use function in_array;
+use function array_search;
+use function strpos;
+use function is_object;
+use function get_class;
 
 /**
  * A BasicEntityPersister maps an entity to a single table in a relational database.

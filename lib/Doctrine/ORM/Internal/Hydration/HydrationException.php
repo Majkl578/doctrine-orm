@@ -3,8 +3,11 @@
 declare(strict_types=1);
 
 namespace Doctrine\ORM\Internal\Hydration;
+use Doctrine\ORM\ORMException;
+use function sprintf;
+use function implode;
 
-class HydrationException extends \Doctrine\ORM\ORMException
+class HydrationException extends ORMException
 {
     /**
      * @return HydrationException

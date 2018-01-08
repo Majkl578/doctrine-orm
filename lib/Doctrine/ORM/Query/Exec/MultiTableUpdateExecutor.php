@@ -8,6 +8,13 @@ use Doctrine\DBAL\Connection;
 use Doctrine\ORM\Query\AST;
 use Doctrine\ORM\Query\ParameterTypeInferer;
 use Throwable;
+use function implode;
+use function array_keys;
+use function sprintf;
+use function array_merge;
+use function array_map;
+use function array_reverse;
+use function array_slice;
 
 /**
  * Executes the SQL statements for bulk DQL UPDATE statements on classes in

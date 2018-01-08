@@ -24,6 +24,17 @@ use Doctrine\ORM\Mapping\ToOneAssociationMetadata;
 use Doctrine\ORM\ORMException;
 use Doctrine\ORM\Tools\Event\GenerateSchemaEventArgs;
 use Doctrine\ORM\Tools\Event\GenerateSchemaTableEventArgs;
+use function is_numeric;
+use function strtolower;
+use function is_int;
+use function array_key_exists;
+use function array_keys;
+use function in_array;
+use function count;
+use function reset;
+use function sprintf;
+use function implode;
+use function array_diff;
 
 /**
  * The SchemaTool is a tool to create/drop/update database schemas based on

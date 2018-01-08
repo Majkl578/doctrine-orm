@@ -9,6 +9,11 @@ use Doctrine\ORM\Query\ResultSetMappingBuilder;
 use Doctrine\Common\Persistence\ObjectRepository;
 use Doctrine\Common\Collections\Selectable;
 use Doctrine\Common\Collections\Criteria;
+use function str_replace;
+use function strpos;
+use function substr;
+use function lcfirst;
+use function array_slice;
 
 /**
  * An EntityRepository serves as a repository for entities with generic as well as

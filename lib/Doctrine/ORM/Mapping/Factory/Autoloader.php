@@ -6,6 +6,20 @@ declare(strict_types=1);
 namespace Doctrine\ORM\Mapping\Factory;
 
 use InvalidArgumentException;
+use function strpos;
+use function sprintf;
+use function substr;
+use function strlen;
+use function str_replace;
+use const DIRECTORY_SEPARATOR;
+use function ltrim;
+use function is_callable;
+use function is_object;
+use function get_class;
+use function gettype;
+use function file_exists;
+use function call_user_func;
+use function spl_autoload_register;
 
 class Autoloader
 {

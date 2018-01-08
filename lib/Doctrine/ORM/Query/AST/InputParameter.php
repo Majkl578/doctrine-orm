@@ -3,6 +3,10 @@
 declare(strict_types=1);
 
 namespace Doctrine\ORM\Query\AST;
+use function strlen;
+use Doctrine\ORM\Query\QueryException;
+use function substr;
+use function is_numeric;
 
 /**
  * Description of InputParameter.
@@ -33,7 +37,7 @@ class InputParameter extends Node
     public function __construct($value)
     {
         if (strlen($value) === 1) {
-            throw \Doctrine\ORM\Query\QueryException::invalidParameterFormat($value);
+            throw QueryException::invalidParameterFormat($value);
         }
 
         $param = substr($value, 1);

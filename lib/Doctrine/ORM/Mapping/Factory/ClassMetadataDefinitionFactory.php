@@ -7,6 +7,7 @@ namespace Doctrine\ORM\Mapping\Factory;
 
 use Doctrine\ORM\Mapping\ClassMetadata;
 use Doctrine\ORM\Mapping\Factory\Strategy\ClassMetadataGeneratorStrategy;
+use function class_exists;
 
 class ClassMetadataDefinitionFactory
 {

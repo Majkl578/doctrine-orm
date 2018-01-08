@@ -3,13 +3,20 @@
 declare(strict_types=1);
 
 namespace Doctrine\ORM\Mapping;
+use Doctrine\ORM\ORMException;
+use function get_parent_class;
+use function sprintf;
+use function implode;
+use function array_map;
+use function array_keys;
+use function array_values;
 
 /**
  * A MappingException indicates that something is wrong with the mapping setup.
  *
  * @since 2.0
  */
-class MappingException extends \Doctrine\ORM\ORMException
+class MappingException extends ORMException
 {
     /**
      * @return MappingException

@@ -6,6 +6,7 @@ declare(strict_types=1);
 namespace Doctrine\ORM\Mapping\Exporter;
 
 use Doctrine\ORM\Mapping\OneToOneAssociationMetadata;
+use function sprintf;
 
 class OneToOneAssociationMetadataExporter extends ToOneAssociationMetadataExporter
 {

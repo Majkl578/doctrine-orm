@@ -5,6 +5,8 @@ declare(strict_types=1);
 namespace Doctrine\ORM\Event;
 
 use Doctrine\ORM\EntityManagerInterface;
+use function sprintf;
+use function get_class;
 
 /**
  * Class that holds event arguments for a preInsert/preUpdate event.

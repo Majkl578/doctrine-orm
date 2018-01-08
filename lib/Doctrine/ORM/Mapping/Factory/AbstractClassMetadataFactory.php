@@ -12,6 +12,7 @@ use Doctrine\ORM\Mapping\Driver\MappingDriver;
 use Doctrine\ORM\Mapping\Factory\Strategy\ConditionalFileWriterClassMetadataGeneratorStrategy;
 use Doctrine\ORM\Reflection\ReflectionService;
 use Doctrine\ORM\Utility\StaticClassNameConverter;
+use function array_reverse;
 
 /**
  * AbstractClassMetadataFactory is the base of ClassMetadata object creation that contain all the metadata mapping

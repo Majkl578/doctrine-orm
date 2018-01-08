@@ -3,6 +3,7 @@
 declare(strict_types=1);
 
 namespace Doctrine\ORM\Query;
+use function str_repeat;
 
 /**
  * A parse tree printer for Doctrine Query Language parser.

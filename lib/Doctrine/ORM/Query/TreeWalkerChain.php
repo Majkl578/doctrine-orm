@@ -3,6 +3,8 @@
 declare(strict_types=1);
 
 namespace Doctrine\ORM\Query;
+use function array_diff;
+use function array_keys;
 
 /**
  * Represents a chain of tree walkers that modify an AST and finally emit output.

@@ -6,6 +6,7 @@ declare(strict_types=1);
 namespace Doctrine\ORM\Mapping\Exporter;
 
 use Doctrine\ORM\Mapping\DiscriminatorColumnMetadata;
+use function sprintf;
 
 class DiscriminatorColumnMetadataExporter extends LocalColumnMetadataExporter
 {

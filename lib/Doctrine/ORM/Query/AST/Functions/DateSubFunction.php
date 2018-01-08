@@ -6,6 +6,7 @@ namespace Doctrine\ORM\Query\AST\Functions;
 
 use Doctrine\ORM\Query\SqlWalker;
 use Doctrine\ORM\Query\QueryException;
+use function strtolower;
 
 /**
  * "DATE_ADD(date1, interval, unit)"

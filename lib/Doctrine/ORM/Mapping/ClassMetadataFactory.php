@@ -16,6 +16,17 @@ use Doctrine\ORM\Sequencing\Planning\CompositeValueGenerationPlan;
 use Doctrine\ORM\Sequencing\Planning\NoopValueGenerationPlan;
 use Doctrine\ORM\Sequencing\Planning\SingleValueGenerationPlan;
 use ReflectionException;
+use function array_map;
+use function is_subclass_of;
+use function strpos;
+use function strtolower;
+use function explode;
+use function end;
+use function sprintf;
+use function class_exists;
+use function var_export;
+use function count;
+use function reset;
 
 /**
  * The ClassMetadataFactory is used to create ClassMetadata objects that contain all the

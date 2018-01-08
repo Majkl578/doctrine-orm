@@ -4,6 +4,11 @@
 declare(strict_types=1);
 
 namespace Doctrine\ORM\Mapping\Factory;
+use function ltrim;
+use function rtrim;
+use const DIRECTORY_SEPARATOR;
+use function sprintf;
+use function str_replace;
 
 class DefaultClassMetadataResolver implements ClassMetadataResolver
 {

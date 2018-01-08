@@ -17,6 +17,26 @@ use Symfony\Component\Console\Input\InputArgument;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
 use Symfony\Component\Console\Style\SymfonyStyle;
+use function array_merge;
+use function array_filter;
+use function preg_match;
+use function preg_quote;
+use function sprintf;
+use function count;
+use function implode;
+use function current;
+use function ucfirst;
+use function strtolower;
+use function is_bool;
+use function is_array;
+use function json_encode;
+use const JSON_UNESCAPED_UNICODE;
+use const JSON_UNESCAPED_SLASHES;
+use function is_object;
+use function get_class;
+use function is_scalar;
+use function print_r;
+use function array_map;
 
 /**
  * Show information about mapped entities.

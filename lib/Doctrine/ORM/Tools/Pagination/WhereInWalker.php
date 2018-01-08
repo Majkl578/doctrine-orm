@@ -19,6 +19,8 @@ use Doctrine\ORM\Query\AST\ConditionalTerm;
 use Doctrine\ORM\Query\AST\ConditionalExpression;
 use Doctrine\ORM\Query\AST\ConditionalFactor;
 use Doctrine\ORM\Query\AST\WhereClause;
+use function count;
+use function reset;
 
 /**
  * Replaces the whereClause of the AST with a WHERE id IN (:foo_1, :foo_2) equivalent.

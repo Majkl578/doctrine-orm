@@ -6,6 +6,9 @@ declare(strict_types=1);
 namespace Doctrine\ORM\Mapping\Exporter;
 
 use Doctrine\ORM\Mapping\FieldMetadata;
+use function sprintf;
+use function implode;
+use const PHP_EOL;
 
 class FieldMetadataExporter extends LocalColumnMetadataExporter
 {

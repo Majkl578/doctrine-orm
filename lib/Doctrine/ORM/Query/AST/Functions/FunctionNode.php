@@ -5,6 +5,8 @@ declare(strict_types=1);
 namespace Doctrine\ORM\Query\AST\Functions;
 
 use Doctrine\ORM\Query\AST\Node;
+use Doctrine\ORM\Query\SqlWalker;
+use Doctrine\ORM\Query\Parser;
 
 /**
  * Abstract Function Node.
@@ -37,7 +39,7 @@ abstract class FunctionNode extends Node
      *
      * @return string
      */
-    abstract public function getSql(\Doctrine\ORM\Query\SqlWalker $sqlWalker);
+    abstract public function getSql(SqlWalker $sqlWalker);
 
     /**
      * @param \Doctrine\ORM\Query\SqlWalker $sqlWalker
@@ -54,5 +56,5 @@ abstract class FunctionNode extends Node
      *
      * @return void
      */
-    abstract public function parse(\Doctrine\ORM\Query\Parser $parser);
+    abstract public function parse(Parser $parser);
 }

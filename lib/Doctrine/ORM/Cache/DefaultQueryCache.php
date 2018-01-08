@@ -14,6 +14,13 @@ use Doctrine\Common\Proxy\Proxy;
 use Doctrine\ORM\Cache;
 use Doctrine\ORM\Query;
 use ProxyManager\Proxy\GhostObjectInterface;
+use function reset;
+use function array_map;
+use function is_array;
+use function count;
+use function key;
+use function array_unshift;
+use function array_shift;
 
 /**
  * Default query cache implementation.

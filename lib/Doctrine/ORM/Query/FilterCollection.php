@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace Doctrine\ORM\Query;
 
 use Doctrine\ORM\EntityManagerInterface;
+use function ksort;
 
 /**
  * Collection class for all the query filters.

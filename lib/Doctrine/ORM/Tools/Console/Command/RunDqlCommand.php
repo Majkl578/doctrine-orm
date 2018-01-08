@@ -11,6 +11,11 @@ use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Input\InputOption;
 use Symfony\Component\Console\Output\OutputInterface;
 use Symfony\Component\Console\Style\SymfonyStyle;
+use function is_numeric;
+use function strtoupper;
+use function str_replace;
+use function defined;
+use function constant;
 
 /**
  * Command to execute DQL queries in a given EntityManager.

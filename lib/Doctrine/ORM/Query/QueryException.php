@@ -7,6 +7,8 @@ namespace Doctrine\ORM\Query;
 use Doctrine\ORM\Mapping\AssociationMetadata;
 
 use Doctrine\ORM\Query\AST\PathExpression;
+use Doctrine\ORM\ORMException;
+use function sprintf;
 
 /**
  * Description of QueryException.
@@ -18,7 +20,7 @@ use Doctrine\ORM\Query\AST\PathExpression;
  * @author  Roman Borschel <roman@code-factory.org>
  * @author  Benjamin Eberlei <kontakt@beberlei.de>
  */
-class QueryException extends \Doctrine\ORM\ORMException
+class QueryException extends ORMException
 {
     /**
      * @param string $dql

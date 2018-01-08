@@ -3,6 +3,7 @@
 declare(strict_types=1);
 
 namespace Doctrine\ORM\Query\Expr;
+use function implode;
 
 /**
  * Expression class for generating DQL functions.

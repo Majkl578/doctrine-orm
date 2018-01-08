@@ -4,6 +4,10 @@
 declare(strict_types=1);
 
 namespace Doctrine\ORM\Mapping\Factory;
+use function strpos;
+use function substr;
+use function strrpos;
+use function strtolower;
 
 /**
  * The default NamingStrategy

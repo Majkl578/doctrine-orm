@@ -11,6 +11,7 @@ use Doctrine\ORM\EntityManagerInterface;
 use Doctrine\ORM\Mapping\AssociationMetadata;
 use Doctrine\ORM\PersistentCollection;
 use Doctrine\ORM\Persisters\Collection\CollectionPersister;
+use function spl_object_id;
 
 /**
  * @author Fabio B. Silva <fabio.bat.silva@gmail.com>

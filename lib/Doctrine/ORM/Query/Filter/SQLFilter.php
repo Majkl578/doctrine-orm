@@ -7,6 +7,8 @@ namespace Doctrine\ORM\Query\Filter;
 use Doctrine\ORM\EntityManagerInterface;
 use Doctrine\ORM\Mapping\ClassMetadata;
 use Doctrine\ORM\Query\ParameterTypeInferer;
+use function ksort;
+use function serialize;
 
 /**
  * The base class that user defined filters should extend.

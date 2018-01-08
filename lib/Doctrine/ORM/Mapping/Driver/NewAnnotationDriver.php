@@ -11,6 +11,23 @@ use Doctrine\ORM\Annotation;
 use Doctrine\ORM\Events;
 use Doctrine\ORM\Mapping;
 use Doctrine\ORM\Mapping\Factory;
+use function array_filter;
+use function get_class;
+use function constant;
+use function sprintf;
+use function is_array;
+use function class_exists;
+use function strtolower;
+use function str_replace;
+use function array_merge;
+use function strtoupper;
+use function defined;
+use function array_map;
+use function in_array;
+use function count;
+use function array_intersect;
+use function array_diff;
+use function is_numeric;
 
 class NewAnnotationDriver implements MappingDriver
 {

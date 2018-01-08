@@ -6,6 +6,8 @@ declare(strict_types=1);
 namespace Doctrine\ORM\Mapping\Exporter;
 
 use Doctrine\ORM\Mapping\TransientMetadata;
+use function str_repeat;
+use function sprintf;
 
 class TransientMetadataExporter implements Exporter
 {

@@ -3,6 +3,11 @@
 declare(strict_types=1);
 
 namespace Doctrine\ORM\Query\Expr;
+use function is_string;
+use function get_class;
+use function in_array;
+use function count;
+use function implode;
 
 /**
  * Abstract base Expr class for building DQL parts.
@@ -92,7 +97,7 @@ abstract class Base
      */
     public function count()
     {
-        return \count($this->parts);
+        return count($this->parts);
     }
 
     /**

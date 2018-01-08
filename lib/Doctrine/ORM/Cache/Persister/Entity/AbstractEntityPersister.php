@@ -23,6 +23,8 @@ use Doctrine\ORM\Mapping\ToOneAssociationMetadata;
 use Doctrine\ORM\PersistentCollection;
 use Doctrine\ORM\Persisters\Entity\EntityPersister;
 use Doctrine\ORM\Utility\StaticClassNameConverter;
+use function sha1;
+use function serialize;
 
 /**
  * @author Fabio B. Silva <fabio.bat.silva@gmail.com>

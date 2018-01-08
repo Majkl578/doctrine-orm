@@ -13,6 +13,18 @@ use Doctrine\ORM\Mapping\ClassMetadata;
 use Doctrine\ORM\Query\ParameterTypeInferer;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Utility\HierarchyDiscriminatorResolver;
+use function count;
+use function reset;
+use Doctrine\ORM\Query\AST\SelectStatement;
+use Doctrine\ORM\Query\AST\DeleteStatement;
+use function array_keys;
+use function ksort;
+use function array_values;
+use function stripos;
+use function in_array;
+use function md5;
+use function serialize;
+use function sha1;
 
 /**
  * A Query object represents a DQL query.
@@ -346,11 +358,11 @@ final class Query extends AbstractQuery
     {
         $AST = $this->getAST();
 
-        if ($AST instanceof \Doctrine\ORM\Query\AST\SelectStatement) {
+        if ($AST instanceof SelectStatement) {
             throw new QueryException('The hint "HINT_CACHE_EVICT" is not valid for select statements.');
         }
 
-        $className = ($AST instanceof \Doctrine\ORM\Query\AST\DeleteStatement)
+        $className = ($AST instanceof DeleteStatement)
             ? $AST->deleteClause->abstractSchemaName
             : $AST->updateClause->abstractSchemaName;
 

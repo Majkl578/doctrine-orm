@@ -17,6 +17,19 @@ use Doctrine\ORM\Query\AST\PartialObjectExpression;
 use Doctrine\ORM\Query\AST\SelectExpression;
 use Doctrine\ORM\Query\SqlWalker;
 use Doctrine\ORM\Query\AST\SelectStatement;
+use function method_exists;
+use function is_string;
+use function array_map;
+use function implode;
+use function sprintf;
+use function array_keys;
+use function preg_replace;
+use function substr;
+use function strrpos;
+use function count;
+use function reset;
+use function array_diff;
+use function in_array;
 
 /**
  * Wraps the query in order to select root entity IDs for pagination.
@@ -397,14 +410,14 @@ class LimitSubqueryOutputWalker extends SqlWalker
         foreach ($orderByClause->orderByItems as $orderByItem) {
             // Walk order by item to get string representation of it and
             // replace path expressions in the order by clause with their column alias
-            $orderByItemString = \preg_replace(
+            $orderByItemString = preg_replace(
                 $searchPatterns,
                 $replacements,
                 $this->walkOrderByItem($orderByItem)
             );
 
             $orderByItems[] = $orderByItemString;
-            $identifier     = \substr($orderByItemString, 0, \strrpos($orderByItemString, ' '));
+            $identifier     = substr($orderByItemString, 0, strrpos($orderByItemString, ' '));
 
             if (! \in_array($identifier, $identifiers, true)) {
                 $identifiers[] = $identifier;

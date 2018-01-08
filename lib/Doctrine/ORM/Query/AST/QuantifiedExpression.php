@@ -3,6 +3,7 @@
 declare(strict_types=1);
 
 namespace Doctrine\ORM\Query\AST;
+use function strtoupper;
 
 /**
  * QuantifiedExpression ::= ("ALL" | "ANY" | "SOME") "(" Subselect ")"

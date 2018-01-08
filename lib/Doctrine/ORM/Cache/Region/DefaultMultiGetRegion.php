@@ -7,6 +7,7 @@ namespace Doctrine\ORM\Cache\Region;
 
 use Doctrine\Common\Cache\MultiGetCache;
 use Doctrine\ORM\Cache\CollectionCacheEntry;
+use function count;
 
 /**
  * A cache region that enables the retrieval of multiple elements with one call

@@ -10,6 +10,22 @@ use Doctrine\ORM\Mapping\FieldMetadata;
 use Doctrine\ORM\Mapping\ToOneAssociationMetadata;
 use Doctrine\ORM\Query;
 use Doctrine\ORM\Query\AST\Functions;
+use function count;
+use function array_search;
+use function strlen;
+use function strpos;
+use function substr;
+use function in_array;
+use function class_exists;
+use function strrpos;
+use function sprintf;
+use function array_intersect;
+use function implode;
+use function explode;
+use function interface_exists;
+use function strtolower;
+use function is_string;
+use function call_user_func;
 
 /**
  * An LL(*) recursive-descent parser for the context-free grammar of the Doctrine Query Language.

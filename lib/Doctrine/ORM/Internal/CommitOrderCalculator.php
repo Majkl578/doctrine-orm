@@ -4,6 +4,7 @@
 declare(strict_types=1);
 
 namespace Doctrine\ORM\Internal;
+use function array_reverse;
 
 /**
  * CommitOrderCalculator implements topological sorting, which is an ordering

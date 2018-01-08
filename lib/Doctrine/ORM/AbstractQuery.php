@@ -10,6 +10,17 @@ use Doctrine\ORM\Query\Parameter;
 use Doctrine\ORM\Cache\QueryCacheKey;
 use Doctrine\DBAL\Cache\QueryCacheProfile;
 use Doctrine\ORM\Utility\StaticClassNameConverter;
+use function is_array;
+use function is_scalar;
+use function reset;
+use function is_object;
+use function array_map;
+use function count;
+use function array_shift;
+use function is_numeric;
+use function ksort;
+use function sha1;
+use function serialize;
 
 /**
  * Base contract for ORM queries. Base class for Query and NativeQuery.

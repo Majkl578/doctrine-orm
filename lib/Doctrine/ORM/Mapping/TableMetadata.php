@@ -6,6 +6,7 @@ declare(strict_types=1);
 namespace Doctrine\ORM\Mapping;
 
 use Doctrine\DBAL\Platforms\AbstractPlatform;
+use function sprintf;
 
 /**
  * Class TableMetadata

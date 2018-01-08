@@ -3,6 +3,8 @@
 declare(strict_types=1);
 
 namespace Doctrine\ORM\Query;
+use function array_diff;
+use function array_keys;
 
 /**
  * An adapter implementation of the TreeWalker interface. The methods in this class

@@ -15,6 +15,13 @@ use Doctrine\ORM\Persisters\SqlValueVisitor;
 use Doctrine\ORM\PersistentCollection;
 use Doctrine\ORM\Query;
 use Doctrine\ORM\Utility\PersisterHelper;
+use function sprintf;
+use function implode;
+use function get_class;
+use function count;
+use function reset;
+use function array_fill;
+use function in_array;
 
 /**
  * Persister for many-to-many collections.

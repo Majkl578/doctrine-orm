@@ -8,6 +8,13 @@ use Doctrine\Common\Collections\Criteria;
 use Doctrine\ORM\Mapping\InheritanceType;
 use Doctrine\ORM\Mapping\ToManyAssociationMetadata;
 use Doctrine\ORM\PersistentCollection;
+use function implode;
+use function array_keys;
+use function array_values;
+use function sprintf;
+use function array_merge;
+use function array_map;
+use function array_reverse;
 
 /**
  * Persister for one-to-many collections.

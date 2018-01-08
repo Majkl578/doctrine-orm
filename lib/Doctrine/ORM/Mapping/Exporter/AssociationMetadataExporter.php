@@ -6,6 +6,11 @@ declare(strict_types=1);
 namespace Doctrine\ORM\Mapping\Exporter;
 
 use Doctrine\ORM\Mapping\AssociationMetadata;
+use function str_repeat;
+use function strtoupper;
+use function implode;
+use const PHP_EOL;
+use function array_diff;
 
 abstract class AssociationMetadataExporter implements Exporter
 {

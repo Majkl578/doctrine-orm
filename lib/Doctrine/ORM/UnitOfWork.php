@@ -40,6 +40,25 @@ use Doctrine\ORM\Utility\NormalizeIdentifier;
 use InvalidArgumentException;
 use ProxyManager\Proxy\GhostObjectInterface;
 use UnexpectedValueException;
+use function array_reverse;
+use function get_class;
+use function spl_object_id;
+use function array_key_exists;
+use function in_array;
+use function array_merge;
+use function array_pop;
+use function array_filter;
+use function implode;
+use function array_combine;
+use function is_array;
+use function is_object;
+use function current;
+use function array_values;
+use function array_sum;
+use function array_map;
+use function sprintf;
+use function method_exists;
+use function array_diff_key;
 
 /**
  * The UnitOfWork is responsible for tracking changes to objects during an
@@ -2627,7 +2646,7 @@ class UnitOfWork implements PropertyChangedListener
      */
     public function size()
     {
-        return \array_sum(\array_map('count', $this->identityMap));
+        return array_sum(array_map('count', $this->identityMap));
     }
 
     /**
@@ -2988,7 +3007,7 @@ class UnitOfWork implements PropertyChangedListener
      */
     private function assertThatThereAreNoUnintentionallyNonPersistedAssociations() : void
     {
-        $entitiesNeedingCascadePersist = \array_diff_key($this->nonCascadedNewDetectedEntities, $this->entityInsertions);
+        $entitiesNeedingCascadePersist = array_diff_key($this->nonCascadedNewDetectedEntities, $this->entityInsertions);
 
         $this->nonCascadedNewDetectedEntities = [];
 

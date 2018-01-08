@@ -9,6 +9,23 @@ use Doctrine\Common\Collections\Criteria;
 
 use Doctrine\ORM\Query\Expr;
 use Doctrine\ORM\Query\QueryExpressionVisitor;
+use function in_array;
+use function is_string;
+use function strrpos;
+use function substr;
+use function array_merge;
+use function array_keys;
+use function is_array;
+use function reset;
+use function is_numeric;
+use function key;
+use function func_get_args;
+use function sprintf;
+use function strpos;
+use function func_num_args;
+use function array_unshift;
+use function implode;
+use function is_object;
 
 /**
  * This class is responsible for building DQL query strings via an object oriented
