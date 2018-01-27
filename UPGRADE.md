@@ -1,5 +1,9 @@
 # Upgrade to 3.0
 
+## BC Break: Removed Doctrine\ORM\Tools\Setup convenience class
+
+The Doctrine\ORM\Tools\Setup has been removed.
+
 ## BC Break: Removed support for entity namespace aliases
 
 The support for namespace aliases has been removed.
