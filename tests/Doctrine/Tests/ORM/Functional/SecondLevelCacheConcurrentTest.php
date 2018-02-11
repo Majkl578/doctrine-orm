@@ -4,18 +4,18 @@ declare(strict_types=1);
 
 namespace Doctrine\Tests\ORM\Functional;
 
+use Doctrine\Common\Cache\Cache;
+use Doctrine\ORM\Cache\CollectionCacheKey;
 use Doctrine\ORM\Cache\DefaultCacheFactory;
+use Doctrine\ORM\Cache\EntityCacheKey;
+use Doctrine\ORM\Cache\Lock;
+use Doctrine\ORM\Cache\Region\DefaultRegion;
 use Doctrine\ORM\Mapping\CacheMetadata;
 use Doctrine\ORM\Mapping\CacheUsage;
 use Doctrine\Tests\Mocks\ConcurrentRegionMock;
-use Doctrine\ORM\Cache\Region\DefaultRegion;
 use Doctrine\Tests\Mocks\TimestampRegionMock;
 use Doctrine\Tests\Models\Cache\Country;
-use Doctrine\ORM\Cache\CollectionCacheKey;
-use Doctrine\ORM\Cache\EntityCacheKey;
 use Doctrine\Tests\Models\Cache\State;
-use Doctrine\Common\Cache\Cache;
-use Doctrine\ORM\Cache\Lock;
 
 /**
  * @group DDC-2183
@@ -57,12 +57,12 @@ class SecondLevelCacheConcurrentTest extends SecondLevelCacheAbstractTest
         $this->em->clear();
 
         $countryId = $this->countries[0]->getId();
-        $cacheId   = new EntityCacheKey(Country::class, ['id'=>$countryId]);
+        $cacheId   = new EntityCacheKey(Country::class, ['id' => $countryId]);
         $region    = $this->em->getCache()->getEntityCacheRegion(Country::class);
 
         self::assertTrue($this->cache->containsEntity(Country::class, $countryId));
 
-        /** @var \Doctrine\Tests\Mocks\ConcurrentRegionMock */
+        /** @var ConcurrentRegionMock */
         $region->setLock($cacheId, Lock::createLockRead()); // another proc lock the entity cache
 
         self::assertFalse($this->cache->containsEntity(Country::class, $countryId));
@@ -84,8 +84,8 @@ class SecondLevelCacheConcurrentTest extends SecondLevelCacheAbstractTest
         $this->em->clear();
         $this->evictRegions();
 
-        $stateId    = $this->states[0]->getId();
-        $state      = $this->em->find(State::class, $stateId);
+        $stateId = $this->states[0]->getId();
+        $state   = $this->em->find(State::class, $stateId);
 
         self::assertInstanceOf(State::class, $state);
         self::assertInstanceOf(Country::class, $state->getCountry());
@@ -95,9 +95,9 @@ class SecondLevelCacheConcurrentTest extends SecondLevelCacheAbstractTest
         $this->em->clear();
         $this->secondLevelCacheLogger->clearStats();
 
-        $stateId   = $this->states[0]->getId();
-        $cacheId   = new CollectionCacheKey(State::class, 'cities', ['id'=>$stateId]);
-        $region    = $this->em->getCache()->getCollectionCacheRegion(State::class, 'cities');
+        $stateId = $this->states[0]->getId();
+        $cacheId = new CollectionCacheKey(State::class, 'cities', ['id' => $stateId]);
+        $region  = $this->em->getCache()->getCollectionCacheRegion(State::class, 'cities');
 
         self::assertTrue($this->cache->containsCollection(State::class, 'cities', $stateId));
 

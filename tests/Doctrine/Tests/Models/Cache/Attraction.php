@@ -89,7 +89,7 @@ abstract class Attraction
 
     public function addInfo(AttractionInfo $info)
     {
-        if ( ! $this->infos->contains($info)) {
+        if (! $this->infos->contains($info)) {
             $this->infos->add($info);
         }
     }

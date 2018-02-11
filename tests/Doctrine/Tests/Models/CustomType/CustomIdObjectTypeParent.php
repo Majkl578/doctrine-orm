@@ -26,9 +26,6 @@ class CustomIdObjectTypeParent
      */
     public $children;
 
-    /**
-     * @param CustomIdObject $id
-     */
     public function __construct(CustomIdObject $id)
     {
         $this->id       = $id;

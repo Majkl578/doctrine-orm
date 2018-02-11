@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace Doctrine\Tests\Models\Navigation;
 
+use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Annotation as ORM;
 
 /**
@@ -48,11 +49,11 @@ class NavPointOfInterest
 
     public function __construct($lat, $long, $name, $country)
     {
-        $this->lat = $lat;
-        $this->long = $long;
-        $this->name = $name;
-        $this->country = $country;
-        $this->visitors = new \Doctrine\Common\Collections\ArrayCollection;
+        $this->lat      = $lat;
+        $this->long     = $long;
+        $this->name     = $name;
+        $this->country  = $country;
+        $this->visitors = new ArrayCollection();
     }
 
     public function getLong()

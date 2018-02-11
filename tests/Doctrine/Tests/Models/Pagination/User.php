@@ -7,8 +7,6 @@ namespace Doctrine\Tests\Models\Pagination;
 use Doctrine\ORM\Annotation as ORM;
 
 /**
- * @package Doctrine\Tests\Models\Pagination
- *
  * @ORM\Entity
  * @ORM\Table(name="pagination_user")
  * @ORM\InheritanceType("SINGLE_TABLE")

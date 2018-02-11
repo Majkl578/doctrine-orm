@@ -43,8 +43,8 @@ class DDC117ApproveChanges
     public function __construct($details, $reference, $translation)
     {
         $this->articleDetails = $details;
-        $this->reference = $reference;
-        $this->translation = $translation;
+        $this->reference      = $reference;
+        $this->translation    = $translation;
     }
 
     public function getId()

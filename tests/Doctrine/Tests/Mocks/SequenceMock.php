@@ -27,9 +27,6 @@ class SequenceMock extends SequenceGenerator
 
     /* Mock API */
 
-    /**
-     * @return void
-     */
     public function reset()
     {
         $this->sequenceNumber = 0;

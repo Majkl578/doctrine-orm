@@ -9,7 +9,6 @@ use Doctrine\Common\PropertyChangedListener;
 use Doctrine\ORM\Annotation as ORM;
 use Doctrine\ORM\Tools\ToolsException;
 use Doctrine\Tests\OrmFunctionalTestCase;
-use ProxyManager\Proxy\GhostObjectInterface;
 
 /**
  * @group DDC-2230
@@ -71,7 +70,7 @@ class DDC2230Address implements NotifyPropertyChanged
     public $id;
 
     /**
-     * @var \Doctrine\Common\PropertyChangedListener
+     * @var PropertyChangedListener
      */
     public $listener;
 

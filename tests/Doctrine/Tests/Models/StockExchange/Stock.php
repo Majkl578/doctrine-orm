@@ -39,7 +39,7 @@ class Stock
     public function __construct($symbol, $initialOfferingPrice, Market $market)
     {
         $this->symbol = $symbol;
-        $this->price = $initialOfferingPrice;
+        $this->price  = $initialOfferingPrice;
         $this->market = $market;
         $market->addStock($this);
     }

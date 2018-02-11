@@ -4,9 +4,8 @@ declare(strict_types=1);
 
 namespace Doctrine\Tests\Models\Company;
 
-use Doctrine\DBAL\Types\Type;
+use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Annotation as ORM;
-use Doctrine\ORM\Mapping;
 
 /**
  * @ORM\Entity
@@ -50,7 +49,7 @@ abstract class CompanyContract
 
     public function __construct()
     {
-        $this->engineers = new \Doctrine\Common\Collections\ArrayCollection;
+        $this->engineers = new ArrayCollection();
     }
 
     public function getId()

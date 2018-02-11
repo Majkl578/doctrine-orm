@@ -5,13 +5,14 @@ declare(strict_types=1);
 namespace Doctrine\Tests\ORM\Functional;
 
 use Doctrine\ORM\Query;
-use Doctrine\Tests\Models\CMS\CmsAddressDTO;
-use Doctrine\Tests\Models\CMS\CmsUser;
-use Doctrine\Tests\Models\CMS\CmsEmail;
 use Doctrine\Tests\Models\CMS\CmsAddress;
+use Doctrine\Tests\Models\CMS\CmsAddressDTO;
+use Doctrine\Tests\Models\CMS\CmsEmail;
 use Doctrine\Tests\Models\CMS\CmsPhonenumber;
+use Doctrine\Tests\Models\CMS\CmsUser;
 use Doctrine\Tests\Models\CMS\CmsUserDTO;
 use Doctrine\Tests\OrmFunctionalTestCase;
+use function count;
 
 /**
  * @group DDC-1574
@@ -41,9 +42,9 @@ class NewOperatorTest extends OrmFunctionalTestCase
 
     private function loadFixtures()
     {
-        $u1 = new CmsUser;
-        $u2 = new CmsUser;
-        $u3 = new CmsUser;
+        $u1 = new CmsUser();
+        $u2 = new CmsUser();
+        $u3 = new CmsUser();
 
         $u1->setEmail(new CmsEmail());
         $u1->setAddress(new CmsAddress());
@@ -60,35 +61,35 @@ class NewOperatorTest extends OrmFunctionalTestCase
         $u3->addPhonenumber(new CmsPhonenumber());
         $u3->addPhonenumber(new CmsPhonenumber());
 
-        $u1->name               = 'Test 1';
-        $u1->username           = '1test';
-        $u1->status             = 'developer';
-        $u1->email->email       = 'email@test1.com';
-        $u1->address->zip       = '111111111';
-        $u1->address->city      = 'Some City 1';
-        $u1->address->country   = 'Some Country 2';
-        $u1->phonenumbers[0]->phonenumber = "(11) 1111-1111";
+        $u1->name                         = 'Test 1';
+        $u1->username                     = '1test';
+        $u1->status                       = 'developer';
+        $u1->email->email                 = 'email@test1.com';
+        $u1->address->zip                 = '111111111';
+        $u1->address->city                = 'Some City 1';
+        $u1->address->country             = 'Some Country 2';
+        $u1->phonenumbers[0]->phonenumber = '(11) 1111-1111';
 
-        $u2->name               = 'Test 2';
-        $u2->username           = '2test';
-        $u2->status             = 'developer';
-        $u2->email->email       = 'email@test2.com';
-        $u2->address->zip       = '222222222';
-        $u2->address->city      = 'Some City 2';
-        $u2->address->country   = 'Some Country 2';
-        $u2->phonenumbers[0]->phonenumber = "(22) 1111-1111";
-        $u2->phonenumbers[1]->phonenumber = "(22) 2222-2222";
+        $u2->name                         = 'Test 2';
+        $u2->username                     = '2test';
+        $u2->status                       = 'developer';
+        $u2->email->email                 = 'email@test2.com';
+        $u2->address->zip                 = '222222222';
+        $u2->address->city                = 'Some City 2';
+        $u2->address->country             = 'Some Country 2';
+        $u2->phonenumbers[0]->phonenumber = '(22) 1111-1111';
+        $u2->phonenumbers[1]->phonenumber = '(22) 2222-2222';
 
-        $u3->name               = 'Test 3';
-        $u3->username           = '3test';
-        $u3->status             = 'developer';
-        $u3->email->email       = 'email@test3.com';
-        $u3->address->zip       = '33333333';
-        $u3->address->city      = 'Some City 3';
-        $u3->address->country   = 'Some Country 3';
-        $u3->phonenumbers[0]->phonenumber = "(33) 1111-1111";
-        $u3->phonenumbers[1]->phonenumber = "(33) 2222-2222";
-        $u3->phonenumbers[2]->phonenumber = "(33) 3333-3333";
+        $u3->name                         = 'Test 3';
+        $u3->username                     = '3test';
+        $u3->status                       = 'developer';
+        $u3->email->email                 = 'email@test3.com';
+        $u3->address->zip                 = '33333333';
+        $u3->address->city                = 'Some City 3';
+        $u3->address->country             = 'Some Country 3';
+        $u3->phonenumbers[0]->phonenumber = '(33) 1111-1111';
+        $u3->phonenumbers[1]->phonenumber = '(33) 2222-2222';
+        $u3->phonenumbers[2]->phonenumber = '(33) 3333-3333';
 
         $this->em->persist($u1);
         $this->em->persist($u2);
@@ -105,7 +106,7 @@ class NewOperatorTest extends OrmFunctionalTestCase
      */
     public function testShouldSupportsBasicUsage($hydrationMode)
     {
-        $dql = "
+        $dql = '
             SELECT
                 new Doctrine\Tests\Models\CMS\CmsUserDTO(
                     u.name,
@@ -119,7 +120,7 @@ class NewOperatorTest extends OrmFunctionalTestCase
             JOIN
                 u.address a
             ORDER BY
-                u.name";
+                u.name';
 
         $query  = $this->em->createQuery($dql);
         $result = $query->getResult($hydrationMode);
@@ -148,7 +149,7 @@ class NewOperatorTest extends OrmFunctionalTestCase
      */
     public function testShouldIgnoreAliasesForSingleObject($hydrationMode)
     {
-        $dql = "
+        $dql = '
             SELECT
                 new Doctrine\Tests\Models\CMS\CmsUserDTO(
                     u.name,
@@ -162,7 +163,7 @@ class NewOperatorTest extends OrmFunctionalTestCase
             JOIN
                 u.address a
             ORDER BY
-                u.name";
+                u.name';
 
         $query  = $this->em->createQuery($dql);
         $result = $query->getResult($hydrationMode);
@@ -188,7 +189,7 @@ class NewOperatorTest extends OrmFunctionalTestCase
 
     public function testShouldAssumeFromEntityNamespaceWhenNotGiven()
     {
-        $dql = "
+        $dql = '
             SELECT
                 new CmsUserDTO(u.name, e.email, a.city)
             FROM
@@ -198,7 +199,7 @@ class NewOperatorTest extends OrmFunctionalTestCase
             JOIN
                 u.address a
             ORDER BY
-                u.name";
+                u.name';
 
         $query  = $this->em->createQuery($dql);
         $result = $query->getResult();
@@ -241,7 +242,6 @@ class NewOperatorTest extends OrmFunctionalTestCase
         self::assertInstanceOf(CmsUserDTO::class, $result[0]);
         self::assertInstanceOf(CmsUserDTO::class, $result[1]);
         self::assertInstanceOf(CmsUserDTO::class, $result[2]);
-
 
         self::assertEquals($this->fixtures[0]->name, $result[0]->name);
         self::assertEquals($this->fixtures[1]->name, $result[1]->name);
@@ -290,7 +290,6 @@ class NewOperatorTest extends OrmFunctionalTestCase
         self::assertInstanceOf(CmsUserDTO::class, $result[1]);
         self::assertInstanceOf(CmsUserDTO::class, $result[2]);
 
-
         self::assertEquals($this->fixtures[0]->name, $result[0]->name);
         self::assertEquals($this->fixtures[1]->name, $result[1]->name);
         self::assertEquals($this->fixtures[2]->name, $result[2]->name);
@@ -302,7 +301,7 @@ class NewOperatorTest extends OrmFunctionalTestCase
 
     public function testShouldSupportSimpleArithmeticExpression()
     {
-        $dql = "
+        $dql = '
             SELECT
                 new Doctrine\Tests\Models\CMS\CmsUserDTO(
                     u.name,
@@ -321,7 +320,7 @@ class NewOperatorTest extends OrmFunctionalTestCase
             GROUP BY
                 u, e, a
             ORDER BY
-                u.name";
+                u.name';
 
         $query  = $this->em->createQuery($dql);
         $result = $query->getResult();
@@ -362,7 +361,7 @@ class NewOperatorTest extends OrmFunctionalTestCase
 
     public function testShouldSupportAggregateFunctions()
     {
-        $dql = "
+        $dql = '
             SELECT
                 new Doctrine\Tests\Models\CMS\CmsUserDTO(
                     u.name,
@@ -381,7 +380,7 @@ class NewOperatorTest extends OrmFunctionalTestCase
             GROUP BY
                 u, e, a
             ORDER BY
-                u.name";
+                u.name';
 
         $query  = $this->em->createQuery($dql);
         $result = $query->getResult();
@@ -422,7 +421,7 @@ class NewOperatorTest extends OrmFunctionalTestCase
 
     public function testShouldSupportArithmeticExpression()
     {
-        $dql = "
+        $dql = '
             SELECT
                 new Doctrine\Tests\Models\CMS\CmsUserDTO(
                     u.name,
@@ -441,7 +440,7 @@ class NewOperatorTest extends OrmFunctionalTestCase
             GROUP BY
                 u, e, a
             ORDER BY
-                u.name";
+                u.name';
 
         $query  = $this->em->createQuery($dql);
         $result = $query->getResult();
@@ -482,7 +481,7 @@ class NewOperatorTest extends OrmFunctionalTestCase
 
     public function testShouldSupportMultipleNewOperators()
     {
-        $dql = "
+        $dql = '
             SELECT
                 new CmsUserDTO(
                     u.name,
@@ -499,7 +498,7 @@ class NewOperatorTest extends OrmFunctionalTestCase
             JOIN
                 u.address a
             ORDER BY
-                u.name";
+                u.name';
 
         $query  = $this->em->createQuery($dql);
         $result = $query->getResult();
@@ -522,7 +521,6 @@ class NewOperatorTest extends OrmFunctionalTestCase
         self::assertEquals($this->fixtures[1]->email->email, $result[1][0]->email);
         self::assertEquals($this->fixtures[2]->email->email, $result[2][0]->email);
 
-
         self::assertEquals($this->fixtures[0]->address->city, $result[0][1]->city);
         self::assertEquals($this->fixtures[1]->address->city, $result[1][1]->city);
         self::assertEquals($this->fixtures[2]->address->city, $result[2][1]->city);
@@ -534,7 +532,7 @@ class NewOperatorTest extends OrmFunctionalTestCase
 
     public function testShouldSupportMultipleNewOperatorsWithAliases()
     {
-        $dql = "
+        $dql = '
             SELECT
                 new CmsUserDTO(
                     u.name,
@@ -551,7 +549,7 @@ class NewOperatorTest extends OrmFunctionalTestCase
             JOIN
                 u.address a
             ORDER BY
-                u.name";
+                u.name';
 
         $query  = $this->em->createQuery($dql);
         $result = $query->getResult();
@@ -574,7 +572,6 @@ class NewOperatorTest extends OrmFunctionalTestCase
         self::assertEquals($this->fixtures[1]->email->email, $result[1]['cmsUser']->email);
         self::assertEquals($this->fixtures[2]->email->email, $result[2]['cmsUser']->email);
 
-
         self::assertEquals($this->fixtures[0]->address->city, $result[0]['cmsAddress']->city);
         self::assertEquals($this->fixtures[1]->address->city, $result[1]['cmsAddress']->city);
         self::assertEquals($this->fixtures[2]->address->city, $result[2]['cmsAddress']->city);
@@ -586,7 +583,7 @@ class NewOperatorTest extends OrmFunctionalTestCase
 
     public function testShouldSupportMultipleNewOperatorsWithAndWithoutAliases()
     {
-        $dql = "
+        $dql = '
             SELECT
                 new CmsUserDTO(
                     u.name,
@@ -603,7 +600,7 @@ class NewOperatorTest extends OrmFunctionalTestCase
             JOIN
                 u.address a
             ORDER BY
-                u.name";
+                u.name';
 
         $query  = $this->em->createQuery($dql);
         $result = $query->getResult();
@@ -626,7 +623,6 @@ class NewOperatorTest extends OrmFunctionalTestCase
         self::assertEquals($this->fixtures[1]->email->email, $result[1]['cmsUser']->email);
         self::assertEquals($this->fixtures[2]->email->email, $result[2]['cmsUser']->email);
 
-
         self::assertEquals($this->fixtures[0]->address->city, $result[0][0]->city);
         self::assertEquals($this->fixtures[1]->address->city, $result[1][0]->city);
         self::assertEquals($this->fixtures[2]->address->city, $result[2][0]->city);
@@ -638,7 +634,7 @@ class NewOperatorTest extends OrmFunctionalTestCase
 
     public function testShouldSupportMultipleNewOperatorsAndSingleScalar()
     {
-        $dql = "
+        $dql = '
             SELECT
                 new CmsUserDTO(
                     u.name,
@@ -656,7 +652,7 @@ class NewOperatorTest extends OrmFunctionalTestCase
             JOIN
                 u.address a
             ORDER BY
-                u.name";
+                u.name';
 
         $query  = $this->em->createQuery($dql);
         $result = $query->getResult();
@@ -679,7 +675,6 @@ class NewOperatorTest extends OrmFunctionalTestCase
         self::assertEquals($this->fixtures[1]->email->email, $result[1][0]->email);
         self::assertEquals($this->fixtures[2]->email->email, $result[2][0]->email);
 
-
         self::assertEquals($this->fixtures[0]->address->city, $result[0][1]->city);
         self::assertEquals($this->fixtures[1]->address->city, $result[1][1]->city);
         self::assertEquals($this->fixtures[2]->address->city, $result[2][1]->city);
@@ -695,7 +690,7 @@ class NewOperatorTest extends OrmFunctionalTestCase
 
     public function testShouldSupportMultipleNewOperatorsAndSingleScalarWithAliases()
     {
-        $dql = "
+        $dql = '
             SELECT
                 new CmsUserDTO(
                     u.name,
@@ -713,7 +708,7 @@ class NewOperatorTest extends OrmFunctionalTestCase
             JOIN
                 u.address a
             ORDER BY
-                u.name";
+                u.name';
 
         $query  = $this->em->createQuery($dql);
         $result = $query->getResult();
@@ -736,7 +731,6 @@ class NewOperatorTest extends OrmFunctionalTestCase
         self::assertEquals($this->fixtures[1]->email->email, $result[1]['cmsUser']->email);
         self::assertEquals($this->fixtures[2]->email->email, $result[2]['cmsUser']->email);
 
-
         self::assertEquals($this->fixtures[0]->address->city, $result[0]['cmsAddress']->city);
         self::assertEquals($this->fixtures[1]->address->city, $result[1]['cmsAddress']->city);
         self::assertEquals($this->fixtures[2]->address->city, $result[2]['cmsAddress']->city);
@@ -752,7 +746,7 @@ class NewOperatorTest extends OrmFunctionalTestCase
 
     public function testShouldSupportMultipleNewOperatorsAndSingleScalarWithAndWithoutAliases()
     {
-        $dql = "
+        $dql = '
             SELECT
                 new CmsUserDTO(
                     u.name,
@@ -770,7 +764,7 @@ class NewOperatorTest extends OrmFunctionalTestCase
             JOIN
                 u.address a
             ORDER BY
-                u.name";
+                u.name';
 
         $query  = $this->em->createQuery($dql);
         $result = $query->getResult();
@@ -793,7 +787,6 @@ class NewOperatorTest extends OrmFunctionalTestCase
         self::assertEquals($this->fixtures[1]->email->email, $result[1]['cmsUser']->email);
         self::assertEquals($this->fixtures[2]->email->email, $result[2]['cmsUser']->email);
 
-
         self::assertEquals($this->fixtures[0]->address->city, $result[0][0]->city);
         self::assertEquals($this->fixtures[1]->address->city, $result[1][0]->city);
         self::assertEquals($this->fixtures[2]->address->city, $result[2][0]->city);
@@ -809,7 +802,7 @@ class NewOperatorTest extends OrmFunctionalTestCase
 
     public function testShouldSupportMultipleNewOperatorsAndMultipleScalars()
     {
-        $dql = "
+        $dql = '
             SELECT
                 new CmsUserDTO(
                     u.name,
@@ -828,7 +821,7 @@ class NewOperatorTest extends OrmFunctionalTestCase
             JOIN
                 u.address a
             ORDER BY
-                u.name";
+                u.name';
 
         $query  = $this->em->createQuery($dql);
         $result = $query->getResult();
@@ -850,7 +843,6 @@ class NewOperatorTest extends OrmFunctionalTestCase
         self::assertEquals($this->fixtures[0]->email->email, $result[0][0]->email);
         self::assertEquals($this->fixtures[1]->email->email, $result[1][0]->email);
         self::assertEquals($this->fixtures[2]->email->email, $result[2][0]->email);
-
 
         self::assertEquals($this->fixtures[0]->address->city, $result[0][1]->city);
         self::assertEquals($this->fixtures[1]->address->city, $result[1][1]->city);
@@ -871,7 +863,7 @@ class NewOperatorTest extends OrmFunctionalTestCase
 
     public function testShouldSupportMultipleNewOperatorsAndMultipleScalarsWithAliases()
     {
-        $dql = "
+        $dql = '
             SELECT
                 new CmsUserDTO(
                     u.name,
@@ -890,7 +882,7 @@ class NewOperatorTest extends OrmFunctionalTestCase
             JOIN
                 u.address a
             ORDER BY
-                u.name";
+                u.name';
 
         $query  = $this->em->createQuery($dql);
         $result = $query->getResult();
@@ -913,7 +905,6 @@ class NewOperatorTest extends OrmFunctionalTestCase
         self::assertEquals($this->fixtures[1]->email->email, $result[1]['cmsUser']->email);
         self::assertEquals($this->fixtures[2]->email->email, $result[2]['cmsUser']->email);
 
-
         self::assertEquals($this->fixtures[0]->address->city, $result[0]['cmsAddress']->city);
         self::assertEquals($this->fixtures[1]->address->city, $result[1]['cmsAddress']->city);
         self::assertEquals($this->fixtures[2]->address->city, $result[2]['cmsAddress']->city);
@@ -933,7 +924,7 @@ class NewOperatorTest extends OrmFunctionalTestCase
 
     public function testShouldSupportMultipleNewOperatorsAndMultipleScalarsWithAndWithoutAliases()
     {
-        $dql = "
+        $dql = '
             SELECT
                 new CmsUserDTO(
                     u.name,
@@ -952,7 +943,7 @@ class NewOperatorTest extends OrmFunctionalTestCase
             JOIN
                 u.address a
             ORDER BY
-                u.name";
+                u.name';
 
         $query  = $this->em->createQuery($dql);
         $result = $query->getResult();
@@ -974,7 +965,6 @@ class NewOperatorTest extends OrmFunctionalTestCase
         self::assertEquals($this->fixtures[0]->email->email, $result[0]['cmsUser']->email);
         self::assertEquals($this->fixtures[1]->email->email, $result[1]['cmsUser']->email);
         self::assertEquals($this->fixtures[2]->email->email, $result[2]['cmsUser']->email);
-
 
         self::assertEquals($this->fixtures[0]->address->city, $result[0][0]->city);
         self::assertEquals($this->fixtures[1]->address->city, $result[1][0]->city);
@@ -999,7 +989,7 @@ class NewOperatorTest extends OrmFunctionalTestCase
      */
     public function testInvalidClassException()
     {
-        $dql = "SELECT new \InvalidClass(u.name) FROM Doctrine\Tests\Models\CMS\CmsUser u";
+        $dql = 'SELECT new \InvalidClass(u.name) FROM Doctrine\Tests\Models\CMS\CmsUser u';
         $this->em->createQuery($dql)->getResult();
     }
 
@@ -1009,7 +999,7 @@ class NewOperatorTest extends OrmFunctionalTestCase
      */
     public function testInvalidClassConstructorException()
     {
-        $dql = "SELECT new \stdClass(u.name) FROM Doctrine\Tests\Models\CMS\CmsUser u";
+        $dql = 'SELECT new \stdClass(u.name) FROM Doctrine\Tests\Models\CMS\CmsUser u';
         $this->em->createQuery($dql)->getResult();
     }
 
@@ -1019,7 +1009,7 @@ class NewOperatorTest extends OrmFunctionalTestCase
      */
     public function testInvalidClassWithoutConstructorException()
     {
-        $dql = "SELECT new Doctrine\Tests\ORM\Functional\ClassWithTooMuchArgs(u.name) FROM Doctrine\Tests\Models\CMS\CmsUser u";
+        $dql = 'SELECT new Doctrine\Tests\ORM\Functional\ClassWithTooMuchArgs(u.name) FROM Doctrine\Tests\Models\CMS\CmsUser u';
         $this->em->createQuery($dql)->getResult();
     }
 
@@ -1029,7 +1019,7 @@ class NewOperatorTest extends OrmFunctionalTestCase
      */
     public function testClassCantBeInstantiatedException()
     {
-        $dql = "SELECT new Doctrine\Tests\ORM\Functional\ClassWithPrivateConstructor(u.name) FROM Doctrine\Tests\Models\CMS\CmsUser u";
+        $dql = 'SELECT new Doctrine\Tests\ORM\Functional\ClassWithPrivateConstructor(u.name) FROM Doctrine\Tests\Models\CMS\CmsUser u';
         $this->em->createQuery($dql)->getResult();
     }
 }

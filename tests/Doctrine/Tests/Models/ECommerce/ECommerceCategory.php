@@ -11,7 +11,6 @@ use Doctrine\ORM\Annotation as ORM;
  * ECommerceCategory
  * Represents a tag applied on particular products.
  *
- * @author Giorgio Sironi
  * @ORM\Entity
  * @ORM\Table(name="ecommerce_categories")
  */
@@ -71,7 +70,7 @@ class ECommerceCategory
 
     public function addProduct(ECommerceProduct $product)
     {
-        if (!$this->products->contains($product)) {
+        if (! $this->products->contains($product)) {
             $this->products[] = $product;
             $product->addCategory($this);
         }

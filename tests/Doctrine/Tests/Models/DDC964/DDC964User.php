@@ -50,8 +50,8 @@ class DDC964User
      */
     public function __construct($name = null)
     {
-        $this->name     = $name;
-        $this->groups   = new ArrayCollection;
+        $this->name   = $name;
+        $this->groups = new ArrayCollection();
     }
 
     /**
@@ -78,9 +78,6 @@ class DDC964User
         $this->name = $name;
     }
 
-    /**
-     * @param DDC964Group $group
-     */
     public function addGroup(DDC964Group $group)
     {
         $this->groups->add($group);
@@ -103,9 +100,6 @@ class DDC964User
         return $this->address;
     }
 
-    /**
-     * @param DDC964Address $address
-     */
     public function setAddress(DDC964Address $address)
     {
         $this->address = $address;

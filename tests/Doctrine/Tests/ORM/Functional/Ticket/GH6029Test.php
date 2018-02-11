@@ -1,11 +1,14 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Doctrine\Tests\ORM\Functional\Ticket;
 
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Annotation as ORM;
 use Doctrine\ORM\ORMInvalidArgumentException;
 use Doctrine\Tests\OrmFunctionalTestCase;
+use function sprintf;
 
 final class GH6029Test extends OrmFunctionalTestCase
 {

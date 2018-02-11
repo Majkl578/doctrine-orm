@@ -29,11 +29,11 @@ use Doctrine\Tests\Models\Company\CompanyManager;
 use Doctrine\Tests\Models\Company\CompanyOrganization;
 use Doctrine\Tests\Models\Company\CompanyPerson;
 use Doctrine\Tests\OrmFunctionalTestCase;
+use function in_array;
+use function serialize;
 
 /**
  * Tests SQLFilter functionality.
- *
- * @author Alexander <iam.asm89@gmail.com>
  *
  * @group non-cacheable
  */
@@ -65,10 +65,10 @@ class SQLFilterTest extends OrmFunctionalTestCase
     {
         $config = new Configuration();
 
-        $config->addFilter("locale", "\Doctrine\Tests\ORM\Functional\MyLocaleFilter");
+        $config->addFilter('locale', '\Doctrine\Tests\ORM\Functional\MyLocaleFilter');
 
-        self::assertEquals("\Doctrine\Tests\ORM\Functional\MyLocaleFilter", $config->getFilterClassName("locale"));
-        self::assertNull($config->getFilterClassName("foo"));
+        self::assertEquals('\Doctrine\Tests\ORM\Functional\MyLocaleFilter', $config->getFilterClassName('locale'));
+        self::assertNull($config->getFilterClassName('foo'));
     }
 
     public function testEntityManagerEnableFilter()
@@ -77,17 +77,17 @@ class SQLFilterTest extends OrmFunctionalTestCase
         $this->configureFilters($em);
 
         // Enable an existing filter
-        $filter = $em->getFilters()->enable("locale");
+        $filter = $em->getFilters()->enable('locale');
         self::assertInstanceOf(MyLocaleFilter::class, $filter);
 
         // Enable the filter again
-        $filter2 = $em->getFilters()->enable("locale");
+        $filter2 = $em->getFilters()->enable('locale');
         self::assertEquals($filter, $filter2);
 
         // Enable a non-existing filter
         $exceptionThrown = false;
         try {
-            $filter = $em->getFilters()->enable("foo");
+            $filter = $em->getFilters()->enable('foo');
         } catch (\InvalidArgumentException $e) {
             $exceptionThrown = true;
         }
@@ -103,8 +103,8 @@ class SQLFilterTest extends OrmFunctionalTestCase
 
         $this->configureFilters($em);
 
-        $em->getFilters()->enable("locale");
-        $em->getFilters()->enable("soft_delete");
+        $em->getFilters()->enable('locale');
+        $em->getFilters()->enable('soft_delete');
 
         // Two enabled filters
         self::assertCount(2, $em->getFilters()->getEnabledFilters());
@@ -116,16 +116,16 @@ class SQLFilterTest extends OrmFunctionalTestCase
         $this->configureFilters($em);
 
         // Enable the filter
-        $filter = $em->getFilters()->enable("locale");
+        $filter = $em->getFilters()->enable('locale');
 
         // Disable it
-        self::assertEquals($filter, $em->getFilters()->disable("locale"));
+        self::assertEquals($filter, $em->getFilters()->disable('locale'));
         self::assertCount(0, $em->getFilters()->getEnabledFilters());
 
         // Disable a non-existing filter
         $exceptionThrown = false;
         try {
-            $filter = $em->getFilters()->disable("foo");
+            $filter = $em->getFilters()->disable('foo');
         } catch (\InvalidArgumentException $e) {
             $exceptionThrown = true;
         }
@@ -134,7 +134,7 @@ class SQLFilterTest extends OrmFunctionalTestCase
         // Disable a non-enabled filter
         $exceptionThrown = false;
         try {
-            $filter = $em->getFilters()->disable("locale");
+            $filter = $em->getFilters()->disable('locale');
         } catch (\InvalidArgumentException $e) {
             $exceptionThrown = true;
         }
@@ -147,15 +147,15 @@ class SQLFilterTest extends OrmFunctionalTestCase
         $this->configureFilters($em);
 
         // Enable the filter
-        $filter = $em->getFilters()->enable("locale");
+        $filter = $em->getFilters()->enable('locale');
 
         // Get the filter
-        self::assertEquals($filter, $em->getFilters()->getFilter("locale"));
+        self::assertEquals($filter, $em->getFilters()->getFilter('locale'));
 
         // Get a non-enabled filter
         $exceptionThrown = false;
         try {
-            $filter = $em->getFilters()->getFilter("soft_delete");
+            $filter = $em->getFilters()->getFilter('soft_delete');
         } catch (\InvalidArgumentException $e) {
             $exceptionThrown = true;
         }
@@ -171,23 +171,23 @@ class SQLFilterTest extends OrmFunctionalTestCase
         $this->configureFilters($em);
 
         // Check for an enabled filter
-        $em->getFilters()->enable("locale");
-        self::assertTrue($em->getFilters()->isEnabled("locale"));
+        $em->getFilters()->enable('locale');
+        self::assertTrue($em->getFilters()->isEnabled('locale'));
 
         // Check for a disabled filter
-        $em->getFilters()->disable("locale");
-        self::assertFalse($em->getFilters()->isEnabled("locale"));
+        $em->getFilters()->disable('locale');
+        self::assertFalse($em->getFilters()->isEnabled('locale'));
 
         // Check a non-existing filter
-        self::assertFalse($em->getFilters()->isEnabled("foo_filter"));
+        self::assertFalse($em->getFilters()->isEnabled('foo_filter'));
     }
 
     protected function configureFilters($em)
     {
         // Add filters to the configuration of the EM
         $config = $em->getConfiguration();
-        $config->addFilter("locale", "\Doctrine\Tests\ORM\Functional\MyLocaleFilter");
-        $config->addFilter("soft_delete", "\Doctrine\Tests\ORM\Functional\MySoftDeleteFilter");
+        $config->addFilter('locale', '\Doctrine\Tests\ORM\Functional\MyLocaleFilter');
+        $config->addFilter('soft_delete', '\Doctrine\Tests\ORM\Functional\MySoftDeleteFilter');
     }
 
     protected function getMockConnection()
@@ -319,7 +319,7 @@ class SQLFilterTest extends OrmFunctionalTestCase
 
     public function testSQLFilterToString()
     {
-        $em = $this->getMockEntityManager();
+        $em               = $this->getMockEntityManager();
         $filterCollection = $this->addMockFilterCollection($em);
 
         $filter = new MyLocaleFilter($em);
@@ -335,13 +335,13 @@ class SQLFilterTest extends OrmFunctionalTestCase
             'locale' => ['value' => 'en', 'type' => DBALType::STRING],
         ];
 
-        self::assertEquals(serialize($parameters), ''.$filter);
-        self::assertEquals(''.$filter, ''.$filter2);
+        self::assertEquals(serialize($parameters), '' . $filter);
+        self::assertEquals('' . $filter, '' . $filter2);
     }
 
     public function testQueryCache_DependsOnFilters()
     {
-        $cacheDataReflection = new \ReflectionProperty(ArrayCache::class, "data");
+        $cacheDataReflection = new \ReflectionProperty(ArrayCache::class, 'data');
         $cacheDataReflection->setAccessible(true);
 
         $query = $this->em->createQuery('select ux from Doctrine\Tests\Models\CMS\CmsUser ux');
@@ -353,8 +353,8 @@ class SQLFilterTest extends OrmFunctionalTestCase
         self::assertCount(1, $cacheDataReflection->getValue($cache));
 
         $conf = $this->em->getConfiguration();
-        $conf->addFilter("locale", "\Doctrine\Tests\ORM\Functional\MyLocaleFilter");
-        $this->em->getFilters()->enable("locale");
+        $conf->addFilter('locale', '\Doctrine\Tests\ORM\Functional\MyLocaleFilter');
+        $this->em->getFilters()->enable('locale');
 
         $query->getResult();
         self::assertCount(2, $cacheDataReflection->getValue($cache));
@@ -366,13 +366,13 @@ class SQLFilterTest extends OrmFunctionalTestCase
 
     public function testQueryGeneration_DependsOnFilters()
     {
-        $query = $this->em->createQuery('select a from Doctrine\Tests\Models\CMS\CmsAddress a');
+        $query         = $this->em->createQuery('select a from Doctrine\Tests\Models\CMS\CmsAddress a');
         $firstSQLQuery = $query->getSQL();
 
         $conf = $this->em->getConfiguration();
-        $conf->addFilter("country", "\Doctrine\Tests\ORM\Functional\CMSCountryFilter");
-        $this->em->getFilters()->enable("country")
-            ->setParameter("country", "en", DBALType::STRING);
+        $conf->addFilter('country', '\Doctrine\Tests\ORM\Functional\CMSCountryFilter');
+        $this->em->getFilters()->enable('country')
+            ->setParameter('country', 'en', DBALType::STRING);
 
         self::assertNotEquals($firstSQLQuery, $query->getSQL());
     }
@@ -470,8 +470,8 @@ class SQLFilterTest extends OrmFunctionalTestCase
         self::assertCount(2, $query->getResult());
 
         $conf = $this->em->getConfiguration();
-        $conf->addFilter("country", "\Doctrine\Tests\ORM\Functional\CMSCountryFilter");
-        $this->em->getFilters()->enable("country")->setParameter("country", "Germany", DBALType::STRING);
+        $conf->addFilter('country', '\Doctrine\Tests\ORM\Functional\CMSCountryFilter');
+        $this->em->getFilters()->enable('country')->setParameter('country', 'Germany', DBALType::STRING);
 
         // We get one user after enabling the filter
         self::assertCount(1, $query->getResult());
@@ -486,8 +486,8 @@ class SQLFilterTest extends OrmFunctionalTestCase
         self::assertCount(2, $query->getResult());
 
         $conf = $this->em->getConfiguration();
-        $conf->addFilter("group_prefix", "\Doctrine\Tests\ORM\Functional\CMSGroupPrefixFilter");
-        $this->em->getFilters()->enable("group_prefix")->setParameter("prefix", "bar_%", DBALType::STRING);
+        $conf->addFilter('group_prefix', '\Doctrine\Tests\ORM\Functional\CMSGroupPrefixFilter');
+        $this->em->getFilters()->enable('group_prefix')->setParameter('prefix', 'bar_%', DBALType::STRING);
 
         // We get one user after enabling the filter
         self::assertCount(1, $query->getResult());
@@ -502,8 +502,8 @@ class SQLFilterTest extends OrmFunctionalTestCase
         self::assertCount(2, $query->getResult());
 
         $conf = $this->em->getConfiguration();
-        $conf->addFilter("group_prefix", "\Doctrine\Tests\ORM\Functional\CMSGroupPrefixFilter");
-        $this->em->getFilters()->enable("group_prefix")->setParameter("prefix", "bar_%", DBALType::STRING);
+        $conf->addFilter('group_prefix', '\Doctrine\Tests\ORM\Functional\CMSGroupPrefixFilter');
+        $this->em->getFilters()->enable('group_prefix')->setParameter('prefix', 'bar_%', DBALType::STRING);
 
         // We get one user after enabling the filter
         self::assertCount(1, $query->getResult());
@@ -518,8 +518,8 @@ class SQLFilterTest extends OrmFunctionalTestCase
         self::assertCount(2, $query->getResult());
 
         $conf = $this->em->getConfiguration();
-        $conf->addFilter("group_prefix", "\Doctrine\Tests\ORM\Functional\CMSGroupPrefixFilter");
-        $this->em->getFilters()->enable("group_prefix")->setParameter("prefix", "bar_%", DBALType::STRING);
+        $conf->addFilter('group_prefix', '\Doctrine\Tests\ORM\Functional\CMSGroupPrefixFilter');
+        $this->em->getFilters()->enable('group_prefix')->setParameter('prefix', 'bar_%', DBALType::STRING);
 
         // We get one user after enabling the filter
         self::assertCount(1, $query->getResult());
@@ -537,8 +537,8 @@ class SQLFilterTest extends OrmFunctionalTestCase
     private function useCMSArticleTopicFilter()
     {
         $conf = $this->em->getConfiguration();
-        $conf->addFilter("article_topic", "\Doctrine\Tests\ORM\Functional\CMSArticleTopicFilter");
-        $this->em->getFilters()->enable("article_topic")->setParameter("topic", "Test1", DBALType::STRING);
+        $conf->addFilter('article_topic', '\Doctrine\Tests\ORM\Functional\CMSArticleTopicFilter');
+        $this->em->getFilters()->enable('article_topic')->setParameter('topic', 'Test1', DBALType::STRING);
     }
 
     public function testOneToMany_ExtraLazyCountWithFilter()
@@ -557,7 +557,7 @@ class SQLFilterTest extends OrmFunctionalTestCase
     public function testOneToMany_ExtraLazyContainsWithFilter()
     {
         $this->loadLazyFixtureData();
-        $user = $this->em->find(CmsUser::class, $this->userId);
+        $user            = $this->em->find(CmsUser::class, $this->userId);
         $filteredArticle = $this->em->find(CmsArticle::class, $this->articleId2);
 
         self::assertFalse($user->articles->isInitialized());
@@ -584,8 +584,8 @@ class SQLFilterTest extends OrmFunctionalTestCase
     private function useCMSGroupPrefixFilter()
     {
         $conf = $this->em->getConfiguration();
-        $conf->addFilter("group_prefix", "\Doctrine\Tests\ORM\Functional\CMSGroupPrefixFilter");
-        $this->em->getFilters()->enable("group_prefix")->setParameter("prefix", "foo%", DBALType::STRING);
+        $conf->addFilter('group_prefix', '\Doctrine\Tests\ORM\Functional\CMSGroupPrefixFilter');
+        $this->em->getFilters()->enable('group_prefix')->setParameter('prefix', 'foo%', DBALType::STRING);
     }
 
     public function testManyToMany_ExtraLazyCountWithFilter()
@@ -605,7 +605,7 @@ class SQLFilterTest extends OrmFunctionalTestCase
     public function testManyToMany_ExtraLazyContainsWithFilter()
     {
         $this->loadLazyFixtureData();
-        $user = $this->em->find(CmsUser::class, $this->userId2);
+        $user            = $this->em->find(CmsUser::class, $this->userId2);
         $filteredArticle = $this->em->find(CmsGroup::class, $this->groupId2);
 
         self::assertFalse($user->groups->isInitialized());
@@ -631,31 +631,31 @@ class SQLFilterTest extends OrmFunctionalTestCase
 
     private function loadFixtureData()
     {
-        $user = new CmsUser;
-        $user->name = 'Roman';
+        $user           = new CmsUser();
+        $user->name     = 'Roman';
         $user->username = 'romanb';
-        $user->status = 'developer';
+        $user->status   = 'developer';
 
-        $address = new CmsAddress;
+        $address          = new CmsAddress();
         $address->country = 'Germany';
-        $address->city = 'Berlin';
-        $address->zip = '12345';
+        $address->city    = 'Berlin';
+        $address->zip     = '12345';
 
         $user->address = $address; // inverse side
         $address->user = $user; // owning side!
 
-        $group = new CmsGroup;
+        $group       = new CmsGroup();
         $group->name = 'foo_group';
         $user->addGroup($group);
 
-        $article1 = new CmsArticle;
-        $article1->topic = "Test1";
-        $article1->text = "Test";
+        $article1        = new CmsArticle();
+        $article1->topic = 'Test1';
+        $article1->text  = 'Test';
         $article1->setAuthor($user);
 
-        $article2 = new CmsArticle;
-        $article2->topic = "Test2";
-        $article2->text = "Test";
+        $article2        = new CmsArticle();
+        $article2->topic = 'Test2';
+        $article2->text  = 'Test';
         $article2->setAuthor($user);
 
         $this->em->persist($article1);
@@ -663,21 +663,21 @@ class SQLFilterTest extends OrmFunctionalTestCase
 
         $this->em->persist($user);
 
-        $user2 = new CmsUser;
-        $user2->name = 'Guilherme';
+        $user2           = new CmsUser();
+        $user2->name     = 'Guilherme';
         $user2->username = 'gblanco';
-        $user2->status = 'developer';
+        $user2->status   = 'developer';
 
-        $address2 = new CmsAddress;
+        $address2          = new CmsAddress();
         $address2->country = 'France';
-        $address2->city = 'Paris';
-        $address2->zip = '12345';
+        $address2->city    = 'Paris';
+        $address2->zip     = '12345';
 
-        $user->address = $address2; // inverse side
+        $user->address  = $address2; // inverse side
         $address2->user = $user2; // owning side!
 
         $user2->addGroup($group);
-        $group2 = new CmsGroup;
+        $group2       = new CmsGroup();
         $group2->name = 'bar_group';
         $user2->addGroup($group2);
 
@@ -685,12 +685,12 @@ class SQLFilterTest extends OrmFunctionalTestCase
         $this->em->flush();
         $this->em->clear();
 
-        $this->userId = $user->getId();
-        $this->userId2 = $user2->getId();
-        $this->articleId = $article1->id;
+        $this->userId     = $user->getId();
+        $this->userId2    = $user2->getId();
+        $this->articleId  = $article1->id;
         $this->articleId2 = $article2->id;
-        $this->groupId = $group->id;
-        $this->groupId2 = $group2->id;
+        $this->groupId    = $group->id;
+        $this->groupId2   = $group2->id;
     }
 
     public function testJoinSubclassPersister_FilterOnlyOnRootTableWhenFetchingSubEntity()
@@ -699,49 +699,49 @@ class SQLFilterTest extends OrmFunctionalTestCase
         // Persister
         self::assertCount(2, $this->em->getRepository(CompanyManager::class)->findAll());
         // SQLWalker
-        self::assertCount(2, $this->em->createQuery("SELECT cm FROM Doctrine\Tests\Models\Company\CompanyManager cm")->getResult());
+        self::assertCount(2, $this->em->createQuery('SELECT cm FROM Doctrine\Tests\Models\Company\CompanyManager cm')->getResult());
 
         // Enable the filter
         $this->usePersonNameFilter('Guilh%');
 
         $managers = $this->em->getRepository(CompanyManager::class)->findAll();
         self::assertCount(1, $managers);
-        self::assertEquals("Guilherme", $managers[0]->getName());
+        self::assertEquals('Guilherme', $managers[0]->getName());
 
-        self::assertCount(1, $this->em->createQuery("SELECT cm FROM Doctrine\Tests\Models\Company\CompanyManager cm")->getResult());
+        self::assertCount(1, $this->em->createQuery('SELECT cm FROM Doctrine\Tests\Models\Company\CompanyManager cm')->getResult());
     }
 
     public function testJoinSubclassPersister_FilterOnlyOnRootTableWhenFetchingRootEntity()
     {
         $this->loadCompanyJoinedSubclassFixtureData();
         self::assertCount(3, $this->em->getRepository(CompanyPerson::class)->findAll());
-        self::assertCount(3, $this->em->createQuery("SELECT cp FROM Doctrine\Tests\Models\Company\CompanyPerson cp")->getResult());
+        self::assertCount(3, $this->em->createQuery('SELECT cp FROM Doctrine\Tests\Models\Company\CompanyPerson cp')->getResult());
 
         // Enable the filter
         $this->usePersonNameFilter('Guilh%');
 
         $persons = $this->em->getRepository(CompanyPerson::class)->findAll();
         self::assertCount(1, $persons);
-        self::assertEquals("Guilherme", $persons[0]->getName());
+        self::assertEquals('Guilherme', $persons[0]->getName());
 
-        self::assertCount(1, $this->em->createQuery("SELECT cp FROM Doctrine\Tests\Models\Company\CompanyPerson cp")->getResult());
+        self::assertCount(1, $this->em->createQuery('SELECT cp FROM Doctrine\Tests\Models\Company\CompanyPerson cp')->getResult());
     }
 
     private function loadCompanyJoinedSubclassFixtureData()
     {
-        $manager = new CompanyManager;
+        $manager = new CompanyManager();
         $manager->setName('Roman');
         $manager->setTitle('testlead');
         $manager->setSalary(42);
         $manager->setDepartment('persisters');
 
-        $manager2 = new CompanyManager;
+        $manager2 = new CompanyManager();
         $manager2->setName('Guilherme');
         $manager2->setTitle('devlead');
         $manager2->setSalary(42);
         $manager2->setDepartment('parsers');
 
-        $person = new CompanyPerson;
+        $person = new CompanyPerson();
         $person->setName('Benjamin');
 
         $this->em->persist($manager);
@@ -757,53 +757,53 @@ class SQLFilterTest extends OrmFunctionalTestCase
         // Persister
         self::assertCount(2, $this->em->getRepository(CompanyFlexUltraContract::class)->findAll());
         // SQLWalker
-        self::assertCount(2, $this->em->createQuery("SELECT cfc FROM Doctrine\Tests\Models\Company\CompanyFlexUltraContract cfc")->getResult());
+        self::assertCount(2, $this->em->createQuery('SELECT cfc FROM Doctrine\Tests\Models\Company\CompanyFlexUltraContract cfc')->getResult());
 
         // Enable the filter
         $conf = $this->em->getConfiguration();
-        $conf->addFilter("completed_contract", "\Doctrine\Tests\ORM\Functional\CompletedContractFilter");
+        $conf->addFilter('completed_contract', '\Doctrine\Tests\ORM\Functional\CompletedContractFilter');
         $this->em->getFilters()
-            ->enable("completed_contract")
-            ->setParameter("completed", true, DBALType::BOOLEAN);
+            ->enable('completed_contract')
+            ->setParameter('completed', true, DBALType::BOOLEAN);
 
         self::assertCount(1, $this->em->getRepository(CompanyFlexUltraContract::class)->findAll());
-        self::assertCount(1, $this->em->createQuery("SELECT cfc FROM Doctrine\Tests\Models\Company\CompanyFlexUltraContract cfc")->getResult());
+        self::assertCount(1, $this->em->createQuery('SELECT cfc FROM Doctrine\Tests\Models\Company\CompanyFlexUltraContract cfc')->getResult());
     }
 
     public function testSingleTableInheritance_FilterOnlyOnRootTableWhenFetchingRootEntity()
     {
         $this->loadCompanySingleTableInheritanceFixtureData();
         self::assertCount(4, $this->em->getRepository(CompanyFlexContract::class)->findAll());
-        self::assertCount(4, $this->em->createQuery("SELECT cfc FROM Doctrine\Tests\Models\Company\CompanyFlexContract cfc")->getResult());
+        self::assertCount(4, $this->em->createQuery('SELECT cfc FROM Doctrine\Tests\Models\Company\CompanyFlexContract cfc')->getResult());
 
         // Enable the filter
         $conf = $this->em->getConfiguration();
-        $conf->addFilter("completed_contract", "\Doctrine\Tests\ORM\Functional\CompletedContractFilter");
+        $conf->addFilter('completed_contract', '\Doctrine\Tests\ORM\Functional\CompletedContractFilter');
         $this->em->getFilters()
-            ->enable("completed_contract")
-            ->setParameter("completed", true, DBALType::BOOLEAN);
+            ->enable('completed_contract')
+            ->setParameter('completed', true, DBALType::BOOLEAN);
 
         self::assertCount(2, $this->em->getRepository(CompanyFlexContract::class)->findAll());
-        self::assertCount(2, $this->em->createQuery("SELECT cfc FROM Doctrine\Tests\Models\Company\CompanyFlexContract cfc")->getResult());
+        self::assertCount(2, $this->em->createQuery('SELECT cfc FROM Doctrine\Tests\Models\Company\CompanyFlexContract cfc')->getResult());
     }
 
     private function loadCompanySingleTableInheritanceFixtureData()
     {
-        $contract1 = new CompanyFlexUltraContract;
-        $contract2 = new CompanyFlexUltraContract;
+        $contract1 = new CompanyFlexUltraContract();
+        $contract2 = new CompanyFlexUltraContract();
         $contract2->markCompleted();
 
-        $contract3 = new CompanyFlexContract;
-        $contract4 = new CompanyFlexContract;
+        $contract3 = new CompanyFlexContract();
+        $contract4 = new CompanyFlexContract();
         $contract4->markCompleted();
 
-        $manager = new CompanyManager;
+        $manager = new CompanyManager();
         $manager->setName('Alexander');
         $manager->setSalary(42);
         $manager->setDepartment('Doctrine');
         $manager->setTitle('Filterer');
 
-        $manager2 = new CompanyManager;
+        $manager2 = new CompanyManager();
         $manager2->setName('Benjamin');
         $manager2->setSalary(1337);
         $manager2->setDepartment('Doctrine');
@@ -828,8 +828,8 @@ class SQLFilterTest extends OrmFunctionalTestCase
         $this->em->flush();
         $this->em->clear();
 
-        $this->managerId = $manager->getId();
-        $this->managerId2 = $manager2->getId();
+        $this->managerId   = $manager->getId();
+        $this->managerId2  = $manager2->getId();
         $this->contractId1 = $contract1->getId();
         $this->contractId2 = $contract2->getId();
     }
@@ -838,12 +838,12 @@ class SQLFilterTest extends OrmFunctionalTestCase
     {
         $conf = $this->em->getConfiguration();
 
-        $conf->addFilter("completed_contract", CompletedContractFilter::class);
+        $conf->addFilter('completed_contract', CompletedContractFilter::class);
 
         $this->em
             ->getFilters()
-            ->enable("completed_contract")
-            ->setParameter("completed", true, DBALType::BOOLEAN)
+            ->enable('completed_contract')
+            ->setParameter('completed', true, DBALType::BOOLEAN)
         ;
     }
 
@@ -867,7 +867,7 @@ class SQLFilterTest extends OrmFunctionalTestCase
     {
         $this->loadCompanySingleTableInheritanceFixtureData();
 
-        $manager = $this->em->find(CompanyManager::class, $this->managerId);
+        $manager   = $this->em->find(CompanyManager::class, $this->managerId);
         $contract1 = $this->em->find(CompanyContract::class, $this->contractId1);
         $contract2 = $this->em->find(CompanyContract::class, $this->contractId2);
 
@@ -903,10 +903,10 @@ class SQLFilterTest extends OrmFunctionalTestCase
     {
         // Enable the filter
         $conf = $this->em->getConfiguration();
-        $conf->addFilter("person_name", "\Doctrine\Tests\ORM\Functional\CompanyPersonNameFilter");
+        $conf->addFilter('person_name', '\Doctrine\Tests\ORM\Functional\CompanyPersonNameFilter');
         $this->em->getFilters()
-            ->enable("person_name")
-            ->setParameter("name", $name, DBALType::STRING);
+            ->enable('person_name')
+            ->setParameter('name', $name, DBALType::STRING);
     }
 
     public function testManyToMany_ExtraLazyCountWithFilterOnCTI()
@@ -981,7 +981,7 @@ class SQLFilterTest extends OrmFunctionalTestCase
     {
         $this->loadCompanySingleTableInheritanceFixtureData();
 
-        $manager = $this->em->find(CompanyManager::class, $this->managerId);
+        $manager   = $this->em->find(CompanyManager::class, $this->managerId);
         $contract1 = $this->em->find(CompanyContract::class, $this->contractId1);
         $contract2 = $this->em->find(CompanyContract::class, $this->contractId2);
 
@@ -1014,12 +1014,12 @@ class SQLFilterTest extends OrmFunctionalTestCase
     }
     private function loadCompanyOrganizationEventJoinedSubclassFixtureData()
     {
-        $organization = new CompanyOrganization;
+        $organization = new CompanyOrganization();
 
-        $event1 = new CompanyAuction;
+        $event1 = new CompanyAuction();
         $event1->setData('foo');
 
-        $event2 = new CompanyAuction;
+        $event2 = new CompanyAuction();
         $event2->setData('bar');
 
         $organization->addEvent($event1);
@@ -1030,18 +1030,18 @@ class SQLFilterTest extends OrmFunctionalTestCase
         $this->em->clear();
 
         $this->organizationId = $organization->getId();
-        $this->eventId1 = $event1->getId();
-        $this->eventId2 = $event2->getId();
+        $this->eventId1       = $event1->getId();
+        $this->eventId2       = $event2->getId();
     }
 
     private function useCompanyEventIdFilter()
     {
         // Enable the filter
         $conf = $this->em->getConfiguration();
-        $conf->addFilter("event_id", CompanyEventFilter::class);
+        $conf->addFilter('event_id', CompanyEventFilter::class);
         $this->em->getFilters()
-            ->enable("event_id")
-            ->setParameter("id", $this->eventId2);
+            ->enable('event_id')
+            ->setParameter('id', $this->eventId2);
     }
 
 
@@ -1103,11 +1103,11 @@ class MySoftDeleteFilter extends SQLFilter
 {
     public function addFilterConstraint(ClassMetadata $targetEntity, $targetTableAlias)
     {
-        if ($targetEntity->getClassName() !== "MyEntity\SoftDeleteNewsItem") {
-            return "";
+        if ($targetEntity->getClassName() !== 'MyEntity\SoftDeleteNewsItem') {
+            return '';
         }
 
-        return $targetTableAlias.'.deleted = 0';
+        return $targetTableAlias . '.deleted = 0';
     }
 }
 
@@ -1115,11 +1115,11 @@ class MyLocaleFilter extends SQLFilter
 {
     public function addFilterConstraint(ClassMetadata $targetEntity, $targetTableAlias)
     {
-        if (!in_array("LocaleAware", $targetEntity->getReflectionClass()->getInterfaceNames(), true)) {
-            return "";
+        if (! in_array('LocaleAware', $targetEntity->getReflectionClass()->getInterfaceNames(), true)) {
+            return '';
         }
 
-        return $targetTableAlias.'.locale = ' . $this->getParameter('locale'); // getParam uses connection to quote the value.
+        return $targetTableAlias . '.locale = ' . $this->getParameter('locale'); // getParam uses connection to quote the value.
     }
 }
 
@@ -1128,10 +1128,10 @@ class CMSCountryFilter extends SQLFilter
     public function addFilterConstraint(ClassMetadata $targetEntity, $targetTableAlias)
     {
         if ($targetEntity->getClassName() !== CmsAddress::class) {
-            return "";
+            return '';
         }
 
-        return $targetTableAlias.'.country = ' . $this->getParameter('country'); // getParam uses connection to quote the value.
+        return $targetTableAlias . '.country = ' . $this->getParameter('country'); // getParam uses connection to quote the value.
     }
 }
 
@@ -1140,10 +1140,10 @@ class CMSGroupPrefixFilter extends SQLFilter
     public function addFilterConstraint(ClassMetadata $targetEntity, $targetTableAlias)
     {
         if ($targetEntity->getClassName() !== CmsGroup::class) {
-            return "";
+            return '';
         }
 
-        return $targetTableAlias.'.name LIKE ' . $this->getParameter('prefix'); // getParam uses connection to quote the value.
+        return $targetTableAlias . '.name LIKE ' . $this->getParameter('prefix'); // getParam uses connection to quote the value.
     }
 }
 
@@ -1152,10 +1152,10 @@ class CMSArticleTopicFilter extends SQLFilter
     public function addFilterConstraint(ClassMetadata $targetEntity, $targetTableAlias)
     {
         if ($targetEntity->getClassName() !== CmsArticle::class) {
-            return "";
+            return '';
         }
 
-        return $targetTableAlias.'.topic = ' . $this->getParameter('topic'); // getParam uses connection to quote the value.
+        return $targetTableAlias . '.topic = ' . $this->getParameter('topic'); // getParam uses connection to quote the value.
     }
 }
 
@@ -1164,10 +1164,10 @@ class CompanyPersonNameFilter extends SQLFilter
     public function addFilterConstraint(ClassMetadata $targetEntity, $targetTableAlias, $targetTable = '')
     {
         if ($targetEntity->getClassName() !== CompanyPerson::class) {
-            return "";
+            return '';
         }
 
-        return $targetTableAlias.'.name LIKE ' . $this->getParameter('name');
+        return $targetTableAlias . '.name LIKE ' . $this->getParameter('name');
     }
 }
 
@@ -1176,10 +1176,10 @@ class CompletedContractFilter extends SQLFilter
     public function addFilterConstraint(ClassMetadata $targetEntity, $targetTableAlias, $targetTable = '')
     {
         if ($targetEntity->getClassName() !== CompanyContract::class) {
-            return "";
+            return '';
         }
 
-        return $targetTableAlias.'."completed" = ' . $this->getParameter('completed');
+        return $targetTableAlias . '."completed" = ' . $this->getParameter('completed');
     }
 }
 
@@ -1188,9 +1188,9 @@ class CompanyEventFilter extends SQLFilter
     public function addFilterConstraint(ClassMetadata $targetEntity, $targetTableAlias, $targetTable = '')
     {
         if ($targetEntity->getClassName() !== CompanyEvent::class) {
-            return "";
+            return '';
         }
 
-        return $targetTableAlias.'.id = ' . $this->getParameter('id');
+        return $targetTableAlias . '.id = ' . $this->getParameter('id');
     }
 }

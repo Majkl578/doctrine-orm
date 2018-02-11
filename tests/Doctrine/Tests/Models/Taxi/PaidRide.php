@@ -36,7 +36,7 @@ class PaidRide
     public function __construct(Driver $driver, Car $car)
     {
         $this->driver = $driver;
-        $this->car = $car;
+        $this->car    = $car;
     }
 
     public function setFare($fare)

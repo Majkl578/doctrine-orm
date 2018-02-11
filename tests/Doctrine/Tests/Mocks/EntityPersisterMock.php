@@ -40,7 +40,6 @@ class EntityPersisterMock extends BasicEntityPersister
     /**
      * @param int $genType
      *
-     * @return void
      */
     public function setMockIdGeneratorType($genType)
     {
@@ -70,7 +69,7 @@ class EntityPersisterMock extends BasicEntityPersister
     /**
      * {@inheritdoc}
      */
-    public function exists($entity, Criteria $extraConditions = null)
+    public function exists($entity, ?Criteria $extraConditions = null)
     {
         $this->existsCalled = true;
     }
@@ -107,15 +106,12 @@ class EntityPersisterMock extends BasicEntityPersister
         return $this->deletes;
     }
 
-    /**
-     * @return void
-     */
     public function reset()
     {
         $this->existsCalled = false;
-        $this->inserts = [];
-        $this->updates = [];
-        $this->deletes = [];
+        $this->inserts      = [];
+        $this->updates      = [];
+        $this->deletes      = [];
     }
 
     /**

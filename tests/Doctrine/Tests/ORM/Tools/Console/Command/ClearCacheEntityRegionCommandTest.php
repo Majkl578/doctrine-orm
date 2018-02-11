@@ -18,12 +18,12 @@ use Symfony\Component\Console\Tester\CommandTester;
 class ClearCacheEntityRegionCommandTest extends OrmFunctionalTestCase
 {
     /**
-     * @var \Symfony\Component\Console\Application
+     * @var Application
      */
     private $application;
 
     /**
-     * @var \Doctrine\ORM\Tools\Console\Command\ClearCache\EntityRegionCommand
+     * @var EntityRegionCommand
      */
     private $command;
 

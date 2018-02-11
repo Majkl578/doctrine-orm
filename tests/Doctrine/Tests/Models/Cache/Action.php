@@ -27,13 +27,13 @@ class Action
 
     public function __construct($name)
     {
-        $this->name = $name;
+        $this->name   = $name;
         $this->tokens = new ArrayCollection();
     }
 
     public function addToken(Token $token)
     {
         $this->tokens[] = $token;
-        $token->action = $this;
+        $token->action  = $this;
     }
 }

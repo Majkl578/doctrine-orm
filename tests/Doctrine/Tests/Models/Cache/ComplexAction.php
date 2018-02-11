@@ -39,15 +39,15 @@ class ComplexAction
 
     public function __construct(Action $action1, Action $action2, $name)
     {
-        $this->name = $name;
+        $this->name    = $name;
         $this->action1 = $action1;
         $this->action2 = $action2;
-        $this->tokens = new ArrayCollection();
+        $this->tokens  = new ArrayCollection();
     }
 
     public function addToken(Token $token)
     {
-        $this->tokens[] = $token;
+        $this->tokens[]       = $token;
         $token->complexAction = $this;
     }
 

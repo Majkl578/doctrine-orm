@@ -5,8 +5,9 @@ declare(strict_types=1);
 namespace Doctrine\Tests\ORM\Functional\Ticket;
 
 use Doctrine\ORM\Annotation as ORM;
+use Doctrine\Tests\OrmFunctionalTestCase;
 
-class DDC279Test extends \Doctrine\Tests\OrmFunctionalTestCase
+class DDC279Test extends OrmFunctionalTestCase
 {
     protected function setUp()
     {
@@ -45,7 +46,7 @@ class DDC279Test extends \Doctrine\Tests\OrmFunctionalTestCase
         $this->em->clear();
 
         $query = $this->em->createQuery(
-            'SELECT x, y, z FROM Doctrine\Tests\ORM\Functional\Ticket\DDC279EntityX x '.
+            'SELECT x, y, z FROM Doctrine\Tests\ORM\Functional\Ticket\DDC279EntityX x ' .
             'INNER JOIN x.y y INNER JOIN y.z z WHERE x.id = ?1'
         )->setParameter(1, $x->id);
 

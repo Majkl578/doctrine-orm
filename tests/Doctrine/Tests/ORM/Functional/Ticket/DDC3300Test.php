@@ -6,11 +6,12 @@ namespace Doctrine\Tests\ORM\Functional\Ticket;
 
 use Doctrine\ORM\Annotation as ORM;
 use Doctrine\ORM\Tools\ResolveTargetEntityListener;
+use Doctrine\Tests\OrmFunctionalTestCase;
 
 /**
  * @group DDC-3300
  */
-class DDC3300Test extends \Doctrine\Tests\OrmFunctionalTestCase
+class DDC3300Test extends OrmFunctionalTestCase
 {
     public function testResolveTargetEntitiesChangesDiscriminatorMapValues()
     {

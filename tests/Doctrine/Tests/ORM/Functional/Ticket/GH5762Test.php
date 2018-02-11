@@ -8,6 +8,8 @@ use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Annotation as ORM;
 use Doctrine\ORM\PersistentCollection;
 use Doctrine\Tests\OrmFunctionalTestCase;
+use function array_unique;
+use function count;
 
 /**
  * @group GH-5762
@@ -125,8 +127,8 @@ class GH5762Driver
     public function __construct($id, $name)
     {
         $this->driverRides = new ArrayCollection();
-        $this->id = $id;
-        $this->name = $name;
+        $this->id          = $id;
+        $this->name        = $name;
     }
 }
 
@@ -153,7 +155,7 @@ class GH5762DriverRide
     public function __construct(GH5762Driver $driver, GH5762Car $car)
     {
         $this->driver = $driver;
-        $this->car = $car;
+        $this->car    = $car;
 
         $this->driver->driverRides->add($this);
         $this->car->carRides->add($this);
@@ -166,7 +168,6 @@ class GH5762DriverRide
  */
 class GH5762Car
 {
-
     /**
      * @ORM\Id
      * @ORM\Column(type="string", length=25)
@@ -187,7 +188,7 @@ class GH5762Car
     public function __construct($brand, $model)
     {
         $this->carRides = new ArrayCollection();
-        $this->brand = $brand;
-        $this->model = $model;
+        $this->brand    = $brand;
+        $this->model    = $model;
     }
 }

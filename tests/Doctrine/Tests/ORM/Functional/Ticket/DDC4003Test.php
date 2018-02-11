@@ -6,6 +6,7 @@ namespace Doctrine\Tests\ORM\Functional\Ticket;
 
 use Doctrine\Tests\Models\Cache\Bar;
 use Doctrine\Tests\ORM\Functional\SecondLevelCacheAbstractTest;
+use function uniqid;
 
 class DDC4003Test extends SecondLevelCacheAbstractTest
 {

@@ -6,6 +6,7 @@ namespace Doctrine\Tests\ORM\Functional\Ticket;
 
 use Doctrine\DBAL\Types\Type;
 use Doctrine\ORM\Annotation as ORM;
+use Doctrine\ORM\Internal\Hydration\ObjectHydrator;
 use Doctrine\ORM\Query;
 use Doctrine\ORM\Query\ResultSetMapping;
 use Doctrine\Tests\Mocks\HydratorMockStatement;
@@ -38,7 +39,7 @@ final class GH6362Test extends OrmFunctionalTestCase
      */
     public function testInheritanceJoinAlias()
     {
-        $rsm = new ResultSetMapping;
+        $rsm = new ResultSetMapping();
         $rsm->addEntityResult(GH6362Start::class, 'a', 'base');
         $rsm->addJoinedEntityResult(GH6362Base::class, 'b', 'a', 'bases');
         $rsm->addEntityResult(GH6362Child::class, 'c');
@@ -71,7 +72,7 @@ final class GH6362Test extends OrmFunctionalTestCase
         ];
 
         $stmt     = new HydratorMockStatement($resultSet);
-        $hydrator = new \Doctrine\ORM\Internal\Hydration\ObjectHydrator($this->em);
+        $hydrator = new ObjectHydrator($this->em);
         $result   = $hydrator->hydrateAll($stmt, $rsm, [Query::HINT_FORCE_PARTIAL_LOAD => true]);
 
         self::assertInstanceOf(GH6362Start::class, $result[0]['base']);

@@ -4,6 +4,11 @@ declare(strict_types=1);
 
 namespace Doctrine\Tests\Mocks;
 
+use function count;
+use function current;
+use function next;
+use function reset;
+
 /**
  * Simple statement mock that returns result based on array.
  * Doesn't support fetch modes

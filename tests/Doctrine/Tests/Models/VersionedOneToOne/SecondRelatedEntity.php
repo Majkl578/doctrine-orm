@@ -7,8 +7,6 @@ namespace Doctrine\Tests\Models\VersionedOneToOne;
 use Doctrine\ORM\Annotation as ORM;
 
 /**
- * @author Rob Caiger <rob@clocal.co.uk>
- *
  * @ORM\Entity
  * @ORM\Table(name="second_entity")
  */

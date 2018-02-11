@@ -24,10 +24,15 @@ use Doctrine\Tests\Models\DDC753\DDC753CustomRepository;
 use ProxyManager\GeneratorStrategy\EvaluatingGeneratorStrategy;
 use ProxyManager\GeneratorStrategy\FileWriterGeneratorStrategy;
 use ReflectionClass;
+use function mkdir;
+use function str_replace;
+use function sys_get_temp_dir;
+use function tempnam;
+use function uniqid;
+use function unlink;
 
 /**
  * Tests for the Configuration object
- * @author Marco Pivetta <ocramius@gmail.com>
  */
 class ConfigurationTest extends DoctrineTestCase
 {
@@ -53,12 +58,12 @@ class ConfigurationTest extends DoctrineTestCase
 
     public function testNewDefaultAnnotationDriver()
     {
-        $paths = [__DIR__];
+        $paths           = [__DIR__];
         $reflectionClass = new ReflectionClass(ConfigurationTestAnnotationReaderChecker::class);
 
         $annotationDriver = $this->configuration->newDefaultAnnotationDriver($paths);
-        $reader = $annotationDriver->getReader();
-        $annotation = $reader->getMethodAnnotation(
+        $reader           = $annotationDriver->getReader();
+        $annotation       = $reader->getMethodAnnotation(
             $reflectionClass->getMethod('annotatedMethod'),
             AnnotationNamespace\PrePersist::class
         );
@@ -101,11 +106,11 @@ class ConfigurationTest extends DoctrineTestCase
 
         $cache = $this->createMock(Cache::class);
 
-        if ('query' !== $skipCache) {
+        if ($skipCache !== 'query') {
             $this->configuration->setQueryCacheImpl($cache);
         }
 
-        if ('metadata' !== $skipCache) {
+        if ($skipCache !== 'metadata') {
             $this->configuration->setMetadataCacheImpl($cache);
         }
     }
@@ -223,9 +228,7 @@ class ConfigurationTest extends DoctrineTestCase
         self::assertSame(__CLASS__, $this->configuration->getCustomHydrationMode('HydrationModeName'));
 
         $this->configuration->setCustomHydrationModes(
-            [
-                'AnotherHydrationModeName' => __CLASS__
-            ]
+            ['AnotherHydrationModeName' => __CLASS__]
         );
 
         self::assertNull($this->configuration->getCustomHydrationMode('HydrationModeName'));
@@ -318,7 +321,7 @@ class ConfigurationTest extends DoctrineTestCase
 
     public function testProxyManagerConfigurationContainsGivenProxyNamespace() : void
     {
-        $namespace = \str_replace('.', '', \uniqid('Namespace', true));
+        $namespace = str_replace('.', '', uniqid('Namespace', true));
 
         $this->configuration->setProxyNamespace($namespace);
         self::assertSame($namespace, $this->configuration->getProxyManagerConfiguration()->getProxiesNamespace());
@@ -373,7 +376,7 @@ class ConfigurationTest extends DoctrineTestCase
 
     private function makeTemporaryValidDirectory() : string
     {
-        $path = \tempnam(\sys_get_temp_dir(), 'ProxyConfigurationTest');
+        $path = tempnam(sys_get_temp_dir(), 'ProxyConfigurationTest');
 
         unlink($path);
         mkdir($path);

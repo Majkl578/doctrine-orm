@@ -5,11 +5,13 @@ declare(strict_types=1);
 namespace Doctrine\Tests\ORM\Functional\Ticket;
 
 use Doctrine\ORM\Annotation as ORM;
+use Doctrine\Tests\OrmFunctionalTestCase;
+use function get_class;
 
 /**
  * @group DDC-2996
  */
-class DDC2996Test extends \Doctrine\Tests\OrmFunctionalTestCase
+class DDC2996Test extends OrmFunctionalTestCase
 {
     public function testIssue()
     {
@@ -20,15 +22,15 @@ class DDC2996Test extends \Doctrine\Tests\OrmFunctionalTestCase
             ]
         );
 
-        $pref = new DDC2996UserPreference();
-        $pref->user = new DDC2996User();
-        $pref->value = "foo";
+        $pref        = new DDC2996UserPreference();
+        $pref->user  = new DDC2996User();
+        $pref->value = 'foo';
 
         $this->em->persist($pref);
         $this->em->persist($pref->user);
         $this->em->flush();
 
-        $pref->value = "bar";
+        $pref->value = 'bar';
         $this->em->flush();
 
         self::assertEquals(1, $pref->user->counter);
@@ -79,7 +81,7 @@ class DDC2996UserPreference
      */
     public function preFlush($event)
     {
-        $em = $event->getEntityManager();
+        $em  = $event->getEntityManager();
         $uow = $em->getUnitOfWork();
 
         if ($uow->getOriginalEntityData($this->user)) {

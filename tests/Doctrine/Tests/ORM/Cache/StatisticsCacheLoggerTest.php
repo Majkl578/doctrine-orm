@@ -4,12 +4,12 @@ declare(strict_types=1);
 
 namespace Doctrine\Tests\ORM\Cache;
 
-use Doctrine\ORM\Cache\Logging\StatisticsCacheLogger;
 use Doctrine\ORM\Cache\CollectionCacheKey;
 use Doctrine\ORM\Cache\EntityCacheKey;
+use Doctrine\ORM\Cache\Logging\StatisticsCacheLogger;
 use Doctrine\ORM\Cache\QueryCacheKey;
-use Doctrine\Tests\Models\Cache\State;
 use Doctrine\Tests\DoctrineTestCase;
+use Doctrine\Tests\Models\Cache\State;
 
 /**
  * @group DDC-2183
@@ -17,7 +17,7 @@ use Doctrine\Tests\DoctrineTestCase;
 class StatisticsCacheLoggerTest extends DoctrineTestCase
 {
     /**
-     * @var \Doctrine\ORM\Cache\Logging\StatisticsCacheLogger
+     * @var StatisticsCacheLogger
      */
     private $logger;
 
@@ -85,9 +85,9 @@ class StatisticsCacheLoggerTest extends DoctrineTestCase
         $entityRegion = 'my_entity_region';
         $queryRegion  = 'my_query_region';
 
-        $coolKey    = new CollectionCacheKey(State::class, 'cities', ['id' => 1]);
-        $entityKey  = new EntityCacheKey(State::class, ['id' => 1]);
-        $queryKey   = new QueryCacheKey('my_query_hash');
+        $coolKey   = new CollectionCacheKey(State::class, 'cities', ['id' => 1]);
+        $entityKey = new EntityCacheKey(State::class, ['id' => 1]);
+        $queryKey  = new QueryCacheKey('my_query_hash');
 
         $this->logger->queryCacheHit($queryRegion, $queryKey);
         $this->logger->queryCachePut($queryRegion, $queryKey);

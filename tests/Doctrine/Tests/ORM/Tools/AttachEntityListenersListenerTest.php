@@ -5,25 +5,27 @@ declare(strict_types=1);
 namespace Doctrine\Tests\ORM\Tools;
 
 use Doctrine\ORM\Annotation as ORM;
+use Doctrine\ORM\EntityManagerInterface;
 use Doctrine\ORM\Events;
 use Doctrine\ORM\Mapping\ClassMetadataFactory;
 use Doctrine\ORM\Tools\AttachEntityListenersListener;
 use Doctrine\Tests\OrmTestCase;
+use function func_get_args;
 
 class AttachEntityListenersListenerTest extends OrmTestCase
 {
     /**
-     * @var \Doctrine\ORM\EntityManagerInterface
+     * @var EntityManagerInterface
      */
     private $em;
 
     /**
-     * @var \Doctrine\ORM\Tools\AttachEntityListenersListener
+     * @var AttachEntityListenersListener
      */
     private $listener;
 
     /**
-     * @var \Doctrine\ORM\Mapping\ClassMetadataFactory
+     * @var ClassMetadataFactory
      */
     private $factory;
 
@@ -33,7 +35,7 @@ class AttachEntityListenersListenerTest extends OrmTestCase
         $driver         = $this->createAnnotationDriver();
         $this->em       = $this->getTestEntityManager();
         $evm            = $this->em->getEventManager();
-        $this->factory  = new ClassMetadataFactory;
+        $this->factory  = new ClassMetadataFactory();
 
         $evm->addEventListener(Events::loadClassMetadata, $this->listener);
         $this->em->getConfiguration()->setMetadataDriverImpl($driver);

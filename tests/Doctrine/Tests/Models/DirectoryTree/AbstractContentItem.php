@@ -38,7 +38,7 @@ abstract class AbstractContentItem
      */
     public static $fileSystem;
 
-    public function __construct(Directory $parentDir = null)
+    public function __construct(?Directory $parentDir = null)
     {
         $this->parentDirectory = $parentDir;
     }

@@ -10,7 +10,6 @@ use Doctrine\ORM\Annotation as ORM;
  * ECommerceShipping
  * Represents a shipping method.
  *
- * @author Giorgio Sironi
  * @ORM\Entity
  * @ORM\Table(name="ecommerce_shippings")
  */

@@ -10,7 +10,6 @@ use Doctrine\ORM\Annotation as ORM;
  * ECommerceCustomer
  * Represents a registered user of a shopping application.
  *
- * @author Giorgio Sironi
  * @ORM\Entity
  * @ORM\Table(name="ecommerce_customers")
  */
@@ -88,7 +87,7 @@ class ECommerceCustomer
     public function removeCart()
     {
         if ($this->cart !== null) {
-            $cart = $this->cart;
+            $cart       = $this->cart;
             $this->cart = null;
             $cart->removeCustomer();
         }

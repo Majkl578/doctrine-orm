@@ -11,6 +11,7 @@ use Doctrine\Tests\OrmFunctionalTestCase;
 use Symfony\Component\Console\Application;
 use Symfony\Component\Console\Helper\HelperSet;
 use Symfony\Component\Console\Tester\CommandTester;
+use function trim;
 
 /**
  * Tests for {@see \Doctrine\ORM\Tools\Console\Command\RunDqlCommand}

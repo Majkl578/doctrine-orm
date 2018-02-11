@@ -16,9 +16,8 @@ use Doctrine\Tests\OrmFunctionalTestCase;
  */
 class EntityListenersTest extends OrmFunctionalTestCase
 {
-
     /**
-     * @var \Doctrine\Tests\Models\Company\CompanyContractListener
+     * @var CompanyContractListener
      */
     private $listener;
 
@@ -37,7 +36,7 @@ class EntityListenersTest extends OrmFunctionalTestCase
         $fix = new CompanyFixContract();
         $fix->setFixPrice(2000);
 
-        $this->listener->preFlushCalls  = [];
+        $this->listener->preFlushCalls = [];
 
         $this->em->persist($fix);
         $this->em->flush();
@@ -57,9 +56,9 @@ class EntityListenersTest extends OrmFunctionalTestCase
         $this->em->flush();
         $this->em->clear();
 
-        $this->listener->postLoadCalls  = [];
+        $this->listener->postLoadCalls = [];
 
-        $dql = "SELECT f FROM Doctrine\Tests\Models\Company\CompanyFixContract f WHERE f.id = ?1";
+        $dql = 'SELECT f FROM Doctrine\Tests\Models\Company\CompanyFixContract f WHERE f.id = ?1';
         $fix = $this->em->createQuery($dql)->setParameter(1, $fix->getId())->getSingleResult();
 
         self::assertCount(1, $this->listener->postLoadCalls);
@@ -73,7 +72,7 @@ class EntityListenersTest extends OrmFunctionalTestCase
         $fix = new CompanyFixContract();
         $fix->setFixPrice(2000);
 
-        $this->listener->prePersistCalls  = [];
+        $this->listener->prePersistCalls = [];
 
         $this->em->persist($fix);
         $this->em->flush();

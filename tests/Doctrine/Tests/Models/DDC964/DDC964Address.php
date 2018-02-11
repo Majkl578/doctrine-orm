@@ -45,10 +45,10 @@ class DDC964Address
      */
     public function __construct($zip = null, $country = null, $city = null, $street = null)
     {
-        $this->zip      = $zip;
-        $this->country  = $country;
-        $this->city     = $city;
-        $this->street   = $street;
+        $this->zip     = $zip;
+        $this->country = $country;
+        $this->city    = $city;
+        $this->street  = $street;
     }
 
     /**

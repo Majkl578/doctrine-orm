@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace Doctrine\Tests\Models\DDC117;
 
+use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Annotation as ORM;
 
 /**
@@ -44,10 +45,10 @@ class DDC117Editor
      */
     public $lastTranslation;
 
-    public function __construct($name = "")
+    public function __construct($name = '')
     {
-        $this->name = $name;
-        $this->reviewingTranslations = new \Doctrine\Common\Collections\ArrayCollection();
+        $this->name                  = $name;
+        $this->reviewingTranslations = new ArrayCollection();
     }
 
     public function addLastTranslation(DDC117Translation $t)

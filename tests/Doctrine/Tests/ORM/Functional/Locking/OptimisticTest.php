@@ -9,6 +9,8 @@ use Doctrine\DBAL\LockMode;
 use Doctrine\ORM\Annotation as ORM;
 use Doctrine\ORM\OptimisticLockException;
 use Doctrine\Tests\OrmFunctionalTestCase;
+use function date;
+use function strtotime;
 
 class OptimisticTest extends OrmFunctionalTestCase
 {
@@ -22,7 +24,7 @@ class OptimisticTest extends OrmFunctionalTestCase
                     $this->em->getClassMetadata(OptimisticJoinedParent::class),
                     $this->em->getClassMetadata(OptimisticJoinedChild::class),
                     $this->em->getClassMetadata(OptimisticStandard::class),
-                    $this->em->getClassMetadata(OptimisticTimestamp::class)
+                    $this->em->getClassMetadata(OptimisticTimestamp::class),
                 ]
             );
         } catch (\Exception $e) {
@@ -36,7 +38,7 @@ class OptimisticTest extends OrmFunctionalTestCase
     {
         $test = new OptimisticJoinedChild();
 
-        $test->name = 'child';
+        $test->name     = 'child';
         $test->whatever = 'whatever';
 
         $this->em->persist($test);
@@ -171,7 +173,7 @@ class OptimisticTest extends OrmFunctionalTestCase
 
     public function testLockWorksWithProxy()
     {
-        $test = new OptimisticStandard();
+        $test       = new OptimisticStandard();
         $test->name = 'test';
 
         $this->em->persist($test);
@@ -191,7 +193,7 @@ class OptimisticTest extends OrmFunctionalTestCase
 
         $test->name = 'Testing';
 
-        self::assertNull($test->version, "Pre-Condition");
+        self::assertNull($test->version, 'Pre-Condition');
 
         $this->em->persist($test);
         $this->em->flush();
@@ -217,12 +219,11 @@ class OptimisticTest extends OrmFunctionalTestCase
         // Manually increment the version datetime column
         $format = $this->em->getConnection()->getDatabasePlatform()->getDateTimeFormatString();
 
-        $this->conn->executeQuery('UPDATE optimistic_timestamp SET version = ? WHERE id = ?', [date($format, strtotime($test->version->format($format)) + 3600), $test->id]
-        );
+        $this->conn->executeQuery('UPDATE optimistic_timestamp SET version = ? WHERE id = ?', [date($format, strtotime($test->version->format($format)) + 3600), $test->id]);
 
         // Try and update the record and it should throw an exception
         $caughtException = null;
-        $test->name = 'Testing again';
+        $test->name      = 'Testing again';
 
         try {
             $this->em->flush();
@@ -230,7 +231,7 @@ class OptimisticTest extends OrmFunctionalTestCase
             $caughtException = $e;
         }
 
-        self::assertNotNull($caughtException, "No OptimisticLockingException was thrown");
+        self::assertNotNull($caughtException, 'No OptimisticLockingException was thrown');
         self::assertSame($test, $caughtException->getEntity());
     }
 
@@ -258,7 +259,7 @@ class OptimisticTest extends OrmFunctionalTestCase
             $caughtException = $e;
         }
 
-        self::assertNotNull($caughtException, "No OptimisticLockingException was thrown");
+        self::assertNotNull($caughtException, 'No OptimisticLockingException was thrown');
         self::assertSame($test, $caughtException->getEntity());
     }
 }

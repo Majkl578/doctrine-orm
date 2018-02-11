@@ -8,6 +8,7 @@ use Doctrine\ORM\Annotation as ORM;
 use Doctrine\ORM\EntityManagerInterface;
 use Doctrine\ORM\Tools\SchemaValidator;
 use Doctrine\Tests\OrmTestCase;
+use function sprintf;
 
 class SchemaValidatorTest extends OrmTestCase
 {
@@ -23,7 +24,7 @@ class SchemaValidatorTest extends OrmTestCase
 
     public function setUp()
     {
-        $this->em = $this->getTestEntityManager();
+        $this->em        = $this->getTestEntityManager();
         $this->validator = new SchemaValidator($this->em);
     }
 
@@ -39,7 +40,7 @@ class SchemaValidatorTest extends OrmTestCase
         self::assertEmpty($this->validator->validateMapping());
     }
 
-    public function modelSetProvider(): array
+    public function modelSetProvider() : array
     {
         return [
             'cms'        => [__DIR__ . '/../../Models/CMS'],
@@ -114,7 +115,7 @@ class SchemaValidatorTest extends OrmTestCase
     public function testInvalidTripleAssociationAsKeyMapping()
     {
         $classThree = $this->em->getClassMetadata(DDC1649Three::class);
-        $errors = $this->validator->validateClass($classThree);
+        $errors     = $this->validator->validateClass($classThree);
 
         $message1 = "Cannot map association %s#%s as identifier, because the target entity '%s' also maps an association as identifier.";
         $message2 = "The referenced column name '%s' has to be a primary key column on the target entity class '%s'.";
@@ -133,16 +134,14 @@ class SchemaValidatorTest extends OrmTestCase
      */
     public function testInvalidBiDirectionalRelationMappingMissingInversedByAttribute()
     {
-        $class = $this->em->getClassMetadata(DDC3274One::class);
+        $class  = $this->em->getClassMetadata(DDC3274One::class);
         $errors = $this->validator->validateClass($class);
 
-        $message = "The property %s#%s is on the inverse side of a bi-directional relationship, but the "
+        $message = 'The property %s#%s is on the inverse side of a bi-directional relationship, but the '
             . "specified mappedBy association on the target-entity %s#%s does not contain the required 'inversedBy=\"%s\"' attribute.";
 
         self::assertEquals(
-            [
-                sprintf($message, DDC3274One::class, 'two', DDC3274Two::class, 'one', 'two')
-            ],
+            [sprintf($message, DDC3274One::class, 'two', DDC3274Two::class, 'one', 'two')],
             $errors
         );
     }
@@ -152,15 +151,13 @@ class SchemaValidatorTest extends OrmTestCase
      */
     public function testInvalidOrderByInvalidField()
     {
-        $class = $this->em->getClassMetadata(DDC3322One::class);
+        $class  = $this->em->getClassMetadata(DDC3322One::class);
         $errors = $this->validator->validateClass($class);
 
         $message = "The association %s#%s is ordered by a property '%s' that is non-existing field on the target entity '%s'.";
 
         self::assertEquals(
-            [
-                sprintf($message, DDC3322One::class, 'invalidAssoc', 'invalidField', DDC3322ValidEntity1::class)
-            ],
+            [sprintf($message, DDC3322One::class, 'invalidAssoc', 'invalidField', DDC3322ValidEntity1::class)],
             $errors
         );
     }
@@ -170,15 +167,13 @@ class SchemaValidatorTest extends OrmTestCase
      */
     public function testInvalidOrderByCollectionValuedAssociation()
     {
-        $class = $this->em->getClassMetadata(DDC3322Two::class);
+        $class  = $this->em->getClassMetadata(DDC3322Two::class);
         $errors = $this->validator->validateClass($class);
 
         $message = "The association %s#%s is ordered by a property '%s' on '%s' that is a collection-valued association.";
 
         self::assertEquals(
-            [
-                sprintf($message, DDC3322Two::class, 'invalidAssoc', 'oneToMany', DDC3322ValidEntity1::class)
-            ],
+            [sprintf($message, DDC3322Two::class, 'invalidAssoc', 'oneToMany', DDC3322ValidEntity1::class)],
             $errors
         );
     }
@@ -188,30 +183,26 @@ class SchemaValidatorTest extends OrmTestCase
      */
     public function testInvalidOrderByAssociationInverseSide()
     {
-        $class = $this->em->getClassMetadata(DDC3322Three::class);
+        $class  = $this->em->getClassMetadata(DDC3322Three::class);
         $errors = $this->validator->validateClass($class);
 
         $message = "The association %s#%s is ordered by a property '%s' on '%s' that is the inverse side of an association.";
 
         self::assertEquals(
-            [
-                sprintf($message, DDC3322Three::class, 'invalidAssoc', 'oneToOneInverse', DDC3322ValidEntity1::class)
-            ],
+            [sprintf($message, DDC3322Three::class, 'invalidAssoc', 'oneToOneInverse', DDC3322ValidEntity1::class)],
             $errors
         );
     }
 
     public function testInvalidReferencedJoinTableColumnIsNotPrimary() : void
     {
-        $class = $this->em->getClassMetadata(InvalidEntity3::class);
+        $class  = $this->em->getClassMetadata(InvalidEntity3::class);
         $errors = $this->validator->validateClass($class);
 
         $message = "The referenced column name '%s' has to be a primary key column on the target entity class '%s'.";
 
         self::assertEquals(
-            [
-                sprintf($message, 'nonId4', InvalidEntity4::class)
-            ],
+            [sprintf($message, 'nonId4', InvalidEntity4::class)],
             $errors
         );
     }

@@ -9,7 +9,6 @@ use Doctrine\ORM\Annotation as ORM;
 /**
  * Represents a board in a forum.
  *
- * @author robo
  * @ORM\Entity
  * @ORM\Table(name="forum_boards")
  */

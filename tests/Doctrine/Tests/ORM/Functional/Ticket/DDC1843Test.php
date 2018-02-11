@@ -5,12 +5,13 @@ declare(strict_types=1);
 namespace Doctrine\Tests\ORM\Functional\Ticket;
 
 use Doctrine\Tests\Models\Quote\Group;
+use Doctrine\Tests\OrmFunctionalTestCase;
 
 /**
  * @group DDC-1845
  * @group DDC-1843
  */
-class DDC1843Test extends \Doctrine\Tests\OrmFunctionalTestCase
+class DDC1843Test extends OrmFunctionalTestCase
 {
     protected function setUp() : void
     {
@@ -37,16 +38,16 @@ class DDC1843Test extends \Doctrine\Tests\OrmFunctionalTestCase
         $this->em->flush();
         $this->em->clear();
 
-        $e1Id   = $e1->id;
-        $e2Id   = $e2->id;
-        $e3Id   = $e3->id;
-        $e4Id   = $e4->id;
+        $e1Id = $e1->id;
+        $e2Id = $e2->id;
+        $e3Id = $e3->id;
+        $e4Id = $e4->id;
 
         // Retrieve
-        $e1     = $this->em->find(Group::class, $e1Id);
-        $e2     = $this->em->find(Group::class, $e2Id);
-        $e3     = $this->em->find(Group::class, $e3Id);
-        $e4     = $this->em->find(Group::class, $e4Id);
+        $e1 = $this->em->find(Group::class, $e1Id);
+        $e2 = $this->em->find(Group::class, $e2Id);
+        $e3 = $this->em->find(Group::class, $e3Id);
+        $e4 = $this->em->find(Group::class, $e4Id);
 
         self::assertInstanceOf(Group::class, $e1);
         self::assertInstanceOf(Group::class, $e2);
@@ -57,7 +58,6 @@ class DDC1843Test extends \Doctrine\Tests\OrmFunctionalTestCase
         self::assertEquals($e2Id, $e2->id);
         self::assertEquals($e3Id, $e3->id);
         self::assertEquals($e4Id, $e4->id);
-
 
         self::assertEquals('Parent Bar 1', $e1->name);
         self::assertEquals('Parent Foo 2', $e2->name);
@@ -105,17 +105,16 @@ class DDC1843Test extends \Doctrine\Tests\OrmFunctionalTestCase
         $this->em->flush();
         $this->em->clear();
 
-
         self::assertInstanceOf(Group::class, $e1);
         self::assertInstanceOf(Group::class, $e2);
         self::assertInstanceOf(Group::class, $e3);
         self::assertInstanceOf(Group::class, $e4);
 
         // Retrieve
-        $e1     = $this->em->find(Group::class, $e1Id);
-        $e2     = $this->em->find(Group::class, $e2Id);
-        $e3     = $this->em->find(Group::class, $e3Id);
-        $e4     = $this->em->find(Group::class, $e4Id);
+        $e1 = $this->em->find(Group::class, $e1Id);
+        $e2 = $this->em->find(Group::class, $e2Id);
+        $e3 = $this->em->find(Group::class, $e3Id);
+        $e4 = $this->em->find(Group::class, $e4Id);
 
         self::assertNull($e1);
         self::assertNull($e2);

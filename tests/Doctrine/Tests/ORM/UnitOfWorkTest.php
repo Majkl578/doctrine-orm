@@ -28,6 +28,12 @@ use Doctrine\Tests\Models\GeoNames\City;
 use Doctrine\Tests\Models\GeoNames\Country;
 use Doctrine\Tests\OrmTestCase;
 use stdClass;
+use function count;
+use function get_class;
+use function random_int;
+use function serialize;
+use function uniqid;
+use function unserialize;
 
 /**
  * UnitOfWork tests.
@@ -84,7 +90,7 @@ class UnitOfWorkTest extends OrmTestCase
 
     public function testRegisterRemovedOnNewEntityIsIgnored()
     {
-        $user = new ForumUser();
+        $user           = new ForumUser();
         $user->username = 'romanb';
         self::assertFalse($this->unitOfWork->isScheduledForDelete($user));
         $this->unitOfWork->scheduleForDelete($user);
@@ -102,7 +108,7 @@ class UnitOfWorkTest extends OrmTestCase
         $userPersister->setMockIdGeneratorType(GeneratorType::IDENTITY);
 
         // Test
-        $user = new ForumUser();
+        $user           = new ForumUser();
         $user->username = 'romanb';
         $this->unitOfWork->persist($user);
 
@@ -146,10 +152,10 @@ class UnitOfWorkTest extends OrmTestCase
         $avatarPersister->setMockIdGeneratorType(GeneratorType::IDENTITY);
 
         // Test
-        $user = new ForumUser();
+        $user           = new ForumUser();
         $user->username = 'romanb';
-        $avatar = new ForumAvatar();
-        $user->avatar = $avatar;
+        $avatar         = new ForumAvatar();
+        $user->avatar   = $avatar;
         $this->unitOfWork->persist($user); // save cascaded to avatar
 
         $this->unitOfWork->commit();
@@ -173,7 +179,7 @@ class UnitOfWorkTest extends OrmTestCase
         $itemPersister = new EntityPersisterMock($this->emMock, $this->emMock->getClassMetadata(NotifyChangedRelatedItem::class));
         $this->unitOfWork->setEntityPersister(NotifyChangedRelatedItem::class, $itemPersister);
 
-        $entity = new NotifyChangedEntity;
+        $entity = new NotifyChangedEntity();
         $entity->setData('thedata');
         $this->unitOfWork->persist($entity);
 
@@ -206,7 +212,6 @@ class UnitOfWorkTest extends OrmTestCase
         $persister->reset();
         $itemPersister->reset();
 
-
         $entity->getItems()->removeElement($item);
         $item->setOwner(null);
         self::assertTrue($entity->getItems()->isDirty());
@@ -223,15 +228,15 @@ class UnitOfWorkTest extends OrmTestCase
             . ' since we do not support committing individual entities I think it is invalid now...'
         );
 
-        $persister = new EntityPersisterMock($this->emMock, $this->emMock->getClassMetadata("Doctrine\Tests\ORM\NotifyChangedEntity"));
+        $persister = new EntityPersisterMock($this->emMock, $this->emMock->getClassMetadata('Doctrine\Tests\ORM\NotifyChangedEntity'));
         $this->unitOfWork->setEntityPersister('Doctrine\Tests\ORM\NotifyChangedEntity', $persister);
-        $itemPersister = new EntityPersisterMock($this->emMock, $this->emMock->getClassMetadata("Doctrine\Tests\ORM\NotifyChangedRelatedItem"));
+        $itemPersister = new EntityPersisterMock($this->emMock, $this->emMock->getClassMetadata('Doctrine\Tests\ORM\NotifyChangedRelatedItem'));
         $this->unitOfWork->setEntityPersister('Doctrine\Tests\ORM\NotifyChangedRelatedItem', $itemPersister);
 
-        $entity = new NotifyChangedEntity;
+        $entity = new NotifyChangedEntity();
         $entity->setData('thedata');
 
-        $entity2 = new NotifyChangedEntity;
+        $entity2 = new NotifyChangedEntity();
         $entity2->setData('thedata');
 
         $this->unitOfWork->persist($entity);
@@ -251,9 +256,9 @@ class UnitOfWorkTest extends OrmTestCase
         $this->unitOfWork->commit($entity);
 
         self::assertTrue($this->unitOfWork->isScheduledForDirtyCheck($entity2));
-        self::assertEquals(array('data' => array('thedata', 'newdata')), $this->unitOfWork->getEntityChangeSet($entity2));
+        self::assertEquals(['data' => ['thedata', 'newdata']], $this->unitOfWork->getEntityChangeSet($entity2));
         self::assertFalse($this->unitOfWork->isScheduledForDirtyCheck($entity));
-        self::assertEquals(array(), $this->unitOfWork->getEntityChangeSet($entity));
+        self::assertEquals([], $this->unitOfWork->getEntityChangeSet($entity));
     }
 
     public function testGetEntityStateOnVersionedEntityWithAssignedIdentifier()
@@ -261,7 +266,7 @@ class UnitOfWorkTest extends OrmTestCase
         $persister = new EntityPersisterMock($this->emMock, $this->emMock->getClassMetadata(VersionedAssignedIdentifierEntity::class));
         $this->unitOfWork->setEntityPersister(VersionedAssignedIdentifierEntity::class, $persister);
 
-        $e = new VersionedAssignedIdentifierEntity();
+        $e     = new VersionedAssignedIdentifierEntity();
         $e->id = 42;
         self::assertEquals(UnitOfWork::STATE_NEW, $this->unitOfWork->getEntityState($e));
         self::assertFalse($persister->isExistsCalled());
@@ -272,7 +277,7 @@ class UnitOfWorkTest extends OrmTestCase
         $persister = new EntityPersisterMock($this->emMock, $this->emMock->getClassMetadata(CmsPhonenumber::class));
         $this->unitOfWork->setEntityPersister(CmsPhonenumber::class, $persister);
 
-        $ph = new CmsPhonenumber();
+        $ph              = new CmsPhonenumber();
         $ph->phonenumber = '12345';
 
         self::assertEquals(UnitOfWork::STATE_NEW, $this->unitOfWork->getEntityState($ph));
@@ -284,7 +289,7 @@ class UnitOfWorkTest extends OrmTestCase
         $this->unitOfWork->registerManaged($ph, ['phonenumber' => '12345'], []);
         self::assertEquals(UnitOfWork::STATE_MANAGED, $this->unitOfWork->getEntityState($ph));
         self::assertFalse($persister->isExistsCalled());
-        $ph2 = new CmsPhonenumber();
+        $ph2              = new CmsPhonenumber();
         $ph2->phonenumber = '12345';
         self::assertEquals(UnitOfWork::STATE_DETACHED, $this->unitOfWork->getEntityState($ph2));
         self::assertFalse($persister->isExistsCalled());
@@ -301,7 +306,7 @@ class UnitOfWorkTest extends OrmTestCase
         $this->unitOfWork->setEntityPersister(ForumUser::class, $userPersister);
 
         // Create a test user
-        $user = new ForumUser();
+        $user       = new ForumUser();
         $user->name = 'Jasper';
         $this->unitOfWork->persist($user);
         $this->unitOfWork->commit();
@@ -347,7 +352,7 @@ class UnitOfWorkTest extends OrmTestCase
         $user->username = 'John';
         $user->avatar   = $invalidValue;
 
-        $this->expectException(\Doctrine\ORM\ORMInvalidArgumentException::class);
+        $this->expectException(ORMInvalidArgumentException::class);
 
         $this->unitOfWork->persist($user);
     }
@@ -375,7 +380,7 @@ class UnitOfWorkTest extends OrmTestCase
         $user->username = 'John';
         $user->avatar   = $invalidValue;
 
-        $this->expectException(\Doctrine\ORM\ORMInvalidArgumentException::class);
+        $this->expectException(ORMInvalidArgumentException::class);
 
         $this->unitOfWork->computeChangeSet($metadata, $user);
     }
@@ -428,8 +433,8 @@ class UnitOfWorkTest extends OrmTestCase
      */
     public function testEntityChangeSetIsClearedAfterFlush() : void
     {
-        $entity1 = new NotifyChangedEntity;
-        $entity2 = new NotifyChangedEntity;
+        $entity1 = new NotifyChangedEntity();
+        $entity2 = new NotifyChangedEntity();
 
         $entity1->setData('thedata');
         $entity2->setData('thedata');
@@ -465,7 +470,6 @@ class UnitOfWorkTest extends OrmTestCase
      * @param object $entity
      * @param string $idHash
      *
-     * @return void
      */
     public function testAddToIdentityMapValidIdentifiers($entity, $idHash)
     {
@@ -526,7 +530,6 @@ class UnitOfWorkTest extends OrmTestCase
      * @param object $entity
      * @param array  $identifier
      *
-     * @return void
      */
     public function testAddToIdentityMapInvalidIdentifiers($entity, array $identifier)
     {
@@ -538,7 +541,7 @@ class UnitOfWorkTest extends OrmTestCase
 
     public function entitiesWithInvalidIdentifiersProvider()
     {
-        $firstNullString  = new EntityWithCompositeStringIdentifier();
+        $firstNullString = new EntityWithCompositeStringIdentifier();
 
         $firstNullString->id2 = uniqid('id2', true);
 
@@ -579,7 +582,7 @@ class UnitOfWorkTest extends OrmTestCase
         // the cascading association not set. Having the "cascading path" involve
         // a non-new object is important to show that the ORM should be considering
         // cascades across entity changesets in subsequent flushes.
-        $cascading->cascaded = $cascadePersisted;
+        $cascading->cascaded    = $cascadePersisted;
         $nonCascading->cascaded = $cascadePersisted;
 
         $this->unitOfWork->persist($cascading);
@@ -736,7 +739,7 @@ class NotifyChangedEntity implements NotifyPropertyChanged
 
     public function __construct()
     {
-        $this->items = new ArrayCollection;
+        $this->items = new ArrayCollection();
     }
 
     public function getId()
@@ -751,7 +754,7 @@ class NotifyChangedEntity implements NotifyPropertyChanged
 
     public function setTransient($value)
     {
-        if ($value != $this->transient) {
+        if ($value !== $this->transient) {
             $this->onPropertyChanged('transient', $this->transient, $value);
             $this->transient = $value;
         }
@@ -764,7 +767,7 @@ class NotifyChangedEntity implements NotifyPropertyChanged
 
     public function setData($data)
     {
-        if ($data != $this->data) {
+        if ($data !== $this->data) {
             $this->onPropertyChanged('data', $this->data, $data);
             $this->data = $data;
         }

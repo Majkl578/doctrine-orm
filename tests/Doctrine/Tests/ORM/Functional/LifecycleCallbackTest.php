@@ -11,6 +11,10 @@ use Doctrine\ORM\Event\PreFlushEventArgs;
 use Doctrine\ORM\Event\PreUpdateEventArgs;
 use Doctrine\ORM\Query;
 use Doctrine\Tests\OrmFunctionalTestCase;
+use function count;
+use function current;
+use function get_class;
+use function sprintf;
 
 class LifecycleCallbackTest extends OrmFunctionalTestCase
 {
@@ -33,7 +37,7 @@ class LifecycleCallbackTest extends OrmFunctionalTestCase
 
     public function testPreSavePostSaveCallbacksAreInvoked()
     {
-        $entity = new LifecycleCallbackTestEntity;
+        $entity        = new LifecycleCallbackTestEntity();
         $entity->value = 'hello';
         $this->em->persist($entity);
         $this->em->flush();
@@ -43,7 +47,7 @@ class LifecycleCallbackTest extends OrmFunctionalTestCase
 
         $this->em->clear();
 
-        $query = $this->em->createQuery("select e from Doctrine\Tests\ORM\Functional\LifecycleCallbackTestEntity e");
+        $query  = $this->em->createQuery('select e from Doctrine\Tests\ORM\Functional\LifecycleCallbackTestEntity e');
         $result = $query->getResult();
         self::assertTrue($result[0]->postLoadCallbackInvoked);
 
@@ -56,7 +60,7 @@ class LifecycleCallbackTest extends OrmFunctionalTestCase
 
     public function testPreFlushCallbacksAreInvoked()
     {
-        $entity = new LifecycleCallbackTestEntity;
+        $entity        = new LifecycleCallbackTestEntity();
         $entity->value = 'hello';
         $this->em->persist($entity);
 
@@ -70,7 +74,7 @@ class LifecycleCallbackTest extends OrmFunctionalTestCase
 
         self::assertTrue($entity->preFlushCallbackInvoked);
 
-        $entity->value = 'bye';
+        $entity->value                   = 'bye';
         $entity->preFlushCallbackInvoked = false;
         $this->em->flush();
 
@@ -79,7 +83,7 @@ class LifecycleCallbackTest extends OrmFunctionalTestCase
 
     public function testChangesDontGetLost()
     {
-        $user = new LifecycleCallbackTestUser;
+        $user = new LifecycleCallbackTestUser();
         $user->setName('Bob');
         $user->setValue('value');
         $this->em->persist($user);
@@ -101,7 +105,7 @@ class LifecycleCallbackTest extends OrmFunctionalTestCase
      */
     public function testGetReferenceWithPostLoadEventIsDelayedUntilProxyTrigger()
     {
-        $entity = new LifecycleCallbackTestEntity;
+        $entity        = new LifecycleCallbackTestEntity();
         $entity->value = 'hello';
         $this->em->persist($entity);
         $this->em->flush();
@@ -121,7 +125,7 @@ class LifecycleCallbackTest extends OrmFunctionalTestCase
      */
     public function testPostLoadTriggeredOnRefresh()
     {
-        $entity = new LifecycleCallbackTestEntity;
+        $entity        = new LifecycleCallbackTestEntity();
         $entity->value = 'hello';
         $this->em->persist($entity);
         $this->em->flush();
@@ -134,7 +138,7 @@ class LifecycleCallbackTest extends OrmFunctionalTestCase
         $reference->postLoadCallbackInvoked = false;
 
         $this->em->refresh($reference);
-        self::assertTrue($reference->postLoadCallbackInvoked, "postLoad should be invoked when refresh() is called.");
+        self::assertTrue($reference->postLoadCallbackInvoked, 'postLoad should be invoked when refresh() is called.');
     }
 
     /**
@@ -144,16 +148,16 @@ class LifecycleCallbackTest extends OrmFunctionalTestCase
     {
         //$this->em->getConnection()->getConfiguration()->setSQLLogger(new \Doctrine\DBAL\Logging\EchoSQLLogger);
 
-        $e1 = new LifecycleCallbackTestEntity;
-        $e2 = new LifecycleCallbackTestEntity;
+        $e1 = new LifecycleCallbackTestEntity();
+        $e2 = new LifecycleCallbackTestEntity();
 
         $c = new LifecycleCallbackCascader();
         $this->em->persist($c);
 
         $c->entities[] = $e1;
         $c->entities[] = $e2;
-        $e1->cascader = $c;
-        $e2->cascader = $c;
+        $e1->cascader  = $c;
+        $e2->cascader  = $c;
 
         //$this->em->persist($c);
         $this->em->flush();
@@ -176,8 +180,8 @@ class LifecycleCallbackTest extends OrmFunctionalTestCase
 
         $c->entities[] = $e1;
         $c->entities[] = $e2;
-        $e1->cascader = $c;
-        $e2->cascader = $c;
+        $e1->cascader  = $c;
+        $e2->cascader  = $c;
 
         $this->em->flush();
         $this->em->clear();
@@ -218,8 +222,8 @@ DQL;
 
         $c->entities[] = $e1;
         $c->entities[] = $e2;
-        $e1->cascader = $c;
-        $e2->cascader = $c;
+        $e1->cascader  = $c;
+        $e2->cascader  = $c;
 
         $this->em->flush();
         $this->em->clear();
@@ -321,10 +325,10 @@ DQL;
 
     public function testLifecycleListener_ChangeUpdateChangeSet()
     {
-        $listener = new LifecycleListenerPreUpdate;
+        $listener = new LifecycleListenerPreUpdate();
         $this->em->getEventManager()->addEventListener(['preUpdate'], $listener);
 
-        $user = new LifecycleCallbackTestUser;
+        $user = new LifecycleCallbackTestUser();
         $user->setName('Bob');
         $user->setValue('value');
         $this->em->persist($user);
@@ -350,7 +354,7 @@ DQL;
      */
     public function testLifecycleCallbackEventArgs()
     {
-        $e = new LifecycleCallbackEventArgEntity;
+        $e = new LifecycleCallbackEventArgEntity();
 
         $e->value = 'foo';
         $this->em->persist($e);
@@ -364,7 +368,6 @@ DQL;
 
         $this->em->remove($e);
         $this->em->flush();
-
 
         self::assertArrayHasKey('preFlushHandler', $e->calls);
         self::assertArrayHasKey('postLoadHandler', $e->calls);
@@ -430,11 +433,11 @@ class LifecycleCallbackTestUser
 class LifecycleCallbackTestEntity
 {
     /* test stuff */
-    public $prePersistCallbackInvoked = false;
+    public $prePersistCallbackInvoked  = false;
     public $postPersistCallbackInvoked = false;
-    public $postLoadCallbackInvoked = false;
-    public $postLoadCascaderNotNull = false;
-    public $preFlushCallbackInvoked = false;
+    public $postLoadCallbackInvoked    = false;
+    public $postLoadCascaderNotNull    = false;
+    public $preFlushCallbackInvoked    = false;
 
     /**
      * @ORM\Id @ORM\Column(type="integer")
@@ -502,7 +505,7 @@ class LifecycleCallbackCascader
 {
     /* test stuff */
     public $postLoadCallbackInvoked = false;
-    public $postLoadEntitiesCount = 0;
+    public $postLoadEntitiesCount   = 0;
 
     /**
      * @ORM\Id @ORM\Column(type="integer")
@@ -524,7 +527,7 @@ class LifecycleCallbackCascader
     public function doStuffOnPostLoad()
     {
         $this->postLoadCallbackInvoked = true;
-        $this->postLoadEntitiesCount = count($this->entities);
+        $this->postLoadEntitiesCount   = count($this->entities);
     }
 
     public function getId()

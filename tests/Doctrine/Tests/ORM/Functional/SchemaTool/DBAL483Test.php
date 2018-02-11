@@ -7,6 +7,8 @@ namespace Doctrine\Tests\ORM\Functional\SchemaTool;
 use Doctrine\ORM\Annotation as ORM;
 use Doctrine\ORM\Tools;
 use Doctrine\Tests\OrmFunctionalTestCase;
+use function array_filter;
+use function strpos;
 
 class DBAL483Test extends OrmFunctionalTestCase
 {
@@ -56,5 +58,5 @@ class DBAL483Default
     /**
      * @ORM\Column(type="string", options={"default": "foo"})
      */
-    public $str = "foo";
+    public $str = 'foo';
 }

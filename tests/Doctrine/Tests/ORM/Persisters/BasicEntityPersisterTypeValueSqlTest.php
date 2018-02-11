@@ -7,6 +7,7 @@ namespace Doctrine\Tests\ORM\Persisters;
 use Doctrine\Common\Collections\Criteria;
 use Doctrine\Common\Collections\Expr\Comparison;
 use Doctrine\DBAL\Types\Type as DBALType;
+use Doctrine\ORM\EntityManagerInterface;
 use Doctrine\ORM\Mapping\OneToOneAssociationMetadata;
 use Doctrine\ORM\Persisters\Entity\BasicEntityPersister;
 use Doctrine\Tests\Models\CustomType\CustomTypeChild;
@@ -22,7 +23,7 @@ class BasicEntityPersisterTypeValueSqlTest extends OrmTestCase
     protected $persister;
 
     /**
-     * @var \Doctrine\ORM\EntityManagerInterface
+     * @var EntityManagerInterface
      */
     protected $em;
 
@@ -65,13 +66,13 @@ class BasicEntityPersisterTypeValueSqlTest extends OrmTestCase
 
     public function testUpdateUsesTypeValuesSQL()
     {
-        $child = new CustomTypeChild();
+        $child     = new CustomTypeChild();
         $child->id = 1;
 
-        $parent = new CustomTypeParent();
-        $parent->id = 1;
+        $parent                = new CustomTypeParent();
+        $parent->id            = 1;
         $parent->customInteger = 1;
-        $parent->child = $child;
+        $parent->child         = $child;
 
         $this->em->getUnitOfWork()->registerManaged($parent, ['id' => 1], ['customInteger' => 0, 'child' => null]);
         $this->em->getUnitOfWork()->registerManaged($child, ['id' => 1], []);
@@ -94,7 +95,7 @@ class BasicEntityPersisterTypeValueSqlTest extends OrmTestCase
         $method = new \ReflectionMethod($this->persister, 'getSelectConditionSQL');
         $method->setAccessible(true);
 
-        $sql = $method->invoke($this->persister,  ['customInteger' => 1, 'child' => 1]);
+        $sql = $method->invoke($this->persister, ['customInteger' => 1, 'child' => 1]);
 
         self::assertEquals('t0."customInteger" = ABS(?) AND t0."child_id" = ?', $sql);
     }
@@ -104,8 +105,8 @@ class BasicEntityPersisterTypeValueSqlTest extends OrmTestCase
      */
     public function testStripNonAlphanumericCharactersFromSelectColumnListSQL()
     {
-        $persister  = new BasicEntityPersister($this->em, $this->em->getClassMetadata(NonAlphaColumnsEntity::class));
-        $method     = new \ReflectionMethod($persister, 'getSelectColumnsSQL');
+        $persister = new BasicEntityPersister($this->em, $this->em->getClassMetadata(NonAlphaColumnsEntity::class));
+        $method    = new \ReflectionMethod($persister, 'getSelectColumnsSQL');
         $method->setAccessible(true);
 
         self::assertEquals('t1."simple-entity-id" AS c0, t1."simple-entity-value" AS c2', $method->invoke($persister));
@@ -162,7 +163,7 @@ class BasicEntityPersisterTypeValueSqlTest extends OrmTestCase
         self::assertEquals('SELECT COUNT(*) FROM "not-a-simple-entity" t0 WHERE t0."simple-entity-value" = ?', $statement);
 
         // Using a criteria object
-        $criteria = new Criteria(Criteria::expr()->eq('value', 'bar'));
+        $criteria  = new Criteria(Criteria::expr()->eq('value', 'bar'));
         $statement = $persister->getCountSQL($criteria);
 
         self::assertEquals('SELECT COUNT(*) FROM "not-a-simple-entity" t0 WHERE t0."simple-entity-value" = ?', $statement);

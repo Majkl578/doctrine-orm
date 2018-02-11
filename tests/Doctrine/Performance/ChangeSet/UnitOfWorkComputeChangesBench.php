@@ -8,6 +8,7 @@ use Doctrine\ORM\UnitOfWork;
 use Doctrine\Performance\EntityManagerFactory;
 use Doctrine\Tests\Models\CMS\CmsUser;
 use PhpBench\Benchmark\Metadata\Annotations\BeforeMethods;
+use function str_replace;
 
 /**
  * @BeforeMethods({"init"})
@@ -29,7 +30,7 @@ final class UnitOfWorkComputeChangesBench
         $this->unitOfWork = EntityManagerFactory::getEntityManager([])->getUnitOfWork();
 
         for ($i = 1; $i <= 100; ++$i) {
-            $user           = new CmsUser;
+            $user           = new CmsUser();
             $user->id       = $i;
             $user->status   = 'user';
             $user->username = 'user' . $i;
@@ -38,9 +39,7 @@ final class UnitOfWorkComputeChangesBench
 
             $this->unitOfWork->registerManaged(
                 $user,
-                [
-                    'id' => $i,
-                ],
+                ['id' => $i],
                 [
                     'id'       => $user->id,
                     'status'   => $user->status,

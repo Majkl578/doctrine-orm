@@ -5,8 +5,11 @@ declare(strict_types=1);
 namespace Doctrine\Tests\ORM\Functional\Ticket;
 
 use Doctrine\ORM\Annotation as ORM;
+use Doctrine\Tests\OrmFunctionalTestCase;
+use function serialize;
+use function unserialize;
 
-class DDC381Test extends \Doctrine\Tests\OrmFunctionalTestCase
+class DDC381Test extends OrmFunctionalTestCase
 {
     protected function setUp()
     {
@@ -36,7 +39,7 @@ class DDC381Test extends \Doctrine\Tests\OrmFunctionalTestCase
         // explicitly load proxy (getId() does not trigger reload of proxy)
         $id = $entity->getOtherMethod();
 
-        $data = serialize($entity);
+        $data   = serialize($entity);
         $entity = unserialize($data);
 
         self::assertEquals($persistedId, $entity->getId());

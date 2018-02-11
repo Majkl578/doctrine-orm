@@ -55,7 +55,7 @@ class Travel
     }
 
     /**
-     * @return integer
+     * @return int
      */
     public function getId()
     {
@@ -63,40 +63,31 @@ class Travel
     }
 
     /**
-     * @return \Doctrine\Tests\Models\Cache\Traveler
+     * @return Traveler
      */
     public function getTraveler()
     {
         return $this->traveler;
     }
 
-    /**
-     * @param \Doctrine\Tests\Models\Cache\Traveler $traveler
-     */
     public function setTraveler(Traveler $traveler)
     {
         $this->traveler = $traveler;
     }
 
     /**
-     * @return \Doctrine\Common\Collections\ArrayCollection
+     * @return ArrayCollection
      */
     public function getVisitedCities()
     {
         return $this->visitedCities;
     }
 
-    /**
-     * @param \Doctrine\Tests\Models\Cache\City $city
-     */
     public function addVisitedCity(City $city)
     {
         $this->visitedCities->add($city);
     }
 
-    /**
-     * @param \Doctrine\Tests\Models\Cache\City $city
-     */
     public function removeVisitedCity(City $city)
     {
         $this->visitedCities->removeElement($city);

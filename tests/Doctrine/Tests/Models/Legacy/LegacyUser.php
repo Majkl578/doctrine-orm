@@ -51,9 +51,9 @@ class LegacyUser
 
     public function __construct()
     {
-        $this->articles = new ArrayCollection;
-        $this->references = new ArrayCollection;
-        $this->cars = new ArrayCollection;
+        $this->articles   = new ArrayCollection();
+        $this->references = new ArrayCollection();
+        $this->cars       = new ArrayCollection();
     }
 
     public function getId()

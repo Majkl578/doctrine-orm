@@ -45,12 +45,12 @@ class City
      */
     public $attractions;
 
-    public function __construct($name, State $state = null)
+    public function __construct($name, ?State $state = null)
     {
-        $this->name         = $name;
-        $this->state        = $state;
-        $this->travels      = new ArrayCollection();
-        $this->attractions  = new ArrayCollection();
+        $this->name        = $name;
+        $this->state       = $state;
+        $this->travels     = new ArrayCollection();
+        $this->attractions = new ArrayCollection();
     }
 
     public function getId()

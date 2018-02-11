@@ -8,6 +8,8 @@ use Doctrine\ORM\Decorator\EntityManagerDecorator;
 use Doctrine\ORM\EntityManagerInterface;
 use Doctrine\ORM\Query\ResultSetMapping;
 use Doctrine\Tests\DoctrineTestCase;
+use function array_fill;
+use function call_user_func_array;
 
 class EntityManagerDecoratorTest extends DoctrineTestCase
 {
@@ -23,17 +25,18 @@ class EntityManagerDecoratorTest extends DoctrineTestCase
 
     public function setUp()
     {
-        $this->wrapped = $this->createMock(EntityManagerInterface::class);
-        $this->decorator = new class($this->wrapped) extends EntityManagerDecorator {};
+        $this->wrapped   = $this->createMock(EntityManagerInterface::class);
+        $this->decorator = new class($this->wrapped) extends EntityManagerDecorator {
+        };
     }
 
     public function getMethodParameters()
     {
-        $class = new \ReflectionClass(EntityManagerInterface::class);
+        $class   = new \ReflectionClass(EntityManagerInterface::class);
         $methods = [];
 
         foreach ($class->getMethods() as $method) {
-            if ($method->isConstructor() || $method->isStatic() || !$method->isPublic()) {
+            if ($method->isConstructor() || $method->isStatic() || ! $method->isPublic()) {
                 continue;
             }
 
@@ -52,7 +55,12 @@ class EntityManagerDecoratorTest extends DoctrineTestCase
 
         /** Special case EntityManager::transactional() */
         if ($method->getName() === 'transactional') {
-            return [$method->getName(), [function () {}]];
+            return [
+            $method->getName(),
+            [function () {
+            },
+            ],
+            ];
         }
 
         if ($method->getNumberOfRequiredParameters() === 0) {

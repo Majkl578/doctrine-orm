@@ -6,15 +6,16 @@ namespace Doctrine\Tests\ORM\Functional\Ticket;
 
 use Doctrine\Tests\Models\Quote\Group;
 use Doctrine\Tests\Models\Quote\User;
+use Doctrine\Tests\OrmFunctionalTestCase;
 
 /**
  * @group DDC-1845
  * @group DDC-1885
  */
-class DDC1885Test extends \Doctrine\Tests\OrmFunctionalTestCase
+class DDC1885Test extends OrmFunctionalTestCase
 {
     /**
-     * @var \Doctrine\Tests\Models\Quote\User
+     * @var User
      */
     private $user;
 
@@ -25,8 +26,8 @@ class DDC1885Test extends \Doctrine\Tests\OrmFunctionalTestCase
         parent::setUp();
 
         $user           = new User();
-        $user->name     = "FabioBatSilva";
-        $user->email    = "fabio.bat.silva@gmail.com";
+        $user->name     = 'FabioBatSilva';
+        $user->email    = 'fabio.bat.silva@gmail.com';
         $user->groups[] = new Group('G 1');
         $user->groups[] = new Group('G 2');
         $this->user     = $user;
@@ -39,13 +40,13 @@ class DDC1885Test extends \Doctrine\Tests\OrmFunctionalTestCase
 
     public function testCreateRetrieveUpdateDelete()
     {
-        $user   = $this->user;
-        $g1     = $user->getGroups()->get(0);
-        $g2     = $user->getGroups()->get(1);
+        $user = $this->user;
+        $g1   = $user->getGroups()->get(0);
+        $g2   = $user->getGroups()->get(1);
 
-        $u1Id   = $user->id;
-        $g1Id   = $g1->id;
-        $g2Id   = $g2->id;
+        $u1Id = $user->id;
+        $g1Id = $g1->id;
+        $g2Id = $g2->id;
 
         // Retrieve
         $user = $this->em->find(User::class, $u1Id);
@@ -89,9 +90,9 @@ class DDC1885Test extends \Doctrine\Tests\OrmFunctionalTestCase
 
     public function testRemoveItem()
     {
-        $user   = $this->user;
-        $u1Id   = $user->id;
-        $user   = $this->em->find(User::class, $u1Id);
+        $user = $this->user;
+        $u1Id = $user->id;
+        $user = $this->em->find(User::class, $u1Id);
 
         self::assertInstanceOf(User::class, $user);
         self::assertEquals('FabioBatSilva', $user->name);
@@ -119,9 +120,9 @@ class DDC1885Test extends \Doctrine\Tests\OrmFunctionalTestCase
 
     public function testClearAll()
     {
-        $user   = $this->user;
-        $u1Id   = $user->id;
-        $user   = $this->em->find(User::class, $u1Id);
+        $user = $this->user;
+        $u1Id = $user->id;
+        $user = $this->em->find(User::class, $u1Id);
 
         self::assertInstanceOf(User::class, $user);
         self::assertEquals('FabioBatSilva', $user->name);
@@ -149,9 +150,9 @@ class DDC1885Test extends \Doctrine\Tests\OrmFunctionalTestCase
 
     public function testCountExtraLazy()
     {
-        $user   = $this->user;
-        $u1Id   = $user->id;
-        $user   = $this->em->find(User::class, $u1Id);
+        $user = $this->user;
+        $u1Id = $user->id;
+        $user = $this->em->find(User::class, $u1Id);
 
         self::assertInstanceOf(User::class, $user);
         self::assertEquals('FabioBatSilva', $user->name);

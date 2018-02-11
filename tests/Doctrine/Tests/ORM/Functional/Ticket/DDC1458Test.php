@@ -15,7 +15,7 @@ class DDC1258Test extends OrmFunctionalTestCase
         $this->schemaTool->createSchema(
             [
             $this->em->getClassMetadata(TestEntity::class),
-            $this->em->getClassMetadata(TestAdditionalEntity::class)
+            $this->em->getClassMetadata(TestAdditionalEntity::class),
             ]
         );
     }

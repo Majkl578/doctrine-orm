@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace Doctrine\Tests\Models\CustomType;
 
+use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Annotation as ORM;
 
 /**
@@ -45,8 +46,8 @@ class CustomTypeParent
 
     public function __construct()
     {
-        $this->friendsWithMe = new \Doctrine\Common\Collections\ArrayCollection();
-        $this->myFriends = new \Doctrine\Common\Collections\ArrayCollection();
+        $this->friendsWithMe = new ArrayCollection();
+        $this->myFriends     = new ArrayCollection();
     }
 
     public function addMyFriend(CustomTypeParent $friend)

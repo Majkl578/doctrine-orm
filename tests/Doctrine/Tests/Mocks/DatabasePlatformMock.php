@@ -14,7 +14,7 @@ class DatabasePlatformMock extends AbstractPlatform
     /**
      * @var string
      */
-    private $sequenceNextValSql = "";
+    private $sequenceNextValSql = '';
 
     /**
      * @var bool
@@ -104,7 +104,6 @@ class DatabasePlatformMock extends AbstractPlatform
     /**
      * @param bool $bool
      *
-     * @return void
      */
     public function setPrefersIdentityColumns($bool)
     {
@@ -114,7 +113,6 @@ class DatabasePlatformMock extends AbstractPlatform
     /**
      * @param bool $bool
      *
-     * @return void
      */
     public function setPrefersSequences($bool)
     {
@@ -124,7 +122,6 @@ class DatabasePlatformMock extends AbstractPlatform
     /**
      * @param string $sql
      *
-     * @return void
      */
     public function setSequenceNextValSql($sql)
     {

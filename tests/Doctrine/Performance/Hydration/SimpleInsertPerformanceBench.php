@@ -43,7 +43,7 @@ final class SimpleInsertPerformanceBench
         ]);
 
         for ($i = 1; $i <= 10000; ++$i) {
-            $user           = new CMS\CmsUser;
+            $user           = new CMS\CmsUser();
             $user->status   = 'user';
             $user->username = 'user' . $i;
             $user->name     = 'Mr.Smith-' . $i;

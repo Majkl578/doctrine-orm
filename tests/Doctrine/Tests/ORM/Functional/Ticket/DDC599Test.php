@@ -4,9 +4,12 @@ declare(strict_types=1);
 
 namespace Doctrine\Tests\ORM\Functional\Ticket;
 
+use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Annotation as ORM;
+use Doctrine\Tests\OrmFunctionalTestCase;
+use function iterator_to_array;
 
-class DDC599Test extends \Doctrine\Tests\OrmFunctionalTestCase
+class DDC599Test extends OrmFunctionalTestCase
 {
     protected function setUp()
     {
@@ -24,9 +27,9 @@ class DDC599Test extends \Doctrine\Tests\OrmFunctionalTestCase
 
     public function testCascadeRemoveOnInheritanceHierarchy()
     {
-        $item = new DDC599Subitem;
-        $item->elem = "foo";
-        $child = new DDC599Child;
+        $item          = new DDC599Subitem();
+        $item->elem    = 'foo';
+        $child         = new DDC599Child();
         $child->parent = $item;
         $item->getChildren()->add($child);
         $this->em->persist($item);
@@ -45,13 +48,12 @@ class DDC599Test extends \Doctrine\Tests\OrmFunctionalTestCase
 
         $this->em->clear();
 
-
-        $item2 = new DDC599Subitem;
-        $item2->elem = "bar";
+        $item2       = new DDC599Subitem();
+        $item2->elem = 'bar';
         $this->em->persist($item2);
         $this->em->flush();
 
-        $child2 = new DDC599Child;
+        $child2         = new DDC599Child();
         $child2->parent = $item2;
         $item2->getChildren()->add($child2);
         $this->em->persist($child2);
@@ -96,7 +98,7 @@ class DDC599Item
 
     public function __construct()
     {
-        $this->children = new \Doctrine\Common\Collections\ArrayCollection;
+        $this->children = new ArrayCollection();
     }
 
     public function getChildren()

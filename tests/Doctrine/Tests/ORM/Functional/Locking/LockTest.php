@@ -11,6 +11,7 @@ use Doctrine\ORM\TransactionRequiredException;
 use Doctrine\Tests\Models\CMS\CmsArticle;
 use Doctrine\Tests\Models\CMS\CmsUser;
 use Doctrine\Tests\OrmFunctionalTestCase;
+use function array_pop;
 
 /**
  * @group locking
@@ -31,9 +32,9 @@ class LockTest extends OrmFunctionalTestCase
      */
     public function testLockVersionedEntity()
     {
-        $article = new CmsArticle();
-        $article->text = "my article";
-        $article->topic = "Hello";
+        $article        = new CmsArticle();
+        $article->text  = 'my article';
+        $article->topic = 'Hello';
 
         $this->em->persist($article);
         $this->em->flush();
@@ -49,9 +50,9 @@ class LockTest extends OrmFunctionalTestCase
      */
     public function testLockVersionedEntity_MismatchThrowsException()
     {
-        $article = new CmsArticle();
-        $article->text = "my article";
-        $article->topic = "Hello";
+        $article        = new CmsArticle();
+        $article->text  = 'my article';
+        $article->topic = 'Hello';
 
         $this->em->persist($article);
         $this->em->flush();
@@ -67,10 +68,10 @@ class LockTest extends OrmFunctionalTestCase
      */
     public function testLockUnversionedEntity_ThrowsException()
     {
-        $user = new CmsUser();
-        $user->name = "foo";
-        $user->status = "active";
-        $user->username = "foo";
+        $user           = new CmsUser();
+        $user->name     = 'foo';
+        $user->status   = 'active';
+        $user->username = 'foo';
 
         $this->em->persist($user);
         $this->em->flush();
@@ -100,9 +101,9 @@ class LockTest extends OrmFunctionalTestCase
      */
     public function testLockPessimisticRead_NoTransaction_ThrowsException()
     {
-        $article = new CmsArticle();
-        $article->text = "my article";
-        $article->topic = "Hello";
+        $article        = new CmsArticle();
+        $article->text  = 'my article';
+        $article->topic = 'Hello';
 
         $this->em->persist($article);
         $this->em->flush();
@@ -118,9 +119,9 @@ class LockTest extends OrmFunctionalTestCase
      */
     public function testLockPessimisticWrite_NoTransaction_ThrowsException()
     {
-        $article = new CmsArticle();
-        $article->text = "my article";
-        $article->topic = "Hello";
+        $article        = new CmsArticle();
+        $article->text  = 'my article';
+        $article->topic = 'Hello';
 
         $this->em->persist($article);
         $this->em->flush();
@@ -142,9 +143,9 @@ class LockTest extends OrmFunctionalTestCase
             $this->markTestSkipped('Database Driver has no Write Lock support.');
         }
 
-        $article = new CmsArticle();
-        $article->text = "my article";
-        $article->topic = "Hello";
+        $article        = new CmsArticle();
+        $article->text  = 'my article';
+        $article->topic = 'Hello';
 
         $this->em->persist($article);
         $this->em->flush();
@@ -177,9 +178,9 @@ class LockTest extends OrmFunctionalTestCase
             $this->markTestSkipped('Database Driver has no Write Lock support.');
         }
 
-        $article = new CmsArticle();
-        $article->text = "my article";
-        $article->topic = "Hello";
+        $article        = new CmsArticle();
+        $article->text  = 'my article';
+        $article->topic = 'Hello';
 
         $this->em->persist($article);
         $this->em->flush();
@@ -206,7 +207,7 @@ class LockTest extends OrmFunctionalTestCase
      */
     public function testLockOptimisticNonVersionedThrowsExceptionInDQL()
     {
-        $dql = "SELECT u FROM " . CmsUser::class . " u WHERE u.username = 'gblanco'";
+        $dql = 'SELECT u FROM ' . CmsUser::class . " u WHERE u.username = 'gblanco'";
 
         $this->expectException(OptimisticLockException::class);
         $this->expectExceptionMessage('The optimistic lock on an entity failed.');

@@ -35,7 +35,7 @@ class NavPhotos
 
     public function __construct($poi, $file)
     {
-        $this->poi = $poi;
+        $this->poi  = $poi;
         $this->file = $file;
     }
 

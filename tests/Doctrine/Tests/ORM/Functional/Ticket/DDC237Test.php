@@ -5,9 +5,11 @@ declare(strict_types=1);
 namespace Doctrine\Tests\ORM\Functional\Ticket;
 
 use Doctrine\ORM\Annotation as ORM;
+use Doctrine\Tests\OrmFunctionalTestCase;
 use ProxyManager\Proxy\GhostObjectInterface;
+use function get_class;
 
-class DDC237Test extends \Doctrine\Tests\OrmFunctionalTestCase
+class DDC237Test extends OrmFunctionalTestCase
 {
     protected function setUp()
     {
@@ -16,16 +18,16 @@ class DDC237Test extends \Doctrine\Tests\OrmFunctionalTestCase
             [
             $this->em->getClassMetadata(DDC237EntityX::class),
             $this->em->getClassMetadata(DDC237EntityY::class),
-            $this->em->getClassMetadata(DDC237EntityZ::class)
+            $this->em->getClassMetadata(DDC237EntityZ::class),
             ]
         );
     }
 
     public function testUninitializedProxyIsInitializedOnFetchJoin()
     {
-        $x = new DDC237EntityX;
-        $y = new DDC237EntityY;
-        $z = new DDC237EntityZ;
+        $x = new DDC237EntityX();
+        $y = new DDC237EntityY();
+        $z = new DDC237EntityZ();
 
         $x->data = 'X';
         $y->data = 'Y';

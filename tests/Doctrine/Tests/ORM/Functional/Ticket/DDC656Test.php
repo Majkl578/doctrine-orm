@@ -5,17 +5,18 @@ declare(strict_types=1);
 namespace Doctrine\Tests\ORM\Functional\Ticket;
 
 use Doctrine\ORM\Annotation as ORM;
+use Doctrine\Tests\OrmFunctionalTestCase;
+use function array_keys;
+use function get_class;
 
-class DDC656Test extends \Doctrine\Tests\OrmFunctionalTestCase
+class DDC656Test extends OrmFunctionalTestCase
 {
     protected function setUp()
     {
         parent::setUp();
         try {
             $this->schemaTool->createSchema(
-                [
-                $this->em->getClassMetadata(DDC656Entity::class)
-                ]
+                [$this->em->getClassMetadata(DDC656Entity::class)]
             );
         } catch (\Exception $e) {
         }

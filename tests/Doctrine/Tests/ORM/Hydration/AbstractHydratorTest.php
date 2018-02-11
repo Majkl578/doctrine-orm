@@ -1,17 +1,20 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Doctrine\Tests\ORM\Hydration;
 
+use Doctrine\Common\EventManager;
 use Doctrine\Common\Persistence\Mapping\ClassMetadataFactory;
 use Doctrine\DBAL\Connection;
-use Doctrine\ORM\EntityManagerInterface;
-use Doctrine\Common\EventManager;
 use Doctrine\DBAL\Driver\Statement;
+use Doctrine\ORM\EntityManagerInterface;
 use Doctrine\ORM\Events;
 use Doctrine\ORM\Internal\Hydration\AbstractHydrator;
 use Doctrine\ORM\Query\ResultSetMapping;
 use Doctrine\ORM\UnitOfWork;
 use Doctrine\Tests\OrmFunctionalTestCase;
+use function iterator_to_array;
 
 /**
  * @covers \Doctrine\ORM\Internal\Hydration\AbstractHydrator
@@ -45,11 +48,11 @@ class AbstractHydratorTest extends OrmFunctionalTestCase
         $mockConnection             = $this->createMock(Connection::class);
         $mockEntityManagerInterface = $this->createMock(EntityManagerInterface::class);
         $mockUow                    = $this->createMock(UnitOfWork::class);
-        $mockMetadataFactory       = $this->createMock(ClassMetadataFactory::class);
+        $mockMetadataFactory        = $this->createMock(ClassMetadataFactory::class);
 
-        $this->mockEventManager     = $this->createMock(EventManager::class);
-        $this->mockStatement        = $this->createMock(Statement::class);
-        $this->mockResultMapping    = $this->getMockBuilder(ResultSetMapping::class);
+        $this->mockEventManager  = $this->createMock(EventManager::class);
+        $this->mockStatement     = $this->createMock(Statement::class);
+        $this->mockResultMapping = $this->getMockBuilder(ResultSetMapping::class);
 
         $mockEntityManagerInterface
             ->expects(self::any())

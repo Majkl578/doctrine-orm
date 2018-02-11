@@ -1,11 +1,13 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Doctrine\Tests\ORM\Functional\Ticket;
 
-use Doctrine\Tests\OrmFunctionalTestCase;
-use Doctrine\Tests\Models\ECommerce\ECommerceProduct;
-use Doctrine\Tests\Models\ECommerce\ECommerceCategory;
 use Doctrine\Common\Collections\Criteria;
+use Doctrine\Tests\Models\ECommerce\ECommerceCategory;
+use Doctrine\Tests\Models\ECommerce\ECommerceProduct;
+use Doctrine\Tests\OrmFunctionalTestCase;
 
 final class GH6740Test extends OrmFunctionalTestCase
 {

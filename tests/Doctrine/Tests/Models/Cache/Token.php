@@ -6,6 +6,8 @@ namespace Doctrine\Tests\Models\Cache;
 
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Annotation as ORM;
+use function date;
+use function strtotime;
 
 /**
  * @ORM\Entity
@@ -56,21 +58,18 @@ class Token
      */
     public $complexAction;
 
-    public function __construct($token, Client $client = null)
+    public function __construct($token, ?Client $client = null)
     {
         $this->logins    = new ArrayCollection();
         $this->token     = $token;
         $this->client    = $client;
-        $this->expiresAt = new \DateTime(date('Y-m-d H:i:s', strtotime("+7 day")));
+        $this->expiresAt = new \DateTime(date('Y-m-d H:i:s', strtotime('+7 day')));
     }
 
-    /**
-     * @param Login $login
-     */
     public function addLogin(Login $login)
     {
         $this->logins[] = $login;
-        $login->token = $this;
+        $login->token   = $this;
     }
 
     /**

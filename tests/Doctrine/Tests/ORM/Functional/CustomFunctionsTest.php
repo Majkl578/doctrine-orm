@@ -26,17 +26,17 @@ class CustomFunctionsTest extends OrmFunctionalTestCase
 
     public function testCustomFunctionDefinedWithCallback()
     {
-        $user = new CmsUser();
-        $user->name = 'Bob';
+        $user           = new CmsUser();
+        $user->name     = 'Bob';
         $user->username = 'Dylan';
         $this->em->persist($user);
         $this->em->flush();
 
         // Instead of defining the function with the class name, we use a callback
-        $this->em->getConfiguration()->addCustomStringFunction('FOO', function($funcName) {
+        $this->em->getConfiguration()->addCustomStringFunction('FOO', function ($funcName) {
             return new NoOp($funcName);
         });
-        $this->em->getConfiguration()->addCustomNumericFunction('BAR', function($funcName) {
+        $this->em->getConfiguration()->addCustomNumericFunction('BAR', function ($funcName) {
             return new NoOp($funcName);
         });
 
@@ -52,8 +52,8 @@ class CustomFunctionsTest extends OrmFunctionalTestCase
 
     public function testCustomFunctionOverride()
     {
-        $user = new CmsUser();
-        $user->name = 'Bob';
+        $user           = new CmsUser();
+        $user->name     = 'Bob';
         $user->username = 'Dylan';
 
         $this->em->persist($user);
@@ -97,12 +97,12 @@ class CustomCount extends FunctionNode
      */
     private $aggregateExpression;
 
-    public function parse(Parser $parser): void
+    public function parse(Parser $parser) : void
     {
         $this->aggregateExpression = $parser->AggregateExpression();
     }
 
-    public function getSql(SqlWalker $sqlWalker): string
+    public function getSql(SqlWalker $sqlWalker) : string
     {
         return $this->aggregateExpression->dispatch($sqlWalker);
     }

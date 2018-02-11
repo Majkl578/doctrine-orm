@@ -66,8 +66,8 @@ class User
 
     public function __construct()
     {
-        $this->phones = new ArrayCollection;
-        $this->groups = new ArrayCollection;
+        $this->phones = new ArrayCollection();
+        $this->groups = new ArrayCollection();
     }
 
 

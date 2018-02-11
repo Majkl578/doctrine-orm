@@ -25,10 +25,6 @@ class CustomIdObjectTypeChild
      */
     public $parent;
 
-    /**
-     * @param CustomIdObject           $id
-     * @param CustomIdObjectTypeParent $parent
-     */
     public function __construct(CustomIdObject $id, CustomIdObjectTypeParent $parent)
     {
         $this->id     = $id;

@@ -14,6 +14,7 @@ use Doctrine\Tests\Models\CMS\CmsUser;
 use Doctrine\Tests\OrmFunctionalTestCase;
 use ProxyManager\Configuration;
 use ProxyManager\Proxy\GhostObjectInterface;
+use function sprintf;
 
 /**
  * Test that Doctrine ORM correctly works with proxy instances exactly like with ordinary Entities
@@ -52,9 +53,9 @@ class ProxiesLikeEntitiesTest extends OrmFunctionalTestCase
             );
         } catch (\Exception $e) {
         }
-        $this->user = new CmsUser();
+        $this->user           = new CmsUser();
         $this->user->username = 'ocramius';
-        $this->user->name = 'Marco';
+        $this->user->name     = 'Marco';
         $this->em->persist($this->user);
         $this->em->flush();
         $this->em->clear();
@@ -72,9 +73,9 @@ class ProxiesLikeEntitiesTest extends OrmFunctionalTestCase
         $proxy    = $this->em->getProxyFactory()->getProxy($metadata, ['id' => 123]);
 
         $proxy->setProxyInitializer(null);
-        $proxy->id = null;
+        $proxy->id       = null;
         $proxy->username = 'ocra';
-        $proxy->name = 'Marco';
+        $proxy->name     = 'Marco';
 
         $this->em->persist($proxy);
         $this->em->flush();
@@ -152,7 +153,7 @@ class ProxiesLikeEntitiesTest extends OrmFunctionalTestCase
         $this->em->clear();
 
         $result = $this->em->getRepository($this->proxyClassName)->findOneBy([
-            'username' => $this->user->username
+            'username' => $this->user->username,
         ]);
 
         self::assertSame($this->user->getId(), $result->getId());
@@ -160,7 +161,7 @@ class ProxiesLikeEntitiesTest extends OrmFunctionalTestCase
         $this->em->clear();
 
         $result = $this->em
-            ->createQuery(\sprintf('SELECT u FROM %s u WHERE u.id = ?1', $this->proxyClassName))
+            ->createQuery(sprintf('SELECT u FROM %s u WHERE u.id = ?1', $this->proxyClassName))
             ->setParameter(1, $this->user->getId())
             ->getSingleResult();
 

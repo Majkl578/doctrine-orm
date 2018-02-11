@@ -30,7 +30,7 @@ class DDC3579Group
 
     public function __construct($name = null)
     {
-        $this->name = $name;
+        $this->name  = $name;
         $this->users = new ArrayCollection();
     }
 
@@ -50,9 +50,6 @@ class DDC3579Group
         return $this->name;
     }
 
-    /**
-     * @param DDC3579Admin $admin
-     */
     public function addAdmin(DDC3579Admin $admin)
     {
         $this->admins[] = $admin;

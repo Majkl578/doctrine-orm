@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace Doctrine\Tests\Models\DDC117;
 
+use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Annotation as ORM;
 
 /**
@@ -39,9 +40,9 @@ class DDC117Article
 
     public function __construct($title)
     {
-        $this->title = $title;
-        $this->references = new \Doctrine\Common\Collections\ArrayCollection();
-        $this->translations = new \Doctrine\Common\Collections\ArrayCollection();
+        $this->title        = $title;
+        $this->references   = new ArrayCollection();
+        $this->translations = new ArrayCollection();
     }
 
     public function setDetails($details)

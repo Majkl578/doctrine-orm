@@ -20,17 +20,17 @@ use Symfony\Component\Console\Tester\CommandTester;
 class InfoCommandTest extends OrmFunctionalTestCase
 {
     /**
-     * @var \Symfony\Component\Console\Application
+     * @var Application
      */
     private $application;
 
     /**
-     * @var \Doctrine\ORM\Tools\Console\Command\InfoCommand
+     * @var InfoCommand
      */
     private $command;
 
     /**
-     * @var \Symfony\Component\Console\Tester\CommandTester
+     * @var CommandTester
      */
     private $tester;
 
@@ -55,7 +55,7 @@ class InfoCommandTest extends OrmFunctionalTestCase
         self::assertContains(City::class, $this->tester->getDisplay());
     }
 
-    public function testEmptyEntityClassNames() :  void
+    public function testEmptyEntityClassNames() : void
     {
         $mappingDriver = $this->createMock(MappingDriver::class);
         $configuration = $this->createMock(Configuration::class);

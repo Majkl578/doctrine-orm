@@ -5,12 +5,13 @@ declare(strict_types=1);
 namespace Doctrine\Tests\ORM\Functional\Ticket;
 
 use Doctrine\ORM\Annotation as ORM;
+use Doctrine\Tests\OrmFunctionalTestCase;
 
 /**
  * @group DDC-1113
  * @group DDC-1306
  */
-class DDC1113Test extends \Doctrine\Tests\OrmFunctionalTestCase
+class DDC1113Test extends OrmFunctionalTestCase
 {
     public function setUp()
     {
@@ -31,10 +32,10 @@ class DDC1113Test extends \Doctrine\Tests\OrmFunctionalTestCase
 
     public function testIssue()
     {
-        $car = new DDC1113Car();
+        $car         = new DDC1113Car();
         $car->engine = new DDC1113Engine();
 
-        $bus = new DDC1113Bus();
+        $bus         = new DDC1113Bus();
         $bus->engine = new DDC1113Engine();
 
         $this->em->persist($car);
@@ -60,7 +61,6 @@ class DDC1113Test extends \Doctrine\Tests\OrmFunctionalTestCase
  */
 class DDC1113Vehicle
 {
-
     /** @ORM\Id @ORM\GeneratedValue @ORM\Column(type="integer") */
     public $id;
 
@@ -92,7 +92,6 @@ class DDC1113Bus extends DDC1113Vehicle
  */
 class DDC1113Engine
 {
-
     /** @ORM\Id @ORM\GeneratedValue @ORM\Column(type="integer") */
     public $id;
 }

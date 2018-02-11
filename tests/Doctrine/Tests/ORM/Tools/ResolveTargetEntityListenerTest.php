@@ -5,15 +5,17 @@ declare(strict_types=1);
 namespace Doctrine\Tests\ORM\Tools;
 
 use Doctrine\ORM\Annotation as ORM;
+use Doctrine\ORM\EntityManagerInterface;
+use Doctrine\ORM\Events;
 use Doctrine\ORM\Mapping\ClassMetadataFactory;
 use Doctrine\ORM\Tools\ResolveTargetEntityListener;
-use Doctrine\ORM\Events;
 use Doctrine\Tests\OrmTestCase;
+use function iterator_to_array;
 
 class ResolveTargetEntityListenerTest extends OrmTestCase
 {
     /**
-     * @var \Doctrine\ORM\EntityManagerInterface
+     * @var EntityManagerInterface
      */
     private $em;
 
@@ -33,7 +35,7 @@ class ResolveTargetEntityListenerTest extends OrmTestCase
 
         $this->em = $this->getTestEntityManager();
         $this->em->getConfiguration()->setMetadataDriverImpl($annotationDriver);
-        $this->factory = $this->em->getMetadataFactory();
+        $this->factory  = $this->em->getMetadataFactory();
         $this->listener = new ResolveTargetEntityListener();
     }
 
@@ -86,7 +88,7 @@ class ResolveTargetEntityListenerTest extends OrmTestCase
         $this->listener->addResolveTargetEntity(TargetInterface::class, TargetEntity::class);
 
         $evm->addEventListener(Events::loadClassMetadata, $this->listener);
-        $cm = $this->factory->getMetadataFor(ResolveTargetEntity::class);
+        $cm   = $this->factory->getMetadataFor(ResolveTargetEntity::class);
         $meta = $cm->getProperty('manyToMany');
 
         self::assertSame(TargetEntity::class, $meta->getTargetEntity());

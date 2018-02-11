@@ -58,8 +58,8 @@ final class MixedQueryFetchJoinArrayHydrationPerformanceBench
                 'u__username'    => 'romanb',
                 'u__name'        => 'Roman',
                 'sclr0'          => 'JWAGE',
-                'p__phonenumber' => '91'
-            ]
+                'p__phonenumber' => '91',
+            ],
         ];
 
         for ($i = 4; $i < 10000; ++$i) {
@@ -69,13 +69,13 @@ final class MixedQueryFetchJoinArrayHydrationPerformanceBench
                 'u__username'    => 'jwage',
                 'u__name'        => 'Jonathan',
                 'sclr0'          => 'JWAGE' . $i,
-                'p__phonenumber' => '91'
+                'p__phonenumber' => '91',
             ];
         }
 
         $this->stmt     = new HydratorMockStatement($resultSet);
         $this->hydrator = new ArrayHydrator(EntityManagerFactory::getEntityManager([]));
-        $this->rsm      = new ResultSetMapping;
+        $this->rsm      = new ResultSetMapping();
 
         $this->rsm->addEntityResult(CmsUser::class, 'u');
         $this->rsm->addJoinedEntityResult(CmsPhonenumber::class, 'p', 'u', 'phonenumbers');

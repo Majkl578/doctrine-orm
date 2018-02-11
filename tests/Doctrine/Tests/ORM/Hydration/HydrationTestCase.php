@@ -6,8 +6,9 @@ namespace Doctrine\Tests\ORM\Hydration;
 
 use Doctrine\ORM\EntityManagerInterface;
 use Doctrine\ORM\Query\ParserResult;
+use Doctrine\Tests\OrmTestCase;
 
-class HydrationTestCase extends \Doctrine\Tests\OrmTestCase
+class HydrationTestCase extends OrmTestCase
 {
     /**
      * @var EntityManagerInterface
@@ -23,7 +24,7 @@ class HydrationTestCase extends \Doctrine\Tests\OrmTestCase
     /** Helper method */
     protected function createParserResult($resultSetMapping, $isMixedQuery = false)
     {
-        $parserResult = new ParserResult;
+        $parserResult = new ParserResult();
         $parserResult->setResultSetMapping($resultSetMapping);
         //$parserResult->setDefaultQueryComponentAlias(key($queryComponents));
         //$parserResult->setTableAliasMap($tableToClassAliasMap);

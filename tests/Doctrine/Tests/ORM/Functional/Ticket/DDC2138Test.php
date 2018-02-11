@@ -7,6 +7,7 @@ namespace Doctrine\Tests\ORM\Functional\Ticket;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Annotation as ORM;
 use Doctrine\Tests\OrmFunctionalTestCase;
+use function reset;
 
 class DDC2138Test extends OrmFunctionalTestCase
 {
@@ -21,11 +22,11 @@ class DDC2138Test extends OrmFunctionalTestCase
                 $this->em->getClassMetadata(DDC2138Structure::class),
                 $this->em->getClassMetadata(DDC2138UserFollowedObject::class),
                 $this->em->getClassMetadata(DDC2138UserFollowedStructure::class),
-                $this->em->getClassMetadata(DDC2138UserFollowedUser::class)
+                $this->em->getClassMetadata(DDC2138UserFollowedUser::class),
             ]
         );
 
-        self::assertTrue($schema->hasTable('users_followed_objects'), "Table users_followed_objects should exist.");
+        self::assertTrue($schema->hasTable('users_followed_objects'), 'Table users_followed_objects should exist.');
 
         /* @var $table \Doctrine\DBAL\Schema\Table */
         $table = ($schema->getTable('users_followed_objects'));
@@ -121,12 +122,10 @@ class DDC2138UserFollowedStructure extends DDC2138UserFollowedObject
     /**
      * Construct a UserFollowedStructure entity
      *
-     * @param User      $user
-     * @param Structure $followedStructure
      */
     public function __construct(User $user, Structure $followedStructure)
     {
-        $this->user = $user;
+        $this->user              = $user;
         $this->followedStructure = $followedStructure;
     }
 
@@ -171,13 +170,11 @@ class DDC2138UserFollowedUser extends DDC2138UserFollowedObject
     /**
      * Construct a UserFollowedUser entity
      *
-     * @param User $user
-     * @param User $followedUser
      * @param bool $giveAgency
      */
     public function __construct(User $user, User $followedUser)
     {
-        $this->user = $user;
+        $this->user         = $user;
         $this->followedUser = $followedUser;
     }
 
@@ -232,7 +229,7 @@ class DDC2138User
 
     public function __construct()
     {
-        $this->followedUsers = new ArrayCollection();
+        $this->followedUsers      = new ArrayCollection();
         $this->followedStructures = new ArrayCollection();
     }
 
@@ -249,7 +246,6 @@ class DDC2138User
     /**
      * Add followedUsers
      *
-     * @param  UserFollowedUser $followedUsers
      * @return User
      */
     public function addFollowedUser(UserFollowedUser $followedUsers)
@@ -262,7 +258,6 @@ class DDC2138User
     /**
      * Remove followedUsers
      *
-     * @param  UserFollowedUser $followedUsers
      * @return User
      */
     public function removeFollowedUser(UserFollowedUser $followedUsers)
@@ -285,7 +280,6 @@ class DDC2138User
     /**
      * Add followedStructures
      *
-     * @param  UserFollowedStructure $followedStructures
      * @return User
      */
     public function addFollowedStructure(UserFollowedStructure $followedStructures)
@@ -298,7 +292,6 @@ class DDC2138User
     /**
      * Remove followedStructures
      *
-     * @param  UserFollowedStructure $followedStructures
      * @return User
      */
     public function removeFollowedStructure(UserFollowedStructure $followedStructures)

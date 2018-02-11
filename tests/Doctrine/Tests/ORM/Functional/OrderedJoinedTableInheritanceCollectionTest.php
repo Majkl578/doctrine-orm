@@ -9,8 +9,6 @@ use Doctrine\Tests\OrmFunctionalTestCase;
 
 /**
  * Functional tests for the Single Table Inheritance mapping strategy.
- *
- * @author Benjamin Eberlei <kontakt@beberlei.de>
  */
 class OrderedJoinedTableInheritanceCollectionTest extends OrmFunctionalTestCase
 {
@@ -29,13 +27,13 @@ class OrderedJoinedTableInheritanceCollectionTest extends OrmFunctionalTestCase
             // Swallow all exceptions. We do not test the schema tool here.
         }
 
-        $dog = new OJTIC_Dog();
-        $dog->name = "Poofy";
+        $dog       = new OJTIC_Dog();
+        $dog->name = 'Poofy';
 
-        $dog1 = new OJTIC_Dog();
-        $dog1->name = "Zampa";
-        $dog2 = new OJTIC_Dog();
-        $dog2->name = "Aari";
+        $dog1       = new OJTIC_Dog();
+        $dog1->name = 'Zampa';
+        $dog2       = new OJTIC_Dog();
+        $dog2->name = 'Aari';
 
         $dog1->mother = $dog;
         $dog2->mother = $dog;
@@ -60,7 +58,8 @@ class OrderedJoinedTableInheritanceCollectionTest extends OrmFunctionalTestCase
         $this->em->clear();
 
         $result = $this->em->createQuery(
-            "SELECT p, c FROM Doctrine\Tests\ORM\Functional\OJTIC_Pet p JOIN p.children c WHERE p.name = 'Poofy'")
+            "SELECT p, c FROM Doctrine\Tests\ORM\Functional\OJTIC_Pet p JOIN p.children c WHERE p.name = 'Poofy'"
+        )
                 ->getResult();
 
         self::assertCount(1, $result);

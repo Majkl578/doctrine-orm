@@ -5,12 +5,13 @@ declare(strict_types=1);
 namespace Doctrine\Tests\ORM\Tools\Pagination;
 
 use Doctrine\ORM\Annotation as ORM;
+use Doctrine\ORM\EntityManagerInterface;
 use Doctrine\Tests\OrmTestCase;
 
 abstract class PaginationTestCase extends OrmTestCase
 {
     /**
-     * @var \Doctrine\ORM\EntityManagerInterface
+     * @var EntityManagerInterface
      */
     public $entityManager;
 

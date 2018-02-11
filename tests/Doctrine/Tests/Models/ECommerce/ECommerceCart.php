@@ -11,7 +11,6 @@ use Doctrine\ORM\Annotation as ORM;
  * ECommerceCart
  * Represents a typical cart of a shopping application.
  *
- * @author Giorgio Sironi
  * @ORM\Entity
  * @ORM\Table(name="ecommerce_carts")
  */
@@ -45,7 +44,7 @@ class ECommerceCart
 
     public function __construct()
     {
-        $this->products = new ArrayCollection;
+        $this->products = new ArrayCollection();
     }
 
     public function getId()
@@ -74,7 +73,7 @@ class ECommerceCart
     public function removeCustomer()
     {
         if ($this->customer !== null) {
-            $customer = $this->customer;
+            $customer       = $this->customer;
             $this->customer = null;
             $customer->removeCart();
         }

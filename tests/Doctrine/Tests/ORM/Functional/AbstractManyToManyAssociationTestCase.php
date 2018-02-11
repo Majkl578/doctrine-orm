@@ -6,6 +6,8 @@ namespace Doctrine\Tests\ORM\Functional;
 
 use Doctrine\Common\Collections\Collection;
 use Doctrine\Tests\OrmFunctionalTestCase;
+use function count;
+use function sprintf;
 
 /**
  * Base class for testing a many-to-many association mapping (without inheritance).
@@ -33,12 +35,21 @@ class AbstractManyToManyAssociationTestCase extends OrmFunctionalTestCase
               FROM {$this->table}
              WHERE {$this->firstField} = ?
                AND {$this->secondField} = ?
-        ", [$firstId, $secondId]
-        )->fetchAll());
+        ", [$firstId, $secondId])->fetchAll());
+
+        return count($this->em->getConnection()->executeQuery(sprintf(
+            'SELECT %s FROM %s WHERE %s = ? AND %s = ?',
+            $this->firstField,
+            $this->table,
+            $this->firstField,
+            $this->secondField
+        ), [$firstId, $secondId])->fetchAll());
     }
 
     public function assertCollectionEquals(Collection $first, Collection $second)
     {
-        return $first->forAll(function($k, $e) use($second) { return $second->contains($e); });
+        return $first->forAll(function ($k, $e) use ($second) {
+            return $second->contains($e);
+        });
     }
 }

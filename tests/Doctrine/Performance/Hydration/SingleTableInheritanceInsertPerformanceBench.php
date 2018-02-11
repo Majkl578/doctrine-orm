@@ -8,6 +8,7 @@ use Doctrine\ORM\EntityManagerInterface;
 use Doctrine\Performance\EntityManagerFactory;
 use Doctrine\Tests\Models\Company;
 use PhpBench\Benchmark\Metadata\Annotations\BeforeMethods;
+use function array_map;
 
 /**
  * @BeforeMethods({"init"})

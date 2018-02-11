@@ -7,6 +7,7 @@ namespace Doctrine\Tests\ORM;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Criteria;
 use Doctrine\ORM\Cache;
+use Doctrine\ORM\EntityManagerInterface;
 use Doctrine\ORM\Query;
 use Doctrine\ORM\Query\Parameter;
 use Doctrine\ORM\Query\ParameterTypeInferer;
@@ -16,19 +17,18 @@ use Doctrine\Tests\Models\CMS\CmsArticle;
 use Doctrine\Tests\Models\CMS\CmsGroup;
 use Doctrine\Tests\Models\CMS\CmsUser;
 use Doctrine\Tests\OrmTestCase;
+use function array_filter;
+use function get_class;
 
 /**
  * Test case for the QueryBuilder class used to build DQL query string in a
  * object oriented way.
  *
- * @author      Jonathan H. Wage <jonwage@gmail.com>
- * @author      Roman Borschel <roman@code-factory.org
- * @since       2.0
  */
 class QueryBuilderTest extends OrmTestCase
 {
     /**
-     * @var \Doctrine\ORM\EntityManagerInterface
+     * @var EntityManagerInterface
      */
     private $em;
 
@@ -40,7 +40,7 @@ class QueryBuilderTest extends OrmTestCase
     protected function assertValidQueryBuilder(QueryBuilder $qb, $expectedDql)
     {
         $dql = $qb->getDQL();
-        $q = $qb->getQuery();
+        $q   = $qb->getQuery();
 
         self::assertEquals($expectedDql, $dql);
     }
@@ -597,7 +597,7 @@ class QueryBuilderTest extends OrmTestCase
         $qb = $this->em->createQueryBuilder()
             ->select('u')
             ->from(CmsUser::class, 'u');
-        $q = $qb->getQuery();
+        $q  = $qb->getQuery();
 
         self::assertEquals(Query::class, get_class($q));
     }
@@ -694,7 +694,7 @@ class QueryBuilderTest extends OrmTestCase
 
     public function testComplexWhere()
     {
-        $qb = $this->em->createQueryBuilder();
+        $qb     = $this->em->createQueryBuilder();
         $orExpr = $qb->expr()->orX();
         $orExpr->add($qb->expr()->eq('u.id', ':uid3'));
         $orExpr->add($qb->expr()->in('u.id', [1]));
@@ -722,7 +722,7 @@ class QueryBuilderTest extends OrmTestCase
 
     public function testWhereInWithObjectLiterals()
     {
-        $qb = $this->em->createQueryBuilder();
+        $qb   = $this->em->createQueryBuilder();
         $expr = $this->em->getExpressionBuilder();
         $qb->select('u')
            ->from(CmsUser::class, 'u')
@@ -737,7 +737,7 @@ class QueryBuilderTest extends OrmTestCase
 
     public function testNegation()
     {
-        $expr = $this->em->getExpressionBuilder();
+        $expr   = $this->em->getExpressionBuilder();
         $orExpr = $expr->orX();
         $orExpr->add($expr->eq('u.id', ':uid3'));
         $orExpr->add($expr->not($expr->in('u.id', [1])));
@@ -752,7 +752,7 @@ class QueryBuilderTest extends OrmTestCase
 
     public function testSomeAllAny()
     {
-        $qb = $this->em->createQueryBuilder();
+        $qb   = $this->em->createQueryBuilder();
         $expr = $this->em->getExpressionBuilder();
 
         $qb->select('u')
@@ -764,7 +764,7 @@ class QueryBuilderTest extends OrmTestCase
 
     public function testMultipleIsolatedQueryConstruction()
     {
-        $qb = $this->em->createQueryBuilder();
+        $qb   = $this->em->createQueryBuilder();
         $expr = $this->em->getExpressionBuilder();
 
         $qb->select('u')->from(CmsUser::class, 'u');
@@ -811,7 +811,7 @@ class QueryBuilderTest extends OrmTestCase
 
     public function testSelectWithFuncExpression()
     {
-        $qb = $this->em->createQueryBuilder();
+        $qb   = $this->em->createQueryBuilder();
         $expr = $qb->expr();
         $qb->select($expr->count('e.id'));
 
@@ -825,7 +825,7 @@ class QueryBuilderTest extends OrmTestCase
             ->from(CmsUser::class, 'u')
             ->where('u.username = ?1')->orderBy('u.username');
 
-        self::assertEquals('u.username = ?1', (string)$qb->getDQLPart('where'));
+        self::assertEquals('u.username = ?1', (string) $qb->getDQLPart('where'));
         self::assertCount(1, $qb->getDQLPart('orderBy'));
 
         $qb->resetDQLPart('where')->resetDQLPart('orderBy');
@@ -874,12 +874,12 @@ class QueryBuilderTest extends OrmTestCase
             ->andWhere('u.status = ?2');
 
         $expr = $qb->getDQLPart('where');
-        self::assertEquals(2, $expr->count(), "Modifying the second query should affect the first one.");
+        self::assertEquals(2, $expr->count(), 'Modifying the second query should affect the first one.');
 
         $qb2 = clone $qb;
         $qb2->andWhere('u.name = ?3');
 
-        self::assertEquals(2, $expr->count(), "Modifying the second query should affect the first one.");
+        self::assertEquals(2, $expr->count(), 'Modifying the second query should affect the first one.');
     }
 
     /**
@@ -1016,10 +1016,10 @@ class QueryBuilderTest extends OrmTestCase
     public function testEmptyStringLiteral()
     {
         $expr = $this->em->getExpressionBuilder();
-        $qb = $this->em->createQueryBuilder()
+        $qb   = $this->em->createQueryBuilder()
             ->select('u')
             ->from(CmsUser::class, 'u')
-            ->where($expr->eq('u.username', $expr->literal("")));
+            ->where($expr->eq('u.username', $expr->literal('')));
 
         self::assertEquals("SELECT u FROM Doctrine\Tests\Models\CMS\CmsUser u WHERE u.username = ''", $qb->getDQL());
     }
@@ -1030,7 +1030,7 @@ class QueryBuilderTest extends OrmTestCase
     public function testEmptyNumericLiteral()
     {
         $expr = $this->em->getExpressionBuilder();
-        $qb = $this->em->createQueryBuilder()
+        $qb   = $this->em->createQueryBuilder()
             ->select('u')
             ->from(CmsUser::class, 'u')
             ->where($expr->eq('u.username', $expr->literal(0)));
@@ -1127,7 +1127,7 @@ class QueryBuilderTest extends OrmTestCase
           ->join('u.article', 'a');
 
         $dqlParts = $qb->getDQLParts();
-        $dql = $qb->getDQL();
+        $dql      = $qb->getDQL();
 
         $qb2 = $this->em->createQueryBuilder();
         foreach (array_filter($dqlParts) as $name => $part) {

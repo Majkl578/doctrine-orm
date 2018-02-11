@@ -7,11 +7,10 @@ namespace Doctrine\Tests\ORM\Functional\Ticket;
 use Doctrine\ORM\Annotation as ORM;
 use Doctrine\ORM\Tools\Pagination\Paginator;
 use Doctrine\Tests\OrmFunctionalTestCase;
+use function iterator_to_array;
 
 /**
  * Functional tests for paginator with collection order
- *
- * @author Lallement Thomas <thomas.lallement@9online.fr>
  */
 class DDC3330Test extends OrmFunctionalTestCase
 {
@@ -36,9 +35,9 @@ class DDC3330Test extends OrmFunctionalTestCase
         $this->em->clear();
 
         $query = $this->em->createQuery(
-            'SELECT b, h'.
-            ' FROM Doctrine\Tests\ORM\Functional\Ticket\DDC3330_Building b'.
-            ' LEFT JOIN b.halls h'.
+            'SELECT b, h' .
+            ' FROM Doctrine\Tests\ORM\Functional\Ticket\DDC3330_Building b' .
+            ' LEFT JOIN b.halls h' .
             ' ORDER BY b.id ASC, h.name DESC'
         )
         ->setMaxResults(3);
@@ -56,8 +55,8 @@ class DDC3330Test extends OrmFunctionalTestCase
         $building = new DDC3330_Building();
 
         for ($i = 0; $i < 10; $i++) {
-            $hall = new DDC3330_Hall();
-            $hall->name = 'HALL-'.$i;
+            $hall       = new DDC3330_Hall();
+            $hall->name = 'HALL-' . $i;
             $building->addHall($hall);
         }
 
@@ -84,7 +83,7 @@ class DDC3330_Building
 
     public function addHall(DDC3330_Hall $hall)
     {
-        $this->halls[] = $hall;
+        $this->halls[]  = $hall;
         $hall->building = $this;
     }
 }

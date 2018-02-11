@@ -6,11 +6,12 @@ namespace Doctrine\Tests\ORM\Functional\Ticket;
 
 use Doctrine\DBAL\DBALException;
 use Doctrine\ORM\Annotation as ORM;
+use Doctrine\Tests\OrmFunctionalTestCase;
 
 /**
  * @group DDC-1225
  */
-class DDC1225Test extends \Doctrine\Tests\OrmFunctionalTestCase
+class DDC1225Test extends OrmFunctionalTestCase
 {
     public function setUp()
     {
@@ -51,9 +52,6 @@ class DDC1225_TestEntity1
      */
     private $testEntity2;
 
-    /**
-     * @param DDC1225_TestEntity2 $testEntity2
-     */
     public function setTestEntity2(DDC1225_TestEntity2 $testEntity2)
     {
         $this->testEntity2 = $testEntity2;
