@@ -32,12 +32,7 @@ class HydratorMockStatement implements \IteratorAggregate, Statement
     }
 
     /**
-     * Fetches all rows from the result set.
-     *
-     * @param int|null   $fetchMode
-     * @param int|null   $fetchArgument
-     * @param array|null $ctorArgs
-     * @return array
+     * {@inheritdoc}
      */
     public function fetchAll($fetchMode = null, ...$args)
     {

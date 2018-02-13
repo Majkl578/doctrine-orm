@@ -70,7 +70,7 @@ class StatementMock implements \IteratorAggregate, Statement
     /**
      * {@inheritdoc}
      */
-    public function setFetchMode($fetchMode, ...$args)
+    public function setFetchMode($fetchMode = null, ...$args)
     {
     }
 

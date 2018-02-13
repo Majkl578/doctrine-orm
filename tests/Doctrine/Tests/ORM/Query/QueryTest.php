@@ -62,7 +62,7 @@ class QueryTest extends OrmTestCase
 
     public function testFree()
     {
-        $query = $this->em->createQuery("select u from Doctrine\Tests\Models\CMS\CmsUser u where u.username = ?1");
+        $query = $this->em->createQuery('select u from Doctrine\Tests\Models\CMS\CmsUser u where u.username = ?1');
         $query->setParameter(2, 84, ParameterType::INTEGER);
 
         $query->free();
