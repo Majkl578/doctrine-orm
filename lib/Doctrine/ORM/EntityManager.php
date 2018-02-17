@@ -385,6 +385,18 @@ final class EntityManager implements EntityManagerInterface
         $class     = $this->metadataFactory->getMetadataFor(ltrim($entityName, '\\'));
         $className = $class->getClassName();
 
+        switch ($lockMode) {
+            case LockMode::OPTIMISTIC:
+                if ( ! $class->isVersioned()) {
+                    throw OptimisticLockException::notVersioned($className);
+                }
+            case LockMode::PESSIMISTIC_READ:
+            case LockMode::PESSIMISTIC_WRITE:
+                if (! $this->getConnection()->isTransactionActive()) {
+                    throw TransactionRequiredException::transactionRequired();
+                }
+        }
+
         if (! is_array($id)) {
             if ($class->isIdentifierComposite()) {
                 throw ORMInvalidArgumentException::invalidCompositeIdentifier();
@@ -446,25 +458,15 @@ final class EntityManager implements EntityManagerInterface
         $persister = $unitOfWork->getEntityPersister($className);
 
         switch (true) {
-            case $lockMode === LockMode::OPTIMISTIC:
-                if (! $class->isVersioned()) {
-                    throw OptimisticLockException::notVersioned($className);
-                }
-
+            case$lockMode === LockMode::OPTIMISTIC:
                 $entity = $persister->load($sortedId);
 
                 $unitOfWork->lock($entity, $lockMode, $lockVersion);
 
                 return $entity;
-
             case $lockMode === LockMode::PESSIMISTIC_READ:
             case $lockMode === LockMode::PESSIMISTIC_WRITE:
-                if (! $this->getConnection()->isTransactionActive()) {
-                    throw TransactionRequiredException::transactionRequired();
-                }
-
                 return $persister->load($sortedId, null, null, [], $lockMode);
-
             default:
                 return $persister->loadById($sortedId);
         }
