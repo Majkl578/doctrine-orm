@@ -387,7 +387,7 @@ final class EntityManager implements EntityManagerInterface
 
         switch ($lockMode) {
             case LockMode::OPTIMISTIC:
-                if ( ! $class->isVersioned()) {
+                if (! $class->isVersioned()) {
                     throw OptimisticLockException::notVersioned($className);
                 }
             case LockMode::PESSIMISTIC_READ:
