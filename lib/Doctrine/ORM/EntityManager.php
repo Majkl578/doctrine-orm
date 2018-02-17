@@ -390,6 +390,7 @@ final class EntityManager implements EntityManagerInterface
                 if (! $class->isVersioned()) {
                     throw OptimisticLockException::notVersioned($className);
                 }
+            // Intentional fallthrough
             case LockMode::PESSIMISTIC_READ:
             case LockMode::PESSIMISTIC_WRITE:
                 if (! $this->getConnection()->isTransactionActive()) {
