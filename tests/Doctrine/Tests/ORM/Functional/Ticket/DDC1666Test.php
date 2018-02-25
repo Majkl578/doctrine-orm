@@ -19,7 +19,7 @@ class DDC1666Test extends OrmFunctionalTestCase
         parent::setUp();
     }
 
-    public function testGivenOrphanRemovalOneToOne_WhenReplacing_ThenNoUniqueConstraintError()
+    public function testGivenOrphanRemovalOneToOneWhenReplacingThenNoUniqueConstraintError()
     {
         $user                  = new CmsUser();
         $user->name            = 'Benjamin';

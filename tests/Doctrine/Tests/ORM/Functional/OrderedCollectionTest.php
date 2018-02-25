@@ -57,7 +57,7 @@ class OrderedCollectionTest extends OrmFunctionalTestCase
         return $routeId;
     }
 
-    public function testLazyManyToManyCollection_IsRetrievedWithOrderByClause()
+    public function testLazyManyToManyCollectionIsRetrievedWithOrderByClause()
     {
         $routeId = $this->createPersistedRouteWithLegs();
 
@@ -68,7 +68,7 @@ class OrderedCollectionTest extends OrmFunctionalTestCase
         self::assertEquals('Bonn', $route->legs[1]->fromLocation->getName());
     }
 
-    public function testLazyOneToManyCollection_IsRetrievedWithOrderByClause()
+    public function testLazyOneToManyCollectionIsRetrievedWithOrderByClause()
     {
         $route = new RoutingRoute();
 

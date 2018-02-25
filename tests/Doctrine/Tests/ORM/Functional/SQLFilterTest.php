@@ -39,10 +39,19 @@ use function serialize;
  */
 class SQLFilterTest extends OrmFunctionalTestCase
 {
-    private $userId, $userId2, $articleId, $articleId2;
-    private $groupId, $groupId2;
-    private $managerId, $managerId2, $contractId1, $contractId2;
-    private $organizationId, $eventId1, $eventId2;
+    private $userId;
+    private $userId2;
+    private $articleId;
+    private $articleId2;
+    private $groupId;
+    private $groupId2;
+    private $managerId;
+    private $managerId2;
+    private $contractId1;
+    private $contractId2;
+    private $organizationId;
+    private $eventId1;
+    private $eventId2;
 
     public function setUp()
     {
@@ -339,7 +348,7 @@ class SQLFilterTest extends OrmFunctionalTestCase
         self::assertEquals('' . $filter, '' . $filter2);
     }
 
-    public function testQueryCache_DependsOnFilters()
+    public function testQueryCacheDependsOnFilters()
     {
         $cacheDataReflection = new \ReflectionProperty(ArrayCache::class, 'data');
         $cacheDataReflection->setAccessible(true);
@@ -364,7 +373,7 @@ class SQLFilterTest extends OrmFunctionalTestCase
         self::assertCount(2, $cacheDataReflection->getValue($cache));
     }
 
-    public function testQueryGeneration_DependsOnFilters()
+    public function testQueryGenerationDependsOnFilters()
     {
         $query         = $this->em->createQuery('select a from Doctrine\Tests\Models\CMS\CmsAddress a');
         $firstSQLQuery = $query->getSQL();
@@ -541,7 +550,7 @@ class SQLFilterTest extends OrmFunctionalTestCase
         $this->em->getFilters()->enable('article_topic')->setParameter('topic', 'Test1', DBALType::STRING);
     }
 
-    public function testOneToMany_ExtraLazyCountWithFilter()
+    public function testOneToManyExtraLazyCountWithFilter()
     {
         $this->loadLazyFixtureData();
         $user = $this->em->find(CmsUser::class, $this->userId);
@@ -554,7 +563,7 @@ class SQLFilterTest extends OrmFunctionalTestCase
         self::assertCount(1, $user->articles);
     }
 
-    public function testOneToMany_ExtraLazyContainsWithFilter()
+    public function testOneToManyExtraLazyContainsWithFilter()
     {
         $this->loadLazyFixtureData();
         $user            = $this->em->find(CmsUser::class, $this->userId);
@@ -568,7 +577,7 @@ class SQLFilterTest extends OrmFunctionalTestCase
         self::assertFalse($user->articles->contains($filteredArticle));
     }
 
-    public function testOneToMany_ExtraLazySliceWithFilter()
+    public function testOneToManyExtraLazySliceWithFilter()
     {
         $this->loadLazyFixtureData();
         $user = $this->em->find(CmsUser::class, $this->userId);
@@ -588,7 +597,7 @@ class SQLFilterTest extends OrmFunctionalTestCase
         $this->em->getFilters()->enable('group_prefix')->setParameter('prefix', 'foo%', DBALType::STRING);
     }
 
-    public function testManyToMany_ExtraLazyCountWithFilter()
+    public function testManyToManyExtraLazyCountWithFilter()
     {
         $this->loadLazyFixtureData();
 
@@ -602,7 +611,7 @@ class SQLFilterTest extends OrmFunctionalTestCase
         self::assertCount(1, $user->groups);
     }
 
-    public function testManyToMany_ExtraLazyContainsWithFilter()
+    public function testManyToManyExtraLazyContainsWithFilter()
     {
         $this->loadLazyFixtureData();
         $user            = $this->em->find(CmsUser::class, $this->userId2);
@@ -616,7 +625,7 @@ class SQLFilterTest extends OrmFunctionalTestCase
         self::assertFalse($user->groups->contains($filteredArticle));
     }
 
-    public function testManyToMany_ExtraLazySliceWithFilter()
+    public function testManyToManyExtraLazySliceWithFilter()
     {
         $this->loadLazyFixtureData();
         $user = $this->em->find(CmsUser::class, $this->userId2);
@@ -693,7 +702,7 @@ class SQLFilterTest extends OrmFunctionalTestCase
         $this->groupId2   = $group2->id;
     }
 
-    public function testJoinSubclassPersister_FilterOnlyOnRootTableWhenFetchingSubEntity()
+    public function testJoinSubclassPersisterFilterOnlyOnRootTableWhenFetchingSubEntity()
     {
         $this->loadCompanyJoinedSubclassFixtureData();
         // Persister
@@ -711,7 +720,7 @@ class SQLFilterTest extends OrmFunctionalTestCase
         self::assertCount(1, $this->em->createQuery('SELECT cm FROM Doctrine\Tests\Models\Company\CompanyManager cm')->getResult());
     }
 
-    public function testJoinSubclassPersister_FilterOnlyOnRootTableWhenFetchingRootEntity()
+    public function testJoinSubclassPersisterFilterOnlyOnRootTableWhenFetchingRootEntity()
     {
         $this->loadCompanyJoinedSubclassFixtureData();
         self::assertCount(3, $this->em->getRepository(CompanyPerson::class)->findAll());
@@ -751,7 +760,7 @@ class SQLFilterTest extends OrmFunctionalTestCase
         $this->em->clear();
     }
 
-    public function testSingleTableInheritance_FilterOnlyOnRootTableWhenFetchingSubEntity()
+    public function testSingleTableInheritanceFilterOnlyOnRootTableWhenFetchingSubEntity()
     {
         $this->loadCompanySingleTableInheritanceFixtureData();
         // Persister
@@ -770,7 +779,7 @@ class SQLFilterTest extends OrmFunctionalTestCase
         self::assertCount(1, $this->em->createQuery('SELECT cfc FROM Doctrine\Tests\Models\Company\CompanyFlexUltraContract cfc')->getResult());
     }
 
-    public function testSingleTableInheritance_FilterOnlyOnRootTableWhenFetchingRootEntity()
+    public function testSingleTableInheritanceFilterOnlyOnRootTableWhenFetchingRootEntity()
     {
         $this->loadCompanySingleTableInheritanceFixtureData();
         self::assertCount(4, $this->em->getRepository(CompanyFlexContract::class)->findAll());
@@ -847,7 +856,7 @@ class SQLFilterTest extends OrmFunctionalTestCase
         ;
     }
 
-    public function testManyToMany_ExtraLazyCountWithFilterOnSTI()
+    public function testManyToManyExtraLazyCountWithFilterOnSTI()
     {
         $this->loadCompanySingleTableInheritanceFixtureData();
 
@@ -863,7 +872,7 @@ class SQLFilterTest extends OrmFunctionalTestCase
         self::assertCount(2, $manager->managedContracts);
     }
 
-    public function testManyToMany_ExtraLazyContainsWithFilterOnSTI()
+    public function testManyToManyExtraLazyContainsWithFilterOnSTI()
     {
         $this->loadCompanySingleTableInheritanceFixtureData();
 
@@ -883,7 +892,7 @@ class SQLFilterTest extends OrmFunctionalTestCase
         self::assertTrue($manager->managedContracts->contains($contract2));
     }
 
-    public function testManyToMany_ExtraLazySliceWithFilterOnSTI()
+    public function testManyToManyExtraLazySliceWithFilterOnSTI()
     {
         $this->loadCompanySingleTableInheritanceFixtureData();
 
@@ -909,7 +918,7 @@ class SQLFilterTest extends OrmFunctionalTestCase
             ->setParameter('name', $name, DBALType::STRING);
     }
 
-    public function testManyToMany_ExtraLazyCountWithFilterOnCTI()
+    public function testManyToManyExtraLazyCountWithFilterOnCTI()
     {
         $this->loadCompanySingleTableInheritanceFixtureData();
 
@@ -925,7 +934,7 @@ class SQLFilterTest extends OrmFunctionalTestCase
         self::assertCount(1, $contract->managers);
     }
 
-    public function testManyToMany_ExtraLazyContainsWithFilterOnCTI()
+    public function testManyToManyExtraLazyContainsWithFilterOnCTI()
     {
         $this->loadCompanySingleTableInheritanceFixtureData();
 
@@ -945,7 +954,7 @@ class SQLFilterTest extends OrmFunctionalTestCase
         self::assertTrue($contract->managers->contains($manager2));
     }
 
-    public function testManyToMany_ExtraLazySliceWithFilterOnCTI()
+    public function testManyToManyExtraLazySliceWithFilterOnCTI()
     {
         $this->loadCompanySingleTableInheritanceFixtureData();
 
@@ -961,7 +970,7 @@ class SQLFilterTest extends OrmFunctionalTestCase
         self::assertCount(1, $contract->managers->slice(0, 10));
     }
 
-    public function testOneToMany_ExtraLazyCountWithFilterOnSTI()
+    public function testOneToManyExtraLazyCountWithFilterOnSTI()
     {
         $this->loadCompanySingleTableInheritanceFixtureData();
 
@@ -977,7 +986,7 @@ class SQLFilterTest extends OrmFunctionalTestCase
         self::assertCount(1, $manager->soldContracts);
     }
 
-    public function testOneToMany_ExtraLazyContainsWithFilterOnSTI()
+    public function testOneToManyExtraLazyContainsWithFilterOnSTI()
     {
         $this->loadCompanySingleTableInheritanceFixtureData();
 
@@ -997,7 +1006,7 @@ class SQLFilterTest extends OrmFunctionalTestCase
         self::assertTrue($manager->soldContracts->contains($contract2));
     }
 
-    public function testOneToMany_ExtraLazySliceWithFilterOnSTI()
+    public function testOneToManyExtraLazySliceWithFilterOnSTI()
     {
         $this->loadCompanySingleTableInheritanceFixtureData();
 
@@ -1045,7 +1054,7 @@ class SQLFilterTest extends OrmFunctionalTestCase
     }
 
 
-    public function testOneToMany_ExtraLazyCountWithFilterOnCTI()
+    public function testOneToManyExtraLazyCountWithFilterOnCTI()
     {
         $this->loadCompanyOrganizationEventJoinedSubclassFixtureData();
 
@@ -1061,7 +1070,7 @@ class SQLFilterTest extends OrmFunctionalTestCase
         self::assertCount(1, $organization->events);
     }
 
-    public function testOneToMany_ExtraLazyContainsWithFilterOnCTI()
+    public function testOneToManyExtraLazyContainsWithFilterOnCTI()
     {
         $this->loadCompanyOrganizationEventJoinedSubclassFixtureData();
 
@@ -1082,7 +1091,7 @@ class SQLFilterTest extends OrmFunctionalTestCase
         self::assertTrue($organization->events->contains($event2));
     }
 
-    public function testOneToMany_ExtraLazySliceWithFilterOnCTI()
+    public function testOneToManyExtraLazySliceWithFilterOnCTI()
     {
         $this->loadCompanyOrganizationEventJoinedSubclassFixtureData();
 

@@ -18,15 +18,12 @@ use Doctrine\ORM\Reflection\RuntimeReflectionService;
 use Doctrine\Tests\Models\Cache\City;
 use Doctrine\Tests\Models\CMS\CmsAddress;
 use Doctrine\Tests\Models\CMS\CmsAddressListener;
-use Doctrine\Tests\Models\CMS\CmsUser;
 use Doctrine\Tests\Models\Company\CompanyContract;
 use Doctrine\Tests\Models\Company\CompanyContractListener;
 use Doctrine\Tests\Models\Company\CompanyFixContract;
 use Doctrine\Tests\Models\Company\CompanyFlexContract;
 use Doctrine\Tests\Models\Company\CompanyFlexUltraContract;
 use Doctrine\Tests\Models\Company\CompanyFlexUltraContractListener;
-use Doctrine\Tests\Models\Company\CompanyPerson;
-use Doctrine\Tests\Models\Quote;
 use Doctrine\Tests\Models\DDC1476\DDC1476EntityWithDefaultFieldType;
 use Doctrine\Tests\Models\DDC2825\ExplicitSchemaAndTable;
 use Doctrine\Tests\Models\DDC2825\SchemaAndTableInTableName;
@@ -39,7 +36,13 @@ use Doctrine\Tests\Models\DDC889\DDC889Class;
 use Doctrine\Tests\Models\DDC889\DDC889Entity;
 use Doctrine\Tests\Models\DDC964\DDC964Admin;
 use Doctrine\Tests\Models\DDC964\DDC964Guest;
+use Doctrine\Tests\Models\Quote;
 use Doctrine\Tests\OrmTestCase;
+use const CASE_UPPER;
+use function get_class;
+use function iterator_to_array;
+use function reset;
+use function strpos;
 
 abstract class AbstractMappingDriverTest extends OrmTestCase
 {
@@ -71,11 +74,11 @@ abstract class AbstractMappingDriverTest extends OrmTestCase
         return $class;
     }
 
-    protected function createClassMetadataFactory(EntityManagerInterface $em = null) : ClassMetadataFactory
+    protected function createClassMetadataFactory(?EntityManagerInterface $em = null) : ClassMetadataFactory
     {
-        $driver     = $this->loadDriver();
-        $em         = $em ?: $this->getTestEntityManager();
-        $factory    = new ClassMetadataFactory();
+        $driver  = $this->loadDriver();
+        $em      = $em ?: $this->getTestEntityManager();
+        $factory = new ClassMetadataFactory();
 
         $em->getConfiguration()->setMetadataDriverImpl($driver);
         $factory->setEntityManager($em);
@@ -113,7 +116,7 @@ abstract class AbstractMappingDriverTest extends OrmTestCase
                     'unique'  => false,
                     'options' => [],
                     'flags'   => [],
-                ]
+                ],
             ],
             $class->table->getIndexes()
         );
@@ -133,7 +136,7 @@ abstract class AbstractMappingDriverTest extends OrmTestCase
                     'unique'  => false,
                     'flags'   => ['fulltext'],
                     'options' => ['where' => 'content IS NOT NULL'],
-                ]
+                ],
             ],
             $class->table->getIndexes()
         );
@@ -153,7 +156,7 @@ abstract class AbstractMappingDriverTest extends OrmTestCase
                     'columns' => ['name', 'user_email'],
                     'options' => [],
                     'flags'   => [],
-                ]
+                ],
             ],
             $class->table->getUniqueConstraints()
         );
@@ -171,7 +174,7 @@ abstract class AbstractMappingDriverTest extends OrmTestCase
         self::assertEquals(
             [
                 'foo' => 'bar',
-                'baz' => ['key' => 'val']
+                'baz' => ['key' => 'val'],
             ],
             $class->table->getOptions()
         );
@@ -203,14 +206,14 @@ abstract class AbstractMappingDriverTest extends OrmTestCase
     {
         $class = $this->createClassMetadata(Animal::class);
 
-        self::assertEquals(Mapping\GeneratorType::CUSTOM, $class->getProperty('id')->getValueGenerator()->getType(), "Generator Type");
+        self::assertEquals(Mapping\GeneratorType::CUSTOM, $class->getProperty('id')->getValueGenerator()->getType(), 'Generator Type');
         self::assertEquals(
             [
                 'class'     => 'stdClass',
                 'arguments' => [],
             ],
             $class->getProperty('id')->getValueGenerator()->getDefinition(),
-            "Generator Definition"
+            'Generator Definition'
         );
     }
 
@@ -243,7 +246,7 @@ abstract class AbstractMappingDriverTest extends OrmTestCase
 
         $versionPropertyName = $class->versionProperty->getName();
 
-        self::assertEquals("version", $versionPropertyName);
+        self::assertEquals('version', $versionPropertyName);
         self::assertNotNull($class->getProperty($versionPropertyName));
     }
 
@@ -257,9 +260,9 @@ abstract class AbstractMappingDriverTest extends OrmTestCase
         self::assertNotNull($class->getProperty('name'));
         self::assertNotNull($class->getProperty('email'));
 
-        self::assertEquals("id", $class->getProperty('id')->getColumnName());
-        self::assertEquals("name", $class->getProperty('name')->getColumnName());
-        self::assertEquals("user_email", $class->getProperty('email')->getColumnName());
+        self::assertEquals('id', $class->getProperty('id')->getColumnName());
+        self::assertEquals('name', $class->getProperty('name')->getColumnName());
+        self::assertEquals('user_email', $class->getProperty('email')->getColumnName());
 
         return $class;
     }
@@ -285,7 +288,6 @@ abstract class AbstractMappingDriverTest extends OrmTestCase
     /**
      * @depends testEntityTableNameAndInheritance
      *
-     * @param ClassMetadata $class
      *
      * @return ClassMetadata
      */
@@ -329,7 +331,7 @@ abstract class AbstractMappingDriverTest extends OrmTestCase
 
         self::assertEquals('integer', $property->getTypeName());
         self::assertEquals(['id'], $class->identifier);
-        self::assertEquals(Mapping\GeneratorType::AUTO, $property->getValueGenerator()->getType(), "ID-Generator is not GeneratorType::AUTO");
+        self::assertEquals(Mapping\GeneratorType::AUTO, $property->getValueGenerator()->getType(), 'ID-Generator is not GeneratorType::AUTO');
 
         return $class;
     }
@@ -343,7 +345,7 @@ abstract class AbstractMappingDriverTest extends OrmTestCase
     {
         $class = $this->createClassMetadata(User::class);
 
-        $idOptions = $class->getProperty('id')->getOptions();
+        $idOptions   = $class->getProperty('id')->getOptions();
         $nameOptions = $class->getProperty('name')->getOptions();
 
         self::assertInternalType('bool', $idOptions['unsigned']);
@@ -540,8 +542,8 @@ abstract class AbstractMappingDriverTest extends OrmTestCase
         $inverseJoinColumns = $joinTable->getInverseJoinColumns();
         $inverseJoinColumn  = reset($inverseJoinColumns);
 
-        self::assertEquals("CHAR(32) NOT NULL", $property->getColumnDefinition());
-        self::assertEquals("INT NULL", $inverseJoinColumn->getColumnDefinition());
+        self::assertEquals('CHAR(32) NOT NULL', $property->getColumnDefinition());
+        self::assertEquals('INT NULL', $inverseJoinColumn->getColumnDefinition());
 
         return $class;
     }
@@ -620,7 +622,7 @@ abstract class AbstractMappingDriverTest extends OrmTestCase
         self::assertNotNull($class->getProperty('id'));
         self::assertNotNull($class->getProperty('name'));
 
-        $idProperty = $class->getProperty('id');
+        $idProperty   = $class->getProperty('id');
         $nameProperty = $class->getProperty('name');
 
         self::assertInstanceOf(Mapping\FieldMetadata::class, $idProperty);
@@ -648,8 +650,8 @@ abstract class AbstractMappingDriverTest extends OrmTestCase
         self::assertNotNull($class->getProperty('id'));
         self::assertNotNull($class->getProperty('value'));
 
-        self::assertEquals("INT unsigned NOT NULL", $class->getProperty('id')->getColumnDefinition());
-        self::assertEquals("VARCHAR(255) NOT NULL", $class->getProperty('value')->getColumnDefinition());
+        self::assertEquals('INT unsigned NOT NULL', $class->getProperty('id')->getColumnDefinition());
+        self::assertEquals('VARCHAR(255) NOT NULL', $class->getProperty('value')->getColumnDefinition());
     }
 
     /**
@@ -713,14 +715,14 @@ abstract class AbstractMappingDriverTest extends OrmTestCase
         $factory->getMetadataFor(DDC889Entity::class);
     }
 
-    /*
+    /**
      * @group DDC-964
      */
     public function testAssociationOverridesMapping()
     {
-        $factory        = $this->createClassMetadataFactory();
-        $adminMetadata  = $factory->getMetadataFor(DDC964Admin::class);
-        $guestMetadata  = $factory->getMetadataFor(DDC964Guest::class);
+        $factory       = $this->createClassMetadataFactory();
+        $adminMetadata = $factory->getMetadataFor(DDC964Admin::class);
+        $guestMetadata = $factory->getMetadataFor(DDC964Guest::class);
 
         // assert groups association mappings
         self::assertArrayHasKey('groups', iterator_to_array($guestMetadata->getDeclaredPropertiesIterator()));
@@ -787,13 +789,13 @@ abstract class AbstractMappingDriverTest extends OrmTestCase
         self::assertEquals('adminaddress_id', $adminAddressJoinColumn->getColumnName());
     }
 
-    /*
+    /**
      * @group DDC-3579
      */
     public function testInversedByOverrideMapping()
     {
-        $factory        = $this->createClassMetadataFactory();
-        $adminMetadata  = $factory->getMetadataFor(DDC3579Admin::class);
+        $factory       = $this->createClassMetadataFactory();
+        $adminMetadata = $factory->getMetadataFor(DDC3579Admin::class);
 
         // assert groups association mappings
         self::assertArrayHasKey('groups', iterator_to_array($adminMetadata->getDeclaredPropertiesIterator()));
@@ -1258,9 +1260,7 @@ class User
         $fieldMetadata->setOptions(
             [
                 'foo' => 'bar',
-                'baz' => [
-                    'key' => 'val',
-                ],
+                'baz' => ['key' => 'val'],
                 'fixed' => false,
             ]
         );
@@ -1425,12 +1425,22 @@ class DDC807Entity
     public $id;
 }
 
-class DDC807SubClasse1 {}
-class DDC807SubClasse2 {}
+class DDC807SubClasse1
+{
+}
+class DDC807SubClasse2
+{
+}
 
-class Address {}
-class Phonenumber {}
-class Group {}
+class Address
+{
+}
+class Phonenumber
+{
+}
+class Group
+{
+}
 
 /**
  * @ORM\Entity
@@ -1465,12 +1475,16 @@ class SingleTableEntityNoDiscriminatorColumnMapping
 /**
  * @ORM\Entity
  */
-class SingleTableEntityNoDiscriminatorColumnMappingSub1 extends SingleTableEntityNoDiscriminatorColumnMapping {}
+class SingleTableEntityNoDiscriminatorColumnMappingSub1 extends SingleTableEntityNoDiscriminatorColumnMapping
+{
+}
 
 /**
  * @ORM\Entity
  */
-class SingleTableEntityNoDiscriminatorColumnMappingSub2 extends SingleTableEntityNoDiscriminatorColumnMapping {}
+class SingleTableEntityNoDiscriminatorColumnMappingSub2 extends SingleTableEntityNoDiscriminatorColumnMapping
+{
+}
 
 /**
  * @ORM\Entity
@@ -1491,8 +1505,10 @@ class SingleTableEntityIncompleteDiscriminatorColumnMapping
     public $id;
 }
 
-class SingleTableEntityIncompleteDiscriminatorColumnMappingSub1
-    extends SingleTableEntityIncompleteDiscriminatorColumnMapping {}
+class SingleTableEntityIncompleteDiscriminatorColumnMappingSub1 extends SingleTableEntityIncompleteDiscriminatorColumnMapping
+{
+}
 
-class SingleTableEntityIncompleteDiscriminatorColumnMappingSub2
-    extends SingleTableEntityIncompleteDiscriminatorColumnMapping {}
+class SingleTableEntityIncompleteDiscriminatorColumnMappingSub2 extends SingleTableEntityIncompleteDiscriminatorColumnMapping
+{
+}

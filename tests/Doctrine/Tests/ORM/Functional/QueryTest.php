@@ -241,7 +241,7 @@ class QueryTest extends OrmFunctionalTestCase
         );
     }
 
-    public function testIterateResult_IterativelyBuildUpUnitOfWork()
+    public function testIterateResultIterativelyBuildUpUnitOfWork()
     {
         $article1        = new CmsArticle();
         $article1->topic = 'Doctrine 2';
@@ -320,7 +320,7 @@ class QueryTest extends OrmFunctionalTestCase
     /**
      * @expectedException \Doctrine\ORM\Query\QueryException
      */
-    public function testIterateResult_FetchJoinedCollection_ThrowsException()
+    public function testIterateResultFetchJoinedCollectionThrowsException()
     {
         $query    = $this->em->createQuery("SELECT u, a FROM ' . CmsUser::class . ' u JOIN u.articles a");
         $articles = $query->iterate();

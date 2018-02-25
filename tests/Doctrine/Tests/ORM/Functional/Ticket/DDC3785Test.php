@@ -38,7 +38,7 @@ class DDC3785Test extends OrmFunctionalTestCase
     {
         $id = new DDC3785_AssetId('919609ba-57d9-4a13-be1d-d202521e858a');
 
-        $attributes     = [
+        $attributes = [
             $attribute1 = new DDC3785_Attribute('foo1', 'bar1'),
             $attribute2 = new DDC3785_Attribute('foo2', 'bar2'),
         ];

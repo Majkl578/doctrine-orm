@@ -9,8 +9,6 @@ use Doctrine\Tests\OrmTestCase;
 
 class LexerTest extends OrmTestCase
 {
-    //private $lexer;
-
     protected function setUp()
     {
     }

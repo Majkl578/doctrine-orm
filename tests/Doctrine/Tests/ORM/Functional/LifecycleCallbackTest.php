@@ -323,7 +323,7 @@ DQL;
         self::assertEquals(['prePersist' => [0 => 'doStuff']], $childMeta->lifecycleCallbacks);
     }
 
-    public function testLifecycleListener_ChangeUpdateChangeSet()
+    public function testLifecycleListenerChangeUpdateChangeSet()
     {
         $listener = new LifecycleListenerPreUpdate();
         $this->em->getEventManager()->addEventListener(['preUpdate'], $listener);

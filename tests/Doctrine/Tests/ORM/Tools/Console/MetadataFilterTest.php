@@ -38,8 +38,8 @@ class MetadataFilterTest extends OrmTestCase
     public function testFilterWithEmptyArray() : void
     {
         $originalMetadatas = [
-            $metadataAaa   = $this->cmf->getMetadataFor(MetadataFilterTestEntityAaa::class),
-            $metadataBbb   = $this->cmf->getMetadataFor(MetadataFilterTestEntityBbb::class),
+            $metadataAaa = $this->cmf->getMetadataFor(MetadataFilterTestEntityAaa::class),
+            $metadataBbb = $this->cmf->getMetadataFor(MetadataFilterTestEntityBbb::class),
         ];
 
         $metadatas = $originalMetadatas;
@@ -53,9 +53,9 @@ class MetadataFilterTest extends OrmTestCase
     public function testFilterWithString() : void
     {
         $originalMetadatas = [
-            $metadataAaa   = $this->cmf->getMetadataFor(MetadataFilterTestEntityAaa::class),
-            $metadataBbb   = $this->cmf->getMetadataFor(MetadataFilterTestEntityBbb::class),
-            $metadataCcc   = $this->cmf->getMetadataFor(MetadataFilterTestEntityCcc::class),
+            $metadataAaa = $this->cmf->getMetadataFor(MetadataFilterTestEntityAaa::class),
+            $metadataBbb = $this->cmf->getMetadataFor(MetadataFilterTestEntityBbb::class),
+            $metadataCcc = $this->cmf->getMetadataFor(MetadataFilterTestEntityCcc::class),
         ];
 
         $metadatas = $originalMetadatas;
@@ -85,7 +85,7 @@ class MetadataFilterTest extends OrmTestCase
 
     public function testFilterWithString2() : void
     {
-        $originalMetadatas  = [
+        $originalMetadatas = [
             $metadataFoo    = $this->cmf->getMetadataFor(MetadataFilterTestEntityFoo::class),
             $metadataFooBar = $this->cmf->getMetadataFor(MetadataFilterTestEntityFooBar::class),
             $metadataBar    = $this->cmf->getMetadataFor(MetadataFilterTestEntityBar::class),
@@ -103,9 +103,9 @@ class MetadataFilterTest extends OrmTestCase
     public function testFilterWithArray() : void
     {
         $originalMetadatas = [
-            $metadataAaa   = $this->cmf->getMetadataFor(MetadataFilterTestEntityAaa::class),
-            $metadataBbb   = $this->cmf->getMetadataFor(MetadataFilterTestEntityBbb::class),
-            $metadataCcc   = $this->cmf->getMetadataFor(MetadataFilterTestEntityCcc::class),
+            $metadataAaa = $this->cmf->getMetadataFor(MetadataFilterTestEntityAaa::class),
+            $metadataBbb = $this->cmf->getMetadataFor(MetadataFilterTestEntityBbb::class),
+            $metadataCcc = $this->cmf->getMetadataFor(MetadataFilterTestEntityCcc::class),
         ];
 
         $metadatas = $originalMetadatas;
@@ -122,7 +122,7 @@ class MetadataFilterTest extends OrmTestCase
 
     public function testFilterWithRegex() : void
     {
-        $originalMetadatas  = [
+        $originalMetadatas = [
             $metadataFoo    = $this->cmf->getMetadataFor(MetadataFilterTestEntityFoo::class),
             $metadataFooBar = $this->cmf->getMetadataFor(MetadataFilterTestEntityFooBar::class),
             $metadataBar    = $this->cmf->getMetadataFor(MetadataFilterTestEntityBar::class),

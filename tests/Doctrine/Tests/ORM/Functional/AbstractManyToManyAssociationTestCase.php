@@ -30,12 +30,12 @@ class AbstractManyToManyAssociationTestCase extends OrmFunctionalTestCase
 
     protected function countForeignKeys($firstId, $secondId)
     {
-        return count($this->em->getConnection()->executeQuery("
-            SELECT {$this->firstField}
-              FROM {$this->table}
-             WHERE {$this->firstField} = ?
-               AND {$this->secondField} = ?
-        ", [$firstId, $secondId])->fetchAll());
+        return count($this->em->getConnection()->executeQuery(sprintf('
+            SELECT %s
+              FROM %s
+             WHERE %s = ?
+               AND %s = ?
+        ', $this->firstField, $this->table, $this->firstField, $this->secondField), [$firstId, $secondId])->fetchAll());
 
         return count($this->em->getConnection()->executeQuery(sprintf(
             'SELECT %s FROM %s WHERE %s = ? AND %s = ?',

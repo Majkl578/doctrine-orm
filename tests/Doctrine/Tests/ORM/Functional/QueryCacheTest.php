@@ -41,7 +41,7 @@ class QueryCacheTest extends OrmFunctionalTestCase
     }
 
 
-    public function testQueryCache_DependsOnHints()
+    public function testQueryCacheDependsOnHints()
     {
         $query = $this->em->createQuery('select ux from Doctrine\Tests\Models\CMS\CmsUser ux');
 
@@ -63,7 +63,7 @@ class QueryCacheTest extends OrmFunctionalTestCase
      * @param <type> $query
      * @depends testQueryCache_DependsOnHints
      */
-    public function testQueryCache_DependsOnFirstResult($query)
+    public function testQueryCacheDependsOnFirstResult($query)
     {
         $cache      = $query->getQueryCacheDriver();
         $cacheCount = $this->getCacheSize($cache);
@@ -79,7 +79,7 @@ class QueryCacheTest extends OrmFunctionalTestCase
      * @param <type> $query
      * @depends testQueryCache_DependsOnHints
      */
-    public function testQueryCache_DependsOnMaxResults($query)
+    public function testQueryCacheDependsOnMaxResults($query)
     {
         $cache      = $query->getQueryCacheDriver();
         $cacheCount = $this->getCacheSize($cache);
@@ -94,7 +94,7 @@ class QueryCacheTest extends OrmFunctionalTestCase
      * @param <type> $query
      * @depends testQueryCache_DependsOnHints
      */
-    public function testQueryCache_DependsOnHydrationMode($query)
+    public function testQueryCacheDependsOnHydrationMode($query)
     {
         $cache      = $query->getQueryCacheDriver();
         $cacheCount = $this->getCacheSize($cache);
@@ -103,7 +103,7 @@ class QueryCacheTest extends OrmFunctionalTestCase
         self::assertEquals($cacheCount + 1, $this->getCacheSize($cache));
     }
 
-    public function testQueryCache_NoHitSaveParserResult()
+    public function testQueryCacheNoHitSaveParserResult()
     {
         $this->em->getConfiguration()->setQueryCacheImpl(new ArrayCache());
 
@@ -121,7 +121,7 @@ class QueryCacheTest extends OrmFunctionalTestCase
         $query->getResult();
     }
 
-    public function testQueryCache_HitDoesNotSaveParserResult()
+    public function testQueryCacheHitDoesNotSaveParserResult()
     {
         $this->em->getConfiguration()->setQueryCacheImpl(new ArrayCache());
 

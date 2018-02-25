@@ -370,7 +370,7 @@ class SelectSqlGenerationTest extends OrmTestCase
         );
     }
 
-    // Ticket #668
+    /** Ticket #668 */
     public function testSupportsASqlKeywordInAStringLiteralParam()
     {
         $this->assertSqlGeneration(
@@ -442,7 +442,7 @@ class SelectSqlGenerationTest extends OrmTestCase
      * @group DDC-135
      * @group DDC-177
      */
-    public function testJoinOnClause_NotYetSupported_ThrowsException()
+    public function testJoinOnClauseNotYetSupportedThrowsException()
     {
         $this->expectException(QueryException::class);
 
@@ -480,7 +480,7 @@ class SelectSqlGenerationTest extends OrmTestCase
         );
     }
 
-    // Ticket 894
+    /** Ticket 894 */
     public function testSupportsBetweenClauseWithPositionalParameters()
     {
         $this->assertSqlGeneration(
@@ -575,7 +575,7 @@ class SelectSqlGenerationTest extends OrmTestCase
         );
     }
 
-    // Ticket #973
+    /** Ticket #973 */
     public function testSupportsSingleValuedInExpressionWithoutSpacesInWherePart()
     {
         $this->assertSqlGeneration(
@@ -979,9 +979,11 @@ class SelectSqlGenerationTest extends OrmTestCase
         );
     }
 
-    // Null check on inverse side has to happen through explicit JOIN.
-    // 'SELECT u FROM Doctrine\Tests\Models\CMS\CmsUser u WHERE u.address IS NULL'
-    // where the CmsUser is the inverse side is not supported.
+    /**
+     * Null check on inverse side has to happen through explicit JOIN.
+     * 'SELECT u FROM Doctrine\Tests\Models\CMS\CmsUser u WHERE u.address IS NULL'
+     * where the CmsUser is the inverse side is not supported.
+     */
     public function testSingleValuedAssociationNullCheckOnInverseSide()
     {
         $this->assertSqlGeneration(

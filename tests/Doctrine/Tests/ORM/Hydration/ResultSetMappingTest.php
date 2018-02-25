@@ -5,29 +5,24 @@ declare(strict_types=1);
 namespace Doctrine\Tests\ORM\Hydration;
 
 use Doctrine\DBAL\Types\Type;
-use Doctrine\ORM\Mapping\ClassMetadata;
+use Doctrine\ORM\EntityManagerInterface;
 use Doctrine\ORM\Mapping\ClassMetadataBuildingContext;
 use Doctrine\ORM\Mapping\ClassMetadataFactory;
-use Doctrine\ORM\Mapping\JoinColumnMetadata;
-use Doctrine\ORM\Mapping\OneToOneAssociationMetadata;
-use Doctrine\ORM\Mapping\TableMetadata;
 use Doctrine\ORM\Query\ResultSetMapping;
 use Doctrine\ORM\Reflection\RuntimeReflectionService;
-use Doctrine\Tests\Models\CMS\CmsEmail;
 use Doctrine\Tests\Models\CMS\CmsPhonenumber;
 use Doctrine\Tests\Models\CMS\CmsUser;
 use Doctrine\Tests\Models\Legacy\LegacyUser;
 use Doctrine\Tests\Models\Legacy\LegacyUserReference;
+use Doctrine\Tests\OrmTestCase;
 
 /**
  * Description of ResultSetMappingTest
- *
- * @author robo
  */
-class ResultSetMappingTest extends \Doctrine\Tests\OrmTestCase
+class ResultSetMappingTest extends OrmTestCase
 {
     /**
-     * @var \Doctrine\ORM\EntityManagerInterface
+     * @var EntityManagerInterface
      */
     private $em;
 
@@ -51,7 +46,7 @@ class ResultSetMappingTest extends \Doctrine\Tests\OrmTestCase
         );
 
         $this->em  = $this->getTestEntityManager();
-        $this->rsm = new ResultSetMapping;
+        $this->rsm = new ResultSetMapping();
     }
 
     /**
@@ -124,8 +119,8 @@ class ResultSetMappingTest extends \Doctrine\Tests\OrmTestCase
     {
         $this->rsm->addEntityResult(LegacyUser::class, 'u');
         $this->rsm->addJoinedEntityResult(LegacyUserReference::class, 'lu', 'u', '_references');
-        $this->rsm->addMetaResult('lu', '_source',  '_source', true, Type::getType('integer'));
-        $this->rsm->addMetaResult('lu', '_target',  '_target', true, Type::getType('integer'));
+        $this->rsm->addMetaResult('lu', '_source', '_source', true, Type::getType('integer'));
+        $this->rsm->addMetaResult('lu', '_target', '_target', true, Type::getType('integer'));
         $this->rsm->addIndexBy('lu', '_source');
 
         self::assertTrue($this->rsm->hasIndexBy('lu'));

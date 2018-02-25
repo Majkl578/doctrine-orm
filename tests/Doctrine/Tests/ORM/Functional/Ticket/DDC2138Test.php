@@ -233,10 +233,9 @@ class DDC2138User
         $this->followedStructures = new ArrayCollection();
     }
 
-    /*
+    /**
      * Remove followers
      *
-     * @param UserFollowedUser $followers
      */
     private function removeFollower(UserFollowedUser $followers)
     {

@@ -10,7 +10,6 @@ use Doctrine\ORM\Configuration;
 use Doctrine\ORM\EntityManager;
 use Doctrine\ORM\Mapping\ClassMetadataFactory;
 use Doctrine\ORM\Mapping\Driver\MappingDriver;
-use Doctrine\ORM\NativeQuery;
 use Doctrine\ORM\ORMException;
 use Doctrine\ORM\ORMInvalidArgumentException;
 use Doctrine\ORM\Proxy\Factory\ProxyFactory;
@@ -106,7 +105,7 @@ class EntityManagerTest extends OrmTestCase
         self::assertEquals('SELECT u FROM Doctrine\Tests\Models\CMS\CmsUser u', $q3->getQuery()->getDql());
     }
 
-    public function testCreateQuery_DqlIsOptional()
+    public function testCreateQueryDqlIsOptional()
     {
         self::assertInstanceOf(Query::class, $this->em->createQuery());
     }

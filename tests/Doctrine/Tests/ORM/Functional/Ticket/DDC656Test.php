@@ -22,7 +22,7 @@ class DDC656Test extends OrmFunctionalTestCase
         }
     }
 
-    public function testRecomputeSingleEntityChangeSet_PreservesFieldOrder()
+    public function testRecomputeSingleEntityChangeSetPreservesFieldOrder()
     {
         $entity = new DDC656Entity();
         $entity->setName('test1');

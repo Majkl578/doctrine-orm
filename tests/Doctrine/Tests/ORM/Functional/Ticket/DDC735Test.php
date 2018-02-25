@@ -24,7 +24,7 @@ class DDC735Test extends OrmFunctionalTestCase
         }
     }
 
-    public function testRemoveElement_AppliesOrphanRemoval()
+    public function testRemoveElementAppliesOrphanRemoval()
     {
         // Create a product and its first review
         $product = new DDC735Product();

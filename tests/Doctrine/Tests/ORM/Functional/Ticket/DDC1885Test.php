@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace Doctrine\Tests\ORM\Functional\Ticket;
 
-use Doctrine\Tests\Models\Quote\Group;
+use Doctrine\Tests\Models\Quote\Group as GroupQuote;
 use Doctrine\Tests\Models\Quote\User;
 use Doctrine\Tests\OrmFunctionalTestCase;
 
@@ -28,8 +28,8 @@ class DDC1885Test extends OrmFunctionalTestCase
         $user           = new User();
         $user->name     = 'FabioBatSilva';
         $user->email    = 'fabio.bat.silva@gmail.com';
-        $user->groups[] = new Group('G 1');
-        $user->groups[] = new Group('G 2');
+        $user->groups[] = new GroupQuote('G 1');
+        $user->groups[] = new GroupQuote('G 2');
         $this->user     = $user;
 
         // Create
@@ -60,8 +60,8 @@ class DDC1885Test extends OrmFunctionalTestCase
         $g1 = $user->getGroups()->get(0);
         $g2 = $user->getGroups()->get(1);
 
-        self::assertInstanceOf(Group::class, $g1);
-        self::assertInstanceOf(Group::class, $g2);
+        self::assertInstanceOf(GroupQuote::class, $g1);
+        self::assertInstanceOf(GroupQuote::class, $g2);
 
         $g1->name = 'Bar 11';
         $g2->name = 'Foo 22';
@@ -84,8 +84,8 @@ class DDC1885Test extends OrmFunctionalTestCase
         $this->em->clear();
 
         self::assertNull($this->em->find(User::class, $u1Id));
-        self::assertNull($this->em->find(Group::class, $g1Id));
-        self::assertNull($this->em->find(Group::class, $g2Id));
+        self::assertNull($this->em->find(GroupQuote::class, $g1Id));
+        self::assertNull($this->em->find(GroupQuote::class, $g2Id));
     }
 
     public function testRemoveItem()
@@ -99,8 +99,8 @@ class DDC1885Test extends OrmFunctionalTestCase
         self::assertEquals($u1Id, $user->id);
 
         self::assertCount(2, $user->groups);
-        self::assertInstanceOf(Group::class, $user->getGroups()->get(0));
-        self::assertInstanceOf(Group::class, $user->getGroups()->get(1));
+        self::assertInstanceOf(GroupQuote::class, $user->getGroups()->get(0));
+        self::assertInstanceOf(GroupQuote::class, $user->getGroups()->get(1));
 
         $user->getGroups()->remove(0);
 
@@ -129,8 +129,8 @@ class DDC1885Test extends OrmFunctionalTestCase
         self::assertEquals($u1Id, $user->id);
 
         self::assertCount(2, $user->groups);
-        self::assertInstanceOf(Group::class, $user->getGroups()->get(0));
-        self::assertInstanceOf(Group::class, $user->getGroups()->get(1));
+        self::assertInstanceOf(GroupQuote::class, $user->getGroups()->get(0));
+        self::assertInstanceOf(GroupQuote::class, $user->getGroups()->get(1));
 
         $user->getGroups()->clear();
 
@@ -159,7 +159,7 @@ class DDC1885Test extends OrmFunctionalTestCase
         self::assertEquals($u1Id, $user->id);
 
         self::assertCount(2, $user->groups);
-        self::assertInstanceOf(Group::class, $user->getGroups()->get(0));
-        self::assertInstanceOf(Group::class, $user->getGroups()->get(1));
+        self::assertInstanceOf(GroupQuote::class, $user->getGroups()->get(0));
+        self::assertInstanceOf(GroupQuote::class, $user->getGroups()->get(1));
     }
 }

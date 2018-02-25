@@ -179,7 +179,7 @@ class SecondLevelCacheTest extends OrmFunctionalTestCase
         $em->flush();
 
         for ($i = 0; $i < $size / 2; $i++) {
-            $state = new State("State $i", $country);
+            $state = new State('State ' . $i, $country);
 
             $em->persist($state);
 
@@ -190,7 +190,7 @@ class SecondLevelCacheTest extends OrmFunctionalTestCase
 
         foreach ($states as $key => $state) {
             for ($i = 0; $i < $size; $i++) {
-                $city = new City("City $key - $i", $state);
+                $city = new City(sprintf('City %s - %d', $key, $i), $state);
 
                 $em->persist($city);
 
@@ -231,7 +231,7 @@ class SecondLevelCacheTest extends OrmFunctionalTestCase
         echo PHP_EOL . $label;
 
         for ($i = 0; $i < $size; $i++) {
-            $country = new Country("Country $i");
+            $country = new Country('Country ' . $i);
 
             $em->persist($country);
 
@@ -266,7 +266,7 @@ class SecondLevelCacheTest extends OrmFunctionalTestCase
         echo PHP_EOL . $label;
 
         for ($i = 0; $i < $size; $i++) {
-            $em->persist(new Country("Country $i"));
+            $em->persist(new Country('Country ' . $i));
         }
 
         $em->flush();

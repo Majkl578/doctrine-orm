@@ -299,7 +299,7 @@ class EntityRepositoryTest extends OrmFunctionalTestCase
      * @group locking
      * @group DDC-178
      */
-    public function testPessimisticReadLockWithoutTransaction_ThrowsException()
+    public function testPessimisticReadLockWithoutTransactionThrowsException()
     {
         $this->expectException(TransactionRequiredException::class);
 
@@ -311,7 +311,7 @@ class EntityRepositoryTest extends OrmFunctionalTestCase
      * @group locking
      * @group DDC-178
      */
-    public function testPessimisticWriteLockWithoutTransaction_ThrowsException()
+    public function testPessimisticWriteLockWithoutTransactionThrowsException()
     {
         $this->expectException(TransactionRequiredException::class);
 
@@ -323,7 +323,7 @@ class EntityRepositoryTest extends OrmFunctionalTestCase
      * @group locking
      * @group DDC-178
      */
-    public function testOptimisticLockUnversionedEntity_ThrowsException()
+    public function testOptimisticLockUnversionedEntityThrowsException()
     {
         $this->expectException(OptimisticLockException::class);
 
@@ -335,7 +335,7 @@ class EntityRepositoryTest extends OrmFunctionalTestCase
      * @group locking
      * @group DDC-178
      */
-    public function testIdentityMappedOptimisticLockUnversionedEntity_ThrowsException()
+    public function testIdentityMappedOptimisticLockUnversionedEntityThrowsException()
     {
         $user           = new CmsUser();
         $user->name     = 'Roman';
@@ -380,7 +380,7 @@ class EntityRepositoryTest extends OrmFunctionalTestCase
     /**
      * @group DDC-817
      */
-    public function testFindByAssociationKey_ExceptionOnInverseSide()
+    public function testFindByAssociationKeyExceptionOnInverseSide()
     {
         list($userId, $addressId) = $this->loadAssociatedFixture();
         $repos                    = $this->em->getRepository(CmsUser::class);

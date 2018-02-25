@@ -62,7 +62,7 @@ class CountWalkerTest extends PaginationTestCase
      * @expectedException \RuntimeException
      * @expectedExceptionMessage Cannot count query that uses a HAVING clause. Use the output walkers for pagination
      */
-    public function testCountQuery_HavingException()
+    public function testCountQueryHavingException()
     {
         $query = $this->entityManager->createQuery(
             'SELECT g, COUNT(u.id) AS userCount FROM Doctrine\Tests\Models\CMS\CmsGroup g LEFT JOIN g.users u GROUP BY g.id HAVING userCount > 0'

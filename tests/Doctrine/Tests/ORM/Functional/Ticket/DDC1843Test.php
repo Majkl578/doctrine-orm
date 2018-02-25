@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace Doctrine\Tests\ORM\Functional\Ticket;
 
-use Doctrine\Tests\Models\Quote\Group;
+use Doctrine\Tests\Models\Quote\Group as GroupQuote;
 use Doctrine\Tests\OrmFunctionalTestCase;
 
 /**
@@ -22,15 +22,15 @@ class DDC1843Test extends OrmFunctionalTestCase
 
     public function testCreateRetrieveUpdateDelete()
     {
-        $e1 = new Group('Parent Bar 1');
-        $e2 = new Group('Parent Foo 2');
+        $e1 = new GroupQuote('Parent Bar 1');
+        $e2 = new GroupQuote('Parent Foo 2');
 
         $this->em->persist($e1);
         $this->em->persist($e2);
         $this->em->flush();
 
-        $e3 = new Group('Bar 3', $e1);
-        $e4 = new Group('Foo 4', $e2);
+        $e3 = new GroupQuote('Bar 3', $e1);
+        $e4 = new GroupQuote('Foo 4', $e2);
 
         // Create
         $this->em->persist($e3);
@@ -44,15 +44,15 @@ class DDC1843Test extends OrmFunctionalTestCase
         $e4Id = $e4->id;
 
         // Retrieve
-        $e1 = $this->em->find(Group::class, $e1Id);
-        $e2 = $this->em->find(Group::class, $e2Id);
-        $e3 = $this->em->find(Group::class, $e3Id);
-        $e4 = $this->em->find(Group::class, $e4Id);
+        $e1 = $this->em->find(GroupQuote::class, $e1Id);
+        $e2 = $this->em->find(GroupQuote::class, $e2Id);
+        $e3 = $this->em->find(GroupQuote::class, $e3Id);
+        $e4 = $this->em->find(GroupQuote::class, $e4Id);
 
-        self::assertInstanceOf(Group::class, $e1);
-        self::assertInstanceOf(Group::class, $e2);
-        self::assertInstanceOf(Group::class, $e3);
-        self::assertInstanceOf(Group::class, $e4);
+        self::assertInstanceOf(GroupQuote::class, $e1);
+        self::assertInstanceOf(GroupQuote::class, $e2);
+        self::assertInstanceOf(GroupQuote::class, $e3);
+        self::assertInstanceOf(GroupQuote::class, $e4);
 
         self::assertEquals($e1Id, $e1->id);
         self::assertEquals($e2Id, $e2->id);
@@ -81,10 +81,10 @@ class DDC1843Test extends OrmFunctionalTestCase
         self::assertEquals('Bar 33', $e3->name);
         self::assertEquals('Foo 44', $e4->name);
 
-        self::assertInstanceOf(Group::class, $e1);
-        self::assertInstanceOf(Group::class, $e2);
-        self::assertInstanceOf(Group::class, $e3);
-        self::assertInstanceOf(Group::class, $e4);
+        self::assertInstanceOf(GroupQuote::class, $e1);
+        self::assertInstanceOf(GroupQuote::class, $e2);
+        self::assertInstanceOf(GroupQuote::class, $e3);
+        self::assertInstanceOf(GroupQuote::class, $e4);
 
         self::assertEquals($e1Id, $e1->id);
         self::assertEquals($e2Id, $e2->id);
@@ -105,16 +105,16 @@ class DDC1843Test extends OrmFunctionalTestCase
         $this->em->flush();
         $this->em->clear();
 
-        self::assertInstanceOf(Group::class, $e1);
-        self::assertInstanceOf(Group::class, $e2);
-        self::assertInstanceOf(Group::class, $e3);
-        self::assertInstanceOf(Group::class, $e4);
+        self::assertInstanceOf(GroupQuote::class, $e1);
+        self::assertInstanceOf(GroupQuote::class, $e2);
+        self::assertInstanceOf(GroupQuote::class, $e3);
+        self::assertInstanceOf(GroupQuote::class, $e4);
 
         // Retrieve
-        $e1 = $this->em->find(Group::class, $e1Id);
-        $e2 = $this->em->find(Group::class, $e2Id);
-        $e3 = $this->em->find(Group::class, $e3Id);
-        $e4 = $this->em->find(Group::class, $e4Id);
+        $e1 = $this->em->find(GroupQuote::class, $e1Id);
+        $e2 = $this->em->find(GroupQuote::class, $e2Id);
+        $e3 = $this->em->find(GroupQuote::class, $e3Id);
+        $e4 = $this->em->find(GroupQuote::class, $e4Id);
 
         self::assertNull($e1);
         self::assertNull($e2);

@@ -98,8 +98,7 @@ class UnitOfWorkTest extends OrmTestCase
     }
 
 
-    /* Operational tests */
-
+    /** Operational tests */
     public function testSavingSingleEntityWithIdentityColumnForcesInsert()
     {
         // Setup fake persister and id generator for identity generation

@@ -138,7 +138,8 @@ class CustomTreeWalker extends Query\TreeWalkerAdapter
             $factors[] = $factor;
         }
 
-        if (($whereClause = $selectStatement->whereClause) !== null) {
+        $whereClause = $selectStatement->whereClause;
+        if ($whereClause !== null) {
             // There is already a WHERE clause, so append the conditions
             $condExpr = $whereClause->conditionalExpression;
 

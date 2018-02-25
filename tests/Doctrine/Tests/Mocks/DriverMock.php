@@ -55,7 +55,7 @@ class DriverMock implements Driver
         return $this->schemaManagerMock;
     }
 
-    /* MOCK API */
+    // MOCK API
 
     public function setDatabasePlatform(AbstractPlatform $platform)
     {

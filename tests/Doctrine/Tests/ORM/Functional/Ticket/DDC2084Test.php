@@ -65,8 +65,8 @@ class DDC2084Test extends OrmFunctionalTestCase
 
 namespace Doctrine\Tests\ORM\Functional\Ticket\DDC2084;
 
-use Doctrine\ORM\Annotation as ORM;
 use Doctrine\Tests\OrmFunctionalTestCase;
+use Doctrine\ORM\Annotation as ORM;
 
 /**
  * @ORM\Entity

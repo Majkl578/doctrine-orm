@@ -32,7 +32,7 @@ class OneToManyUnidirectionalAssociationTest extends OrmFunctionalTestCase
         $this->em->flush();
     }
 
-    public function testPersistOwning_InverseCascade()
+    public function testPersistOwningInverseCascade()
     {
         $leg                = new RoutingLeg();
         $leg->fromLocation  = $this->locations['Berlin'];

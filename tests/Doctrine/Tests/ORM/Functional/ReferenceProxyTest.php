@@ -182,7 +182,7 @@ class ReferenceProxyTest extends OrmFunctionalTestCase
     /**
      * @group DDC-1625
      */
-    public function testDoNotInitializeProxyOnGettingTheIdentifier_DDC_1625()
+    public function testDoNotInitializeProxyOnGettingTheIdentifierDDC1625()
     {
         $id = $this->createAuction();
 
