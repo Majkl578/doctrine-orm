@@ -94,9 +94,7 @@ class DDC2012Item
      */
     public $id;
 
-    /**
-     * @ORM\Column(name="tsv", type="tsvector", nullable=true)
-     */
+    /** @ORM\Column(name="tsv", type="tsvector", nullable=true) */
     public $tsv;
 }
 

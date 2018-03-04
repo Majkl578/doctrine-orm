@@ -107,9 +107,7 @@ class DDC1719SimpleEntity
      */
     public $id;
 
-    /**
-     * @ORM\Column(type="string", name="simple-entity-value")
-     */
+    /** @ORM\Column(type="string", name="simple-entity-value") */
     public $value;
 
     /**

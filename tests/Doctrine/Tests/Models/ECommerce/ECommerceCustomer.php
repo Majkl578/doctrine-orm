@@ -22,9 +22,7 @@ class ECommerceCustomer
      */
     private $id;
 
-    /**
-     * @ORM\Column(type="string", length=50)
-     */
+    /** @ORM\Column(type="string", length=50) */
     private $name;
 
     /**

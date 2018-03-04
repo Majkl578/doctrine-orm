@@ -29,14 +29,10 @@ use function unlink;
  */
 class FileLockRegionTest extends AbstractRegionTest
 {
-    /**
-     * @var ConcurrentRegion
-     */
+    /** @var ConcurrentRegion */
     protected $region;
 
-    /**
-     * @var string
-     */
+    /** @var string */
     protected $directory;
 
     /**

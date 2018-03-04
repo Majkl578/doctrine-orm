@@ -22,9 +22,7 @@ use Doctrine\Tests\Models\Cache\State;
  */
 class SecondLevelCacheConcurrentTest extends SecondLevelCacheAbstractTest
 {
-    /**
-     * @var \Doctrine\Tests\ORM\Functional\CacheFactorySecondLevelCacheConcurrentTest
-     */
+    /** @var \Doctrine\Tests\ORM\Functional\CacheFactorySecondLevelCacheConcurrentTest */
     private $cacheFactory;
 
     private $countryMetadata;

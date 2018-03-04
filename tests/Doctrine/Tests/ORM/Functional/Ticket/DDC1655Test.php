@@ -133,9 +133,7 @@ class DDC1655Foo
 
     public $loaded = 0;
 
-    /**
-     * @ORM\ManyToOne(targetEntity=DDC1655Baz::class, inversedBy="foos")
-     */
+    /** @ORM\ManyToOne(targetEntity=DDC1655Baz::class, inversedBy="foos") */
     public $baz;
 
     /**
@@ -172,8 +170,6 @@ class DDC1655Baz
     /** @ORM\Id @ORM\GeneratedValue @ORM\Column(type="integer") */
     public $id;
 
-    /**
-     * @ORM\OneToMany(targetEntity=DDC1655Foo::class, mappedBy="baz")
-     */
+    /** @ORM\OneToMany(targetEntity=DDC1655Foo::class, mappedBy="baz") */
     public $foos = [];
 }

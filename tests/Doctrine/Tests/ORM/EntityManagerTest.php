@@ -26,9 +26,7 @@ use Doctrine\Tests\OrmTestCase;
 
 class EntityManagerTest extends OrmTestCase
 {
-    /**
-     * @var EntityManager
-     */
+    /** @var EntityManager */
     private $em;
 
     public function setUp()

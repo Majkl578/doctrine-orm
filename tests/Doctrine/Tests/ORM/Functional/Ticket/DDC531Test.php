@@ -60,9 +60,7 @@ class DDC531Item
      */
     public $id;
 
-    /**
-     * @ORM\OneToMany(targetEntity=DDC531Item::class, mappedBy="parent")
-     */
+    /** @ORM\OneToMany(targetEntity=DDC531Item::class, mappedBy="parent") */
     protected $children;
 
     /**

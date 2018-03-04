@@ -72,9 +72,7 @@ class DDC1209Test extends OrmFunctionalTestCase
  */
 class DDC1209_1
 {
-    /**
-     * @ORM\Id @ORM\GeneratedValue @ORM\Column(type="integer")
-     */
+    /** @ORM\Id @ORM\GeneratedValue @ORM\Column(type="integer") */
     private $id;
 
     public function getId()

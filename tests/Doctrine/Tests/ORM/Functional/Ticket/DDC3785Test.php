@@ -65,9 +65,7 @@ class DDC3785Test extends OrmFunctionalTestCase
  */
 class DDC3785_Asset
 {
-    /**
-     * @ORM\Id @ORM\GeneratedValue(strategy="NONE") @ORM\Column(type="ddc3785_asset_id")
-     */
+    /** @ORM\Id @ORM\GeneratedValue(strategy="NONE") @ORM\Column(type="ddc3785_asset_id") */
     private $id;
 
     /**

@@ -21,24 +21,16 @@ use function iterator_to_array;
  */
 class AbstractHydratorTest extends OrmFunctionalTestCase
 {
-    /**
-     * @var EventManager|\PHPUnit_Framework_MockObject_MockObject
-     */
+    /** @var EventManager|\PHPUnit_Framework_MockObject_MockObject */
     private $mockEventManager;
 
-    /**
-     * @var Statement|\PHPUnit_Framework_MockObject_MockObject
-     */
+    /** @var Statement|\PHPUnit_Framework_MockObject_MockObject */
     private $mockStatement;
 
-    /**
-     * @var ResultSetMapping|\PHPUnit_Framework_MockObject_MockObject
-     */
+    /** @var ResultSetMapping|\PHPUnit_Framework_MockObject_MockObject */
     private $mockResultMapping;
 
-    /**
-     * @var AbstractHydrator
-     */
+    /** @var AbstractHydrator */
     private $hydrator;
 
     protected function setUp() : void

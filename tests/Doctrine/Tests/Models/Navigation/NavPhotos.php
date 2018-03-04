@@ -28,9 +28,7 @@ class NavPhotos
      */
     private $poi;
 
-    /**
-     * @ORM\Column(type="string", name="file_name")
-     */
+    /** @ORM\Column(type="string", name="file_name") */
     private $file;
 
     public function __construct($poi, $file)

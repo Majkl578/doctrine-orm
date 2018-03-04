@@ -18,9 +18,7 @@ use Doctrine\Tests\OrmFunctionalTestCase;
  */
 class PostLoadEventTest extends OrmFunctionalTestCase
 {
-    /**
-     * @var int
-     */
+    /** @var int */
     private $userId;
 
     /**

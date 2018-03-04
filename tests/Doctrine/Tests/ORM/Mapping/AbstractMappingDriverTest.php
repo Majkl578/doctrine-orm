@@ -46,9 +46,7 @@ use function strpos;
 
 abstract class AbstractMappingDriverTest extends OrmTestCase
 {
-    /**
-     * @var Mapping\ClassMetadataBuildingContext
-     */
+    /** @var Mapping\ClassMetadataBuildingContext */
     protected $metadataBuildingContext;
 
     protected function setUp()
@@ -1135,14 +1133,10 @@ class User
      */
     public $id;
 
-    /**
-     * @ORM\Column(length=50, nullable=true, unique=true, options={"foo": "bar", "baz": {"key": "val"}, "fixed": false})
-     */
+    /** @ORM\Column(length=50, nullable=true, unique=true, options={"foo": "bar", "baz": {"key": "val"}, "fixed": false}) */
     public $name;
 
-    /**
-     * @ORM\Column(name="user_email", columnDefinition="CHAR(32) NOT NULL")
-     */
+    /** @ORM\Column(name="user_email", columnDefinition="CHAR(32) NOT NULL") */
     public $email;
 
     /**
@@ -1387,9 +1381,7 @@ class DDC1170Entity
      */
     private $id;
 
-    /**
-     * @ORM\Column(columnDefinition = "VARCHAR(255) NOT NULL")
-     */
+    /** @ORM\Column(columnDefinition = "VARCHAR(255) NOT NULL") */
     private $value;
 
     /**
@@ -1448,9 +1440,7 @@ class Group
  */
 class Comment
 {
-    /**
-     * @ORM\Column(type="text")
-     */
+    /** @ORM\Column(type="text") */
     private $content;
 }
 

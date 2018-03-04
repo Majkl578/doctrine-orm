@@ -88,14 +88,10 @@ abstract class OJTIC_Pet
      */
     public $id;
 
-    /**
-     * @ORM\Column
-     */
+    /** @ORM\Column */
     public $name;
 
-    /**
-     * @ORM\ManyToOne(targetEntity=OJTIC_PET::class)
-     */
+    /** @ORM\ManyToOne(targetEntity=OJTIC_PET::class) */
     public $mother;
 
     /**

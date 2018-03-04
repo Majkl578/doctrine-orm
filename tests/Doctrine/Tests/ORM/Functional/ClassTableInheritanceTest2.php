@@ -119,9 +119,7 @@ class CTIParent
  */
 class CTIChild extends CTIParent
 {
-    /**
-     * @ORM\Column(type="string")
-     */
+    /** @ORM\Column(type="string") */
     private $data;
 
     public function getData()

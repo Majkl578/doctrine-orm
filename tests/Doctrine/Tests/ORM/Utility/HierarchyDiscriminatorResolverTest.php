@@ -13,9 +13,7 @@ use PHPUnit\Framework\TestCase;
 
 class HierarchyDiscriminatorResolverTest extends TestCase
 {
-    /**
-     * @var Mapping\ClassMetadataBuildingContext
-     */
+    /** @var Mapping\ClassMetadataBuildingContext */
     private $staticMetadataBuildingContext;
 
     public function setUp()

@@ -17,9 +17,7 @@ use function count;
  */
 class QueryCacheTest extends OrmFunctionalTestCase
 {
-    /**
-     * @var \ReflectionProperty
-     */
+    /** @var \ReflectionProperty */
     private $cacheDataReflection;
 
     protected function setUp()

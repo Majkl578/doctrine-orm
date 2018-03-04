@@ -147,9 +147,7 @@ class DDC618Author
     /** @ORM\Column(type="string") */
     public $name;
 
-    /**
-     * @ORM\OneToMany(targetEntity=DDC618Book::class, mappedBy="author", cascade={"persist"})
-     */
+    /** @ORM\OneToMany(targetEntity=DDC618Book::class, mappedBy="author", cascade={"persist"}) */
     public $books;
 
     public function __construct()

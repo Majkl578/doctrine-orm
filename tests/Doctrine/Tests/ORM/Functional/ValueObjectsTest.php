@@ -411,9 +411,7 @@ class DDC93Car extends DDC93Vehicle
  */
 class DDC93Country
 {
-    /**
-     * @ORM\Column(type="string", nullable=true)
-     */
+    /** @ORM\Column(type="string", nullable=true) */
     public $name;
 
     public function __construct($name = null)
@@ -427,17 +425,11 @@ class DDC93Country
  */
 class DDC93Address
 {
-    /**
-     * @ORM\Column(type="string")
-     */
+    /** @ORM\Column(type="string") */
     public $street;
-    /**
-     * @ORM\Column(type="string")
-     */
+    /** @ORM\Column(type="string") */
     public $zip;
-    /**
-     * @ORM\Column(type="string")
-     */
+    /** @ORM\Column(type="string") */
     public $city;
     /** @ORM\Embedded(class = "DDC93Country") */
     public $country;
@@ -464,9 +456,7 @@ class DDC93Customer
 /** @ORM\Embeddable */
 class DDC93ContactInfo
 {
-    /**
-     * @ORM\Column(type="string")
-     */
+    /** @ORM\Column(type="string") */
     public $email;
     /** @ORM\Embedded(class = "DDC93Address") */
     public $address;
@@ -527,9 +517,7 @@ class DDC3028PersonPrefixFalse
  */
 class DDC3028Id
 {
-    /**
-     * @ORM\Id @ORM\Column(type="string")
-     */
+    /** @ORM\Id @ORM\Column(type="string") */
     public $id;
 
     public function __construct($id = null)

@@ -51,9 +51,7 @@ class DDC381Test extends OrmFunctionalTestCase
  */
 class DDC381Entity
 {
-    /**
-     * @ORM\Id @ORM\Column(type="integer") @ORM\GeneratedValue
-     */
+    /** @ORM\Id @ORM\Column(type="integer") @ORM\GeneratedValue */
     protected $id;
 
     public function getId()

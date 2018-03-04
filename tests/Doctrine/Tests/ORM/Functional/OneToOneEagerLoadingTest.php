@@ -262,9 +262,7 @@ class Train
      * @ORM\JoinColumn(nullable=false)
      */
     public $owner;
-    /**
-     * @ORM\OneToMany(targetEntity=Waggon::class, mappedBy="train", cascade={"persist"})
-     */
+    /** @ORM\OneToMany(targetEntity=Waggon::class, mappedBy="train", cascade={"persist"}) */
     public $waggons;
 
     public function __construct(TrainOwner $owner)

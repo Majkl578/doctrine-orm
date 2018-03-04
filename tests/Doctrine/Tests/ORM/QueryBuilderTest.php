@@ -27,9 +27,7 @@ use function get_class;
  */
 class QueryBuilderTest extends OrmTestCase
 {
-    /**
-     * @var EntityManagerInterface
-     */
+    /** @var EntityManagerInterface */
     private $em;
 
     protected function setUp()

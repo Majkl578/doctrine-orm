@@ -46,9 +46,7 @@ class DDC588Site
      */
     public $id;
 
-    /**
-     * @ORM\Column(type="string", length=45)
-     */
+    /** @ORM\Column(type="string", length=45) */
     protected $name;
 
     public function __construct($name = '')

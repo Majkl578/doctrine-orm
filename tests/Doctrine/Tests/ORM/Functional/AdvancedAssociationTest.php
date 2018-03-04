@@ -171,9 +171,7 @@ class Lemma
      */
     private $lemma;
 
-    /**
-     * @ORM\ManyToMany(targetEntity=Type::class, mappedBy="lemmas", cascade={"persist"})
-     */
+    /** @ORM\ManyToMany(targetEntity=Type::class, mappedBy="lemmas", cascade={"persist"}) */
     private $types;
 
     public function __construct()
@@ -360,9 +358,7 @@ class Phrase
      */
     private $id;
 
-    /**
-     * @ORM\Column(type="string", name="phrase_name", unique=true, length=255)
-     */
+    /** @ORM\Column(type="string", name="phrase_name", unique=true, length=255) */
     private $phrase;
 
     /**
@@ -371,9 +367,7 @@ class Phrase
      */
     private $type;
 
-    /**
-     * @ORM\OneToMany(targetEntity=Definition::class, mappedBy="phrase", cascade={"persist"})
-     */
+    /** @ORM\OneToMany(targetEntity=Definition::class, mappedBy="phrase", cascade={"persist"}) */
     private $definitions;
 
     public function __construct()
@@ -448,19 +442,13 @@ class PhraseType
      */
     private $id;
 
-    /**
-     * @ORM\Column(type="string", name="phrase_type_name", unique=true)
-     */
+    /** @ORM\Column(type="string", name="phrase_type_name", unique=true) */
     private $type;
 
-    /**
-     * @ORM\Column(type="string", name="phrase_type_abbreviation", unique=true)
-     */
+    /** @ORM\Column(type="string", name="phrase_type_abbreviation", unique=true) */
     private $abbreviation;
 
-    /**
-     * @ORM\OneToMany(targetEntity=Phrase::class, mappedBy="type")
-     */
+    /** @ORM\OneToMany(targetEntity=Phrase::class, mappedBy="type") */
     private $phrases;
 
     public function __construct()
@@ -546,9 +534,7 @@ class Definition
      */
     private $phrase;
 
-    /**
-     * @ORM\Column(type="text", name="definition_text")
-     */
+    /** @ORM\Column(type="text", name="definition_text") */
     private $definition;
 
     /**

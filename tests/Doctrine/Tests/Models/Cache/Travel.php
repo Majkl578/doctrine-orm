@@ -21,9 +21,7 @@ class Travel
      */
     protected $id;
 
-    /**
-     * @ORM\Column(type="date")
-     */
+    /** @ORM\Column(type="date") */
     protected $createdAt;
 
     /**

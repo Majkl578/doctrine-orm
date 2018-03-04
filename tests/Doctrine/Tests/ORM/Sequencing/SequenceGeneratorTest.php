@@ -12,19 +12,13 @@ use Doctrine\Tests\OrmTestCase;
 
 class SequenceGeneratorTest extends OrmTestCase
 {
-    /**
-     * @var EntityManagerInterface
-     */
+    /** @var EntityManagerInterface */
     private $entityManager;
 
-    /**
-     * @var SequenceGenerator
-     */
+    /** @var SequenceGenerator */
     private $sequenceGenerator;
 
-    /**
-     * @var ConnectionMock
-     */
+    /** @var ConnectionMock */
     private $connection;
 
     protected function setUp() : void

@@ -111,14 +111,10 @@ class DDC881User
      */
     private $id;
 
-    /**
-     * @ORM\Column(type="string")
-     */
+    /** @ORM\Column(type="string") */
     private $name;
 
-    /**
-     * @ORM\OneToMany(targetEntity=DDC881PhoneNumber::class,mappedBy="id")
-     */
+    /** @ORM\OneToMany(targetEntity=DDC881PhoneNumber::class,mappedBy="id") */
     private $phoneNumbers;
 
     public function getName()
@@ -147,14 +143,10 @@ class DDC881PhoneNumber
      * @ORM\ManyToOne(targetEntity=DDC881User::class,cascade={"all"})
      */
     private $user;
-    /**
-     * @ORM\Column(type="string")
-     */
+    /** @ORM\Column(type="string") */
     private $phonenumber;
 
-    /**
-     * @ORM\OneToMany(targetEntity=DDC881PhoneCall::class, mappedBy="phonenumber")
-     */
+    /** @ORM\OneToMany(targetEntity=DDC881PhoneCall::class, mappedBy="phonenumber") */
     private $calls;
 
     public function __construct()
@@ -202,9 +194,7 @@ class DDC881PhoneCall
      * })
      */
     private $phonenumber;
-    /**
-     * @ORM\Column(type="string",nullable=true)
-     */
+    /** @ORM\Column(type="string",nullable=true) */
     private $callDate;
 
     public function setPhoneNumber(DDC881PhoneNumber $phoneNumber)

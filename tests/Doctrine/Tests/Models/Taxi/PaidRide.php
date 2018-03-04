@@ -28,9 +28,7 @@ class PaidRide
      */
     private $car;
 
-    /**
-     * @ORM\Column(type="decimal", precision=6, scale=2)
-     */
+    /** @ORM\Column(type="decimal", precision=6, scale=2) */
     private $fare;
 
     public function __construct(Driver $driver, Car $car)

@@ -61,14 +61,10 @@ class UnitOfWorkTest extends OrmTestCase
      */
     private $emMock;
 
-    /**
-     * @var EventManager|\PHPUnit_Framework_MockObject_MockObject
-     */
+    /** @var EventManager|\PHPUnit_Framework_MockObject_MockObject */
     private $eventManager;
 
-    /**
-     * @var ClassMetadataBuildingContext|\PHPUnit_Framework_MockObject_MockObject
-     */
+    /** @var ClassMetadataBuildingContext|\PHPUnit_Framework_MockObject_MockObject */
     private $metadataBuildingContext;
 
     protected function setUp()
@@ -726,9 +722,7 @@ class NotifyChangedEntity implements NotifyPropertyChanged
      * @ORM\GeneratedValue
      */
     private $id;
-    /**
-     * @ORM\Column(type="string")
-     */
+    /** @ORM\Column(type="string") */
     private $data;
 
     private $transient; // not persisted
@@ -819,13 +813,9 @@ class NotifyChangedRelatedItem
 /** @ORM\Entity */
 class VersionedAssignedIdentifierEntity
 {
-    /**
-     * @ORM\Id @ORM\Column(type="integer")
-     */
+    /** @ORM\Id @ORM\Column(type="integer") */
     public $id;
-    /**
-     * @ORM\Version @ORM\Column(type="integer")
-     */
+    /** @ORM\Version @ORM\Column(type="integer") */
     public $version;
 }
 
@@ -875,9 +865,7 @@ class EntityWithRandomlyGeneratedField
     /** @ORM\Id @ORM\Column(type="string") */
     public $id;
 
-    /**
-     * @ORM\Column(type="integer")
-     */
+    /** @ORM\Column(type="integer") */
     public $generatedField;
 
     public function __construct()

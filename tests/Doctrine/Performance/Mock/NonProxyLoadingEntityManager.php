@@ -27,9 +27,7 @@ use Doctrine\ORM\Utility\IdentifierFlattener;
  */
 class NonProxyLoadingEntityManager implements EntityManagerInterface
 {
-    /**
-     * @var EntityManagerInterface
-     */
+    /** @var EntityManagerInterface */
     private $realEntityManager;
 
     public function __construct(EntityManagerInterface $realEntityManager)

@@ -54,14 +54,10 @@ class DDC1998Test extends OrmFunctionalTestCase
  */
 class DDC1998Entity
 {
-    /**
-     * @ORM\Id @ORM\Column(type="ddc1998")
-     */
+    /** @ORM\Id @ORM\Column(type="ddc1998") */
     public $id;
 
-    /**
-     * @ORM\Column(type="integer")
-     */
+    /** @ORM\Column(type="integer") */
     public $num = 0;
 }
 

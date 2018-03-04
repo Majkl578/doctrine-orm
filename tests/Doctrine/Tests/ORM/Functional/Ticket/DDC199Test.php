@@ -68,14 +68,10 @@ class DDC199ParentClass
      */
     public $id;
 
-    /**
-     * @ORM\Column(type="string")
-     */
+    /** @ORM\Column(type="string") */
     public $parentData;
 
-    /**
-     * @ORM\OneToMany(targetEntity=DDC199RelatedClass::class, mappedBy="parent")
-     */
+    /** @ORM\OneToMany(targetEntity=DDC199RelatedClass::class, mappedBy="parent") */
     public $relatedEntities;
 }
 
@@ -83,9 +79,7 @@ class DDC199ParentClass
 /** @ORM\Entity */
 class DDC199ChildClass extends DDC199ParentClass
 {
-    /**
-     * @ORM\Column
-     */
+    /** @ORM\Column */
     public $childData;
 }
 

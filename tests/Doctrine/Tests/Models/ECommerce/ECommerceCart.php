@@ -23,9 +23,7 @@ class ECommerceCart
      */
     private $id;
 
-    /**
-     * @ORM\Column(length=50, nullable=true)
-     */
+    /** @ORM\Column(length=50, nullable=true) */
     private $payment;
 
     /**

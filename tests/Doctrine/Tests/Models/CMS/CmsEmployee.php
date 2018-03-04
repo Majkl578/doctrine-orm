@@ -21,9 +21,7 @@ class CmsEmployee
      */
     private $id;
 
-    /**
-     * @ORM\Column
-     */
+    /** @ORM\Column */
     private $name;
 
     /**

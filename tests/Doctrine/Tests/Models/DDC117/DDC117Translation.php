@@ -19,24 +19,16 @@ class DDC117Translation
      */
     private $article;
 
-    /**
-     * @ORM\Id @ORM\Column(type="string")
-     */
+    /** @ORM\Id @ORM\Column(type="string") */
     private $language;
 
-    /**
-     * @ORM\Column(type="string")
-     */
+    /** @ORM\Column(type="string") */
     private $title;
 
-    /**
-     * @ORM\ManyToMany(targetEntity=DDC117Editor::class, mappedBy="reviewingTranslations")
-     */
+    /** @ORM\ManyToMany(targetEntity=DDC117Editor::class, mappedBy="reviewingTranslations") */
     public $reviewedByEditors;
 
-    /**
-     * @ORM\OneToMany(targetEntity=DDC117Editor::class, mappedBy="lastTranslation")
-     */
+    /** @ORM\OneToMany(targetEntity=DDC117Editor::class, mappedBy="lastTranslation") */
     public $lastTranslatedBy;
 
     public function __construct($article, $language, $title)

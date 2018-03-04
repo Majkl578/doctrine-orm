@@ -20,24 +20,16 @@ class LegacyUser
      */
     public $id;
 
-    /**
-     * @ORM\Column(name="sUsername", type="string", length=255, unique=true)
-     */
+    /** @ORM\Column(name="sUsername", type="string", length=255, unique=true) */
     public $username;
 
-    /**
-     * @ORM\Column(type="string", length=255, name="name")
-     */
+    /** @ORM\Column(type="string", length=255, name="name") */
     public $name;
 
-    /**
-     * @ORM\OneToMany(targetEntity=LegacyArticle::class, mappedBy="user")
-     */
+    /** @ORM\OneToMany(targetEntity=LegacyArticle::class, mappedBy="user") */
     public $articles;
 
-    /**
-     * @ORM\OneToMany(targetEntity=LegacyUserReference::class, mappedBy="source", cascade={"remove"})
-     */
+    /** @ORM\OneToMany(targetEntity=LegacyUserReference::class, mappedBy="source", cascade={"remove"}) */
     public $references;
 
     /**

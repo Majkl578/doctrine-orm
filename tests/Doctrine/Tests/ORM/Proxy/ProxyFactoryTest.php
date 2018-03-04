@@ -28,29 +28,19 @@ use function json_encode;
  */
 class ProxyFactoryTest extends OrmTestCase
 {
-    /**
-     * @var ConnectionMock
-     */
+    /** @var ConnectionMock */
     private $connectionMock;
 
-    /**
-     * @var UnitOfWorkMock
-     */
+    /** @var UnitOfWorkMock */
     private $uowMock;
 
-    /**
-     * @var EntityManagerMock
-     */
+    /** @var EntityManagerMock */
     private $emMock;
 
-    /**
-     * @var StaticProxyFactory
-     */
+    /** @var StaticProxyFactory */
     private $proxyFactory;
 
-    /**
-     * @var ClassMetadataBuildingContext
-     */
+    /** @var ClassMetadataBuildingContext */
     private $metadataBuildingContext;
 
     /**

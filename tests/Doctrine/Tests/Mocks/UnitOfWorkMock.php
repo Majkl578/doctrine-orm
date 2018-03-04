@@ -13,14 +13,10 @@ use function spl_object_id;
  */
 class UnitOfWorkMock extends UnitOfWork
 {
-    /**
-     * @var array
-     */
+    /** @var array */
     private $mockDataChangeSets = [];
 
-    /**
-     * @var array|null
-     */
+    /** @var array|null */
     private $persisterMock;
 
     /**

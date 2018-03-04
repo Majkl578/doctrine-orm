@@ -19,9 +19,7 @@ class FirstRelatedEntity
      */
     public $secondEntity;
 
-    /**
-     * @ORM\Column(name="name")
-     */
+    /** @ORM\Column(name="name") */
     public $name;
 
     /**

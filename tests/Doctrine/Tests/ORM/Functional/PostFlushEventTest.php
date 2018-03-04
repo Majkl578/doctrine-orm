@@ -14,9 +14,7 @@ use Doctrine\Tests\OrmFunctionalTestCase;
  */
 class PostFlushEventTest extends OrmFunctionalTestCase
 {
-    /**
-     * @var PostFlushListener
-     */
+    /** @var PostFlushListener */
     private $listener;
 
     protected function setUp()
@@ -74,14 +72,10 @@ class PostFlushEventTest extends OrmFunctionalTestCase
 
 class PostFlushListener
 {
-    /**
-     * @var bool
-     */
+    /** @var bool */
     public $wasNotified = false;
 
-    /**
-     * @var PostFlushEventArgs
-     */
+    /** @var PostFlushEventArgs */
     public $receivedArgs;
 
     public function postFlush(PostFlushEventArgs $args)

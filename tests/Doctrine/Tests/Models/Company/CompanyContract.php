@@ -27,9 +27,7 @@ abstract class CompanyContract
      */
     private $id;
 
-    /**
-     * @ORM\ManyToOne(targetEntity=CompanyEmployee::class, inversedBy="soldContracts")
-     */
+    /** @ORM\ManyToOne(targetEntity=CompanyEmployee::class, inversedBy="soldContracts") */
     private $salesPerson;
 
     /**

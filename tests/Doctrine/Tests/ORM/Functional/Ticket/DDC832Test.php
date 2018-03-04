@@ -155,9 +155,7 @@ class DDC832Test extends OrmFunctionalTestCase
  */
 class DDC832Like
 {
-    /**
-     * @ORM\Id @ORM\Column(type="integer") @ORM\GeneratedValue
-     */
+    /** @ORM\Id @ORM\Column(type="integer") @ORM\GeneratedValue */
     public $id;
 
     /** @ORM\Column(type="string") */
@@ -184,9 +182,7 @@ class DDC832Like
  */
 class DDC832JoinedIndex
 {
-    /**
-     * @ORM\Id @ORM\Column(type="integer") @ORM\GeneratedValue
-     */
+    /** @ORM\Id @ORM\Column(type="integer") @ORM\GeneratedValue */
     public $id;
 
     /** @ORM\Column(type="string") */

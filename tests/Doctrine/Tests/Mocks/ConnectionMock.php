@@ -17,39 +17,25 @@ use function is_string;
  */
 class ConnectionMock extends Connection
 {
-    /**
-     * @var mixed
-     */
+    /** @var mixed */
     private $fetchOneResult;
 
-    /**
-     * @var \Exception|null
-     */
+    /** @var \Exception|null */
     private $fetchOneException;
 
-    /**
-     * @var Statement|null
-     */
+    /** @var Statement|null */
     private $queryResult;
 
-    /**
-     * @var DatabasePlatformMock
-     */
+    /** @var DatabasePlatformMock */
     private $platformMock;
 
-    /**
-     * @var int
-     */
+    /** @var int */
     private $lastInsertId = 0;
 
-    /**
-     * @var array
-     */
+    /** @var array */
     private $inserts = [];
 
-    /**
-     * @var array
-     */
+    /** @var array */
     private $executeUpdates = [];
 
     /**

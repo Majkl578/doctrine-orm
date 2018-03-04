@@ -16,9 +16,7 @@ use function max;
  */
 class CompanyFlexUltraContract extends CompanyFlexContract
 {
-    /**
-     * @ORM\Column(type="integer")
-     */
+    /** @ORM\Column(type="integer") */
     private $maxPrice = 0;
 
     public function calculatePrice()

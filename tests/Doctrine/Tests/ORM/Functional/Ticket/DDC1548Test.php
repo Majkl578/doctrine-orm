@@ -77,12 +77,8 @@ class DDC1548Rel
      */
     public $id;
 
-    /**
-     * @ORM\OneToOne(targetEntity=DDC1548E1::class, mappedBy="rel")
-     */
+    /** @ORM\OneToOne(targetEntity=DDC1548E1::class, mappedBy="rel") */
     public $e1;
-    /**
-     * @ORM\OneToOne(targetEntity=DDC1548E2::class, mappedBy="rel")
-     */
+    /** @ORM\OneToOne(targetEntity=DDC1548E2::class, mappedBy="rel") */
     public $e2;
 }

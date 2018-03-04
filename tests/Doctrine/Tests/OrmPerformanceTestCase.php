@@ -13,9 +13,7 @@ use function sprintf;
  */
 class OrmPerformanceTestCase extends OrmFunctionalTestCase
 {
-    /**
-     * @var int
-     */
+    /** @var int */
     protected $maxRunningTime = 0;
 
     protected function runTest()

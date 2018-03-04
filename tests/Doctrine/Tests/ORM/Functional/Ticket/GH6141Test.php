@@ -108,9 +108,7 @@ class GH6141People
     public const BOSS     = 'boss';
     public const EMPLOYEE = 'employee';
 
-    /**
-     * @var string
-     */
+    /** @var string */
     private $value;
 
     /**
@@ -182,9 +180,7 @@ abstract class GH6141Person
      */
     public $id;
 
-    /**
-     * @ORM\Column(type="string")
-     */
+    /** @ORM\Column(type="string") */
     public $name;
 
     /**

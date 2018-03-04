@@ -24,9 +24,7 @@ class ConcurrentRegionMock implements ConcurrentRegion
     public $exceptions = [];
     public $locks      = [];
 
-    /**
-     * @var Region
-     */
+    /** @var Region */
     private $region;
 
     public function __construct(Region $region)

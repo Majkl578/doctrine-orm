@@ -73,13 +73,9 @@ class DDC237Test extends OrmFunctionalTestCase
  */
 class DDC237EntityX
 {
-    /**
-     * @ORM\Id @ORM\Column(type="integer") @ORM\GeneratedValue
-     */
+    /** @ORM\Id @ORM\Column(type="integer") @ORM\GeneratedValue */
     public $id;
-    /**
-     * @ORM\Column(type="string")
-     */
+    /** @ORM\Column(type="string") */
     public $data;
     /**
      * @ORM\OneToOne(targetEntity=DDC237EntityY::class)
@@ -92,13 +88,9 @@ class DDC237EntityX
 /** @ORM\Entity @ORM\Table(name="ddc237_y") */
 class DDC237EntityY
 {
-    /**
-     * @ORM\Id @ORM\Column(type="integer") @ORM\GeneratedValue
-     */
+    /** @ORM\Id @ORM\Column(type="integer") @ORM\GeneratedValue */
     public $id;
-    /**
-     * @ORM\Column(type="string")
-     */
+    /** @ORM\Column(type="string") */
     public $data;
 }
 

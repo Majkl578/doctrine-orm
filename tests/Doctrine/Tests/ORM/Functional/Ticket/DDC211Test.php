@@ -63,9 +63,7 @@ class DDC211User
      */
     protected $id;
 
-    /**
-     * @ORM\Column(name="name", type="string")
-     */
+    /** @ORM\Column(name="name", type="string") */
     protected $name;
 
     /**
@@ -106,14 +104,10 @@ class DDC211Group
      */
     protected $id;
 
-    /**
-     * @ORM\Column(name="name", type="string")
-     */
+    /** @ORM\Column(name="name", type="string") */
     protected $name;
 
-    /**
-     * @ORM\ManyToMany(targetEntity=DDC211User::class, mappedBy="groups")
-     */
+    /** @ORM\ManyToMany(targetEntity=DDC211User::class, mappedBy="groups") */
     protected $users;
 
     public function __construct()

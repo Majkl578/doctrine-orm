@@ -10,9 +10,7 @@ use Doctrine\Tests\OrmTestCase;
 
 class HydrationTestCase extends OrmTestCase
 {
-    /**
-     * @var EntityManagerInterface
-     */
+    /** @var EntityManagerInterface */
     protected $em;
 
     protected function setUp()

@@ -18,13 +18,9 @@ class CmsComment
      * @ORM\GeneratedValue(strategy="AUTO")
      */
     public $id;
-    /**
-     * @ORM\Column(type="string", length=255)
-     */
+    /** @ORM\Column(type="string", length=255) */
     public $topic;
-    /**
-     * @ORM\Column(type="string")
-     */
+    /** @ORM\Column(type="string") */
     public $text;
     /**
      * @ORM\ManyToOne(targetEntity=CmsArticle::class, inversedBy="comments")

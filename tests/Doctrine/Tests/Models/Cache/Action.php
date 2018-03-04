@@ -20,9 +20,7 @@ class Action
      */
     public $name;
 
-    /**
-     * @ORM\OneToMany(targetEntity=Token::class, cascade={"persist", "remove"}, mappedBy="action")
-     */
+    /** @ORM\OneToMany(targetEntity=Token::class, cascade={"persist", "remove"}, mappedBy="action") */
     public $tokens;
 
     public function __construct($name)

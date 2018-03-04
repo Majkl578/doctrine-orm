@@ -15,9 +15,7 @@ use function reset;
  */
 class StatementArrayMock extends StatementMock
 {
-    /**
-     * @var array
-     */
+    /** @var array */
     private $result;
 
     public function __construct($result)

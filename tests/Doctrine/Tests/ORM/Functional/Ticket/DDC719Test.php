@@ -71,9 +71,7 @@ class DDC719Group extends Entity
      */
     protected $children;
 
-    /**
-     * @ORM\ManyToMany(targetEntity=DDC719Group::class, mappedBy="children")
-     */
+    /** @ORM\ManyToMany(targetEntity=DDC719Group::class, mappedBy="children") */
     protected $parents;
 
     /**

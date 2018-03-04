@@ -26,14 +26,10 @@ use function sprintf;
  */
 class ProxiesLikeEntitiesTest extends OrmFunctionalTestCase
 {
-    /**
-     * @var CmsUser
-     */
+    /** @var CmsUser */
     protected $user;
 
-    /**
-     * @var string
-     */
+    /** @var string */
     private $proxyClassName;
 
     protected function setUp()

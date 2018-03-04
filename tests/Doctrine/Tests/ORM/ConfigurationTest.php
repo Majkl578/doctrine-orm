@@ -35,9 +35,7 @@ use function unlink;
  */
 class ConfigurationTest extends DoctrineTestCase
 {
-    /**
-     * @var Configuration
-     */
+    /** @var Configuration */
     private $configuration;
 
     protected function setUp()

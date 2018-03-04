@@ -21,9 +21,7 @@ class ECommerceFeature
      */
     private $id;
 
-    /**
-     * @ORM\Column(length=50)
-     */
+    /** @ORM\Column(length=50) */
     private $description;
 
     /**

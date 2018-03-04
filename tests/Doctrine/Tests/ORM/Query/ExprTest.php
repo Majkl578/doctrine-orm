@@ -18,9 +18,7 @@ class ExprTest extends OrmTestCase
 {
     private $em;
 
-    /**
-     * @var Expr
-     */
+    /** @var Expr */
     private $expr;
 
     protected function setUp()

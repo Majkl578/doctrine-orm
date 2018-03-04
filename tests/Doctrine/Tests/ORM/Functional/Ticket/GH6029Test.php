@@ -116,9 +116,7 @@ class GH6029Product
     /** @ORM\Id @ORM\Column(type="integer") @ORM\GeneratedValue */
     public $id;
 
-    /**
-     * @ORM\OneToMany(targetEntity=GH6029Feature::class, mappedBy="product", cascade={"all"})
-     */
+    /** @ORM\OneToMany(targetEntity=GH6029Feature::class, mappedBy="product", cascade={"all"}) */
     public $features;
 
     public function __construct()

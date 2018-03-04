@@ -20,14 +20,10 @@ class Company
      */
     public $id;
 
-    /**
-     * @ORM\Column(type="string")
-     */
+    /** @ORM\Column(type="string") */
     public $name;
 
-    /**
-     * @ORM\Column(type="string", name="jurisdiction_code", nullable=true)
-     */
+    /** @ORM\Column(type="string", name="jurisdiction_code", nullable=true) */
     public $jurisdiction;
 
     /**

@@ -36,19 +36,13 @@ use Doctrine\Tests\OrmTestCase;
  */
 class DefaultCacheFactoryTest extends OrmTestCase
 {
-    /**
-     * @var CacheFactory
-     */
+    /** @var CacheFactory */
     private $factory;
 
-    /**
-     * @var EntityManagerInterface
-     */
+    /** @var EntityManagerInterface */
     private $em;
 
-    /**
-     * @var RegionsConfiguration
-     */
+    /** @var RegionsConfiguration */
     private $regionsConfig;
 
     protected function setUp()

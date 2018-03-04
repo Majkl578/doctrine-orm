@@ -25,9 +25,7 @@ class Stock
      */
     private $symbol;
 
-    /**
-     * @ORM\Column(type="decimal")
-     */
+    /** @ORM\Column(type="decimal") */
     private $price;
 
     /**

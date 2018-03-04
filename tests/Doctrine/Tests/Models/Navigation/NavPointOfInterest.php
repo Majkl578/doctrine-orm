@@ -25,14 +25,10 @@ class NavPointOfInterest
      */
     private $lat;
 
-    /**
-     * @ORM\Column(type="string")
-     */
+    /** @ORM\Column(type="string") */
     private $name;
 
-    /**
-     * @ORM\ManyToOne(targetEntity=NavCountry::class, inversedBy="pois")
-     */
+    /** @ORM\ManyToOne(targetEntity=NavCountry::class, inversedBy="pois") */
     private $country;
 
     /**

@@ -84,9 +84,7 @@ class DDC2579Entity
      */
     public $assoc;
 
-    /**
-     * @ORM\Column(type="integer")
-     */
+    /** @ORM\Column(type="integer") */
     public $value;
 
     public function __construct(DDC2579EntityAssoc $assoc, $value = 0)

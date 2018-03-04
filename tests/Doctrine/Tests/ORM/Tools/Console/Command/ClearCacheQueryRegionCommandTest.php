@@ -16,14 +16,10 @@ use Symfony\Component\Console\Tester\CommandTester;
  */
 class ClearCacheQueryRegionCommandTest extends OrmFunctionalTestCase
 {
-    /**
-     * @var Application
-     */
+    /** @var Application */
     private $application;
 
-    /**
-     * @var QueryRegionCommand
-     */
+    /** @var QueryRegionCommand */
     private $command;
 
     protected function setUp()

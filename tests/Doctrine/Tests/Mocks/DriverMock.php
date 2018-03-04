@@ -14,14 +14,10 @@ use Doctrine\DBAL\Schema\AbstractSchemaManager;
  */
 class DriverMock implements Driver
 {
-    /**
-     * @var AbstractPlatform|null
-     */
+    /** @var AbstractPlatform|null */
     private $platformMock;
 
-    /**
-     * @var AbstractSchemaManager|null
-     */
+    /** @var AbstractSchemaManager|null */
     private $schemaManagerMock;
 
     /**

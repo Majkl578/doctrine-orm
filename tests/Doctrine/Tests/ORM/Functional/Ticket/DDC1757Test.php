@@ -57,9 +57,7 @@ class DDC1757B
      */
     private $id;
 
-    /**
-     * @ORM\OneToOne(targetEntity=DDC1757C::class)
-     */
+    /** @ORM\OneToOne(targetEntity=DDC1757C::class) */
     private $c;
 }
 
@@ -75,9 +73,7 @@ class DDC1757C
      */
     public $id;
 
-    /**
-     * @ORM\OneToOne(targetEntity=DDC1757D::class)
-     */
+    /** @ORM\OneToOne(targetEntity=DDC1757D::class) */
     private $d;
 }
 

@@ -12,9 +12,7 @@ use Doctrine\Tests\OrmTestCase;
  */
 class EntityListenerResolverTest extends OrmTestCase
 {
-    /**
-     * @var DefaultEntityListenerResolver
-     */
+    /** @var DefaultEntityListenerResolver */
     private $resolver;
 
     protected function setUp()

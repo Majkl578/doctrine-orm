@@ -64,9 +64,7 @@ class DDC1113Vehicle
     /** @ORM\Id @ORM\GeneratedValue @ORM\Column(type="integer") */
     public $id;
 
-    /**
-     * @ORM\ManyToOne(targetEntity=DDC1113Vehicle::class)
-     */
+    /** @ORM\ManyToOne(targetEntity=DDC1113Vehicle::class) */
     public $parent;
 
     /** @ORM\OneToOne(targetEntity=DDC1113Engine::class, cascade={"persist", "remove"}) */

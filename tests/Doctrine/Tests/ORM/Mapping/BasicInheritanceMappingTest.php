@@ -19,9 +19,7 @@ use function iterator_to_array;
 
 class BasicInheritanceMappingTest extends OrmTestCase
 {
-    /**
-     * @var ClassMetadataFactory
-     */
+    /** @var ClassMetadataFactory */
     private $cmf;
 
     /**

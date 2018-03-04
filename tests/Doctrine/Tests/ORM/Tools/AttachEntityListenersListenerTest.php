@@ -14,19 +14,13 @@ use function func_get_args;
 
 class AttachEntityListenersListenerTest extends OrmTestCase
 {
-    /**
-     * @var EntityManagerInterface
-     */
+    /** @var EntityManagerInterface */
     private $em;
 
-    /**
-     * @var AttachEntityListenersListener
-     */
+    /** @var AttachEntityListenersListener */
     private $listener;
 
-    /**
-     * @var ClassMetadataFactory
-     */
+    /** @var ClassMetadataFactory */
     private $factory;
 
     public function setUp()

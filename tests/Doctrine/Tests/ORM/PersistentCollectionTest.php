@@ -20,14 +20,10 @@ use function array_keys;
  */
 class PersistentCollectionTest extends OrmTestCase
 {
-    /**
-     * @var PersistentCollection
-     */
+    /** @var PersistentCollection */
     protected $collection;
 
-    /**
-     * @var EntityManagerMock
-     */
+    /** @var EntityManagerMock */
     private $emMock;
 
     protected function setUp()

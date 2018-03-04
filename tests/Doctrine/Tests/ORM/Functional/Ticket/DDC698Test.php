@@ -49,14 +49,10 @@ class DDC698Role
      */
     protected $roleID;
 
-    /**
-     * @ORM\Column(name="name", type="string", length=45)
-     */
+    /** @ORM\Column(name="name", type="string", length=45) */
     protected $name;
 
-    /**
-     * @ORM\Column(name="shortName", type="string", length=45)
-     */
+    /** @ORM\Column(name="shortName", type="string", length=45) */
     protected $shortName;
 
     /**
@@ -82,13 +78,9 @@ class DDC698Privilege
      */
     protected $privilegeID;
 
-    /**
-     * @ORM\Column(name="name", type="string", length=45)
-     */
+    /** @ORM\Column(name="name", type="string", length=45) */
     protected $name;
 
-    /**
-     * @ORM\ManyToMany(targetEntity=DDC698Role::class, mappedBy="privilege")
-     */
+    /** @ORM\ManyToMany(targetEntity=DDC698Role::class, mappedBy="privilege") */
     protected $roles;
 }

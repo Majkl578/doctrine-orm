@@ -116,19 +116,13 @@ abstract class DDC837Super
  */
 class DDC837Class1 extends DDC837Super
 {
-    /**
-     * @ORM\Column(name="title", type="string", length=150)
-     */
+    /** @ORM\Column(name="title", type="string", length=150) */
     public $title;
 
-    /**
-     * @ORM\Column(name="content", type="string", length=500)
-     */
+    /** @ORM\Column(name="content", type="string", length=500) */
     public $description;
 
-    /**
-     * @ORM\OneToOne(targetEntity=DDC837Aggregate::class)
-     */
+    /** @ORM\OneToOne(targetEntity=DDC837Aggregate::class) */
     public $aggregate;
 }
 
@@ -137,24 +131,16 @@ class DDC837Class1 extends DDC837Super
  */
 class DDC837Class2 extends DDC837Super
 {
-    /**
-     * @ORM\Column(name="title", type="string", length=150)
-     */
+    /** @ORM\Column(name="title", type="string", length=150) */
     public $title;
 
-    /**
-     * @ORM\Column(name="content", type="string", length=500)
-     */
+    /** @ORM\Column(name="content", type="string", length=500) */
     public $description;
 
-    /**
-     * @ORM\Column(name="text", type="text")
-     */
+    /** @ORM\Column(name="text", type="text") */
     public $text;
 
-    /**
-     * @ORM\OneToOne(targetEntity=DDC837Aggregate::class)
-     */
+    /** @ORM\OneToOne(targetEntity=DDC837Aggregate::class) */
     public $aggregate;
 }
 
@@ -165,14 +151,10 @@ class DDC837Class2 extends DDC837Super
  */
 class DDC837Class3 extends DDC837Super
 {
-    /**
-     * @ORM\Column(name="title", type="string", length=150)
-     */
+    /** @ORM\Column(name="title", type="string", length=150) */
     public $apples;
 
-    /**
-     * @ORM\Column(name="content", type="string", length=500)
-     */
+    /** @ORM\Column(name="content", type="string", length=500) */
     public $bananas;
 }
 
@@ -187,9 +169,7 @@ class DDC837Aggregate
      */
     public $id;
 
-    /**
-     * @ORM\Column(name="sysname", type="string")
-     */
+    /** @ORM\Column(name="sysname", type="string") */
     protected $sysname;
 
     public function __construct($sysname)

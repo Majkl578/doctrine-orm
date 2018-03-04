@@ -16,14 +16,10 @@ class DoctrineGlobal_Article
      */
     protected $id;
 
-    /**
-     * @ORM\Column(type="string")
-     */
+    /** @ORM\Column(type="string") */
     protected $headline;
 
-    /**
-     * @ORM\Column(type="text")
-     */
+    /** @ORM\Column(type="text") */
     protected $text;
 
     /**

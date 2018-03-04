@@ -234,9 +234,7 @@ class DDC2602Biography
      */
     public $content;
 
-    /**
-     * @var array
-     */
+    /** @var array */
     public $fieldList = [];
 }
 
@@ -253,14 +251,10 @@ class DDC2602BiographyField
      */
     public $id;
 
-    /**
-     * @ORM\Column(type="string", unique=true, length=100)
-     */
+    /** @ORM\Column(type="string", unique=true, length=100) */
     public $alias;
 
-    /**
-     * @ORM\Column(type="string", length=100)
-     */
+    /** @ORM\Column(type="string", length=100) */
     public $label;
 
     /**
@@ -293,9 +287,7 @@ class DDC2602BiographyFieldChoice
      */
     public $id;
 
-    /**
-     * @ORM\Column(type="string", unique=true, length=100)
-     */
+    /** @ORM\Column(type="string", unique=true, length=100) */
     public $label;
 
     /**
@@ -312,14 +304,10 @@ class DDC2602BiographyFieldChoice
 
 class DDC2602FieldSelection
 {
-    /**
-     * @var DDC2602BiographyField
-     */
+    /** @var DDC2602BiographyField */
     public $field;
 
-    /**
-     * @var ArrayCollection
-     */
+    /** @var ArrayCollection */
     public $choiceList;
 
     public function __construct()

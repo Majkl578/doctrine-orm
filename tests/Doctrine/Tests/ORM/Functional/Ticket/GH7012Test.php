@@ -71,9 +71,7 @@ class GH7012UserData
      */
     public $user;
 
-    /**
-     * @ORM\Column(type="string", name="name")
-     */
+    /** @ORM\Column(type="string", name="name") */
     public $name;
 
     public function __construct(QuotedUser $user, string $name)

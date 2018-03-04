@@ -14,9 +14,7 @@ use function unlink;
  */
 class TestUtil
 {
-    /**
-     * @var bool Whether the database schema is initialized.
-     */
+    /** @var bool Whether the database schema is initialized. */
     private static $initialized = false;
 
     /**

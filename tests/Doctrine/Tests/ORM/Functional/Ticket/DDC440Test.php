@@ -99,9 +99,7 @@ class DDC440Phone
      * })
      */
     protected $client;
-    /**
-     * @ORM\Column(name="phonenumber", type="string")
-     */
+    /** @ORM\Column(name="phonenumber", type="string") */
     protected $number;
 
     public function setNumber($value)
@@ -162,9 +160,7 @@ class DDC440Client
      * @ORM\OrderBy({"number"="ASC"})
      */
     protected $phones;
-    /**
-     * @ORM\Column(name="name", type="string")
-     */
+    /** @ORM\Column(name="name", type="string") */
     protected $name;
 
     public function __construct()

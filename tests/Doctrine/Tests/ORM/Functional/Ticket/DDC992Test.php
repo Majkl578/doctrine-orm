@@ -126,13 +126,9 @@ class DDC992Role
      *  @ORM\GeneratedValue(strategy="AUTO")
      */
     public $roleID;
-    /**
-     * @ORM\Column (name="name", type="string", length=45)
-     */
+    /** @ORM\Column (name="name", type="string", length=45) */
     public $name;
-    /**
-     * @ORM\ManyToMany (targetEntity=DDC992Role::class, mappedBy="extends")
-     */
+    /** @ORM\ManyToMany (targetEntity=DDC992Role::class, mappedBy="extends") */
     public $extendedBy;
     /**
      * @ORM\ManyToMany (targetEntity=DDC992Role::class, inversedBy="extendedBy")

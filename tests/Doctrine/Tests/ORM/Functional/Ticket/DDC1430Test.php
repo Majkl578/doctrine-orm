@@ -165,14 +165,10 @@ class DDC1430Order
      */
     protected $id;
 
-    /**
-     * @ORM\Column(name="created_at", type="datetime")
-     */
+    /** @ORM\Column(name="created_at", type="datetime") */
     private $date;
 
-    /**
-     * @ORM\Column(name="order_status", type="string")
-     */
+    /** @ORM\Column(name="order_status", type="string") */
     private $status;
 
     /**
@@ -256,9 +252,7 @@ class DDC1430OrderProduct
      */
     private $order;
 
-    /**
-     * @ORM\Column(type="float")
-     */
+    /** @ORM\Column(type="float") */
     private $value;
 
     /**

@@ -12,9 +12,7 @@ use Doctrine\ORM\Sequencing\SequenceGenerator;
  */
 class SequenceMock extends SequenceGenerator
 {
-    /**
-     * @var int
-     */
+    /** @var int */
     private $sequenceNumber = 0;
 
     /**

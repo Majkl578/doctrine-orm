@@ -12,9 +12,7 @@ use Doctrine\Tests\OrmFunctionalTestCase;
 
 class SecondLevelCacheCompositePrimaryKeyWithAssociationsTest extends OrmFunctionalTestCase
 {
-    /**
-     * @var Cache
-     */
+    /** @var Cache */
     protected $cache;
 
     public function setUp()

@@ -139,9 +139,7 @@ class DDC1654Test extends OrmFunctionalTestCase
  */
 class DDC1654Post
 {
-    /**
-     * @ORM\Id @ORM\Column(type="integer") @ORM\GeneratedValue
-     */
+    /** @ORM\Id @ORM\Column(type="integer") @ORM\GeneratedValue */
     public $id;
 
     /**
@@ -156,8 +154,6 @@ class DDC1654Post
  */
 class DDC1654Comment
 {
-    /**
-     * @ORM\Id @ORM\Column(type="integer") @ORM\GeneratedValue
-     */
+    /** @ORM\Id @ORM\Column(type="integer") @ORM\GeneratedValue */
     public $id;
 }

@@ -279,14 +279,10 @@ class OptimisticJoinedParent
      */
     public $id;
 
-    /**
-     * @ORM\Column(type="string", length=255)
-     */
+    /** @ORM\Column(type="string", length=255) */
     public $name;
 
-    /**
-     * @ORM\Version @ORM\Column(type="integer")
-     */
+    /** @ORM\Version @ORM\Column(type="integer") */
     public $version;
 }
 
@@ -296,9 +292,7 @@ class OptimisticJoinedParent
  */
 class OptimisticJoinedChild extends OptimisticJoinedParent
 {
-    /**
-     * @ORM\Column(type="string", length=255)
-     */
+    /** @ORM\Column(type="string", length=255) */
     public $whatever;
 }
 
@@ -314,14 +308,10 @@ class OptimisticStandard
      */
     public $id;
 
-    /**
-     * @ORM\Column(type="string", length=255)
-     */
+    /** @ORM\Column(type="string", length=255) */
     public $name;
 
-    /**
-     * @ORM\Version @ORM\Column(type="integer")
-     */
+    /** @ORM\Version @ORM\Column(type="integer") */
     private $version;
 
     public function getVersion()
@@ -342,13 +332,9 @@ class OptimisticTimestamp
      */
     public $id;
 
-    /**
-     * @ORM\Column(type="string", length=255)
-     */
+    /** @ORM\Column(type="string", length=255) */
     public $name;
 
-    /**
-     * @ORM\Version @ORM\Column(type="datetime")
-     */
+    /** @ORM\Version @ORM\Column(type="datetime") */
     public $version;
 }

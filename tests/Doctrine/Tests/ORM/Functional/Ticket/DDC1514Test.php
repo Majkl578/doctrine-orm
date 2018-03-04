@@ -96,13 +96,9 @@ class DDC1514EntityB
     /** @ORM\Id @ORM\Column(type="integer") @ORM\GeneratedValue */
     public $id;
 
-    /**
-     * @ORM\ManyToOne(targetEntity=DDC1514EntityA::class, inversedBy="entitiesB")
-     */
+    /** @ORM\ManyToOne(targetEntity=DDC1514EntityA::class, inversedBy="entitiesB") */
     public $entityAFrom;
-    /**
-     * @ORM\ManyToOne(targetEntity=DDC1514EntityA::class)
-     */
+    /** @ORM\ManyToOne(targetEntity=DDC1514EntityA::class) */
     public $entityATo;
 }
 

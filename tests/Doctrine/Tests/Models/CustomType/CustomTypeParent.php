@@ -19,19 +19,13 @@ class CustomTypeParent
      */
     public $id;
 
-    /**
-     * @ORM\Column(type="negative_to_positive", nullable=true)
-     */
+    /** @ORM\Column(type="negative_to_positive", nullable=true) */
     public $customInteger;
 
-    /**
-     * @ORM\OneToOne(targetEntity=CustomTypeChild::class, cascade={"persist", "remove"})
-     */
+    /** @ORM\OneToOne(targetEntity=CustomTypeChild::class, cascade={"persist", "remove"}) */
     public $child;
 
-    /**
-     * @ORM\ManyToMany(targetEntity=CustomTypeParent::class, mappedBy="myFriends")
-     */
+    /** @ORM\ManyToMany(targetEntity=CustomTypeParent::class, mappedBy="myFriends") */
     private $friendsWithMe;
 
     /**

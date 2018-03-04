@@ -21,14 +21,10 @@ use Doctrine\Tests\OrmTestCase;
  */
 class DefaultEntityHydratorTest extends OrmTestCase
 {
-    /**
-     * @var EntityHydrator
-     */
+    /** @var EntityHydrator */
     private $structure;
 
-    /**
-     * @var EntityManagerInterface
-     */
+    /** @var EntityManagerInterface */
     private $em;
 
     protected function setUp()

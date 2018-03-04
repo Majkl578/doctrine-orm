@@ -82,8 +82,6 @@ class DDC1461TwitterAccount
      */
     public $id;
 
-    /**
-     * @ORM\OneToOne(targetEntity=DDC1461User::class, fetch="EAGER")
-     */
+    /** @ORM\OneToOne(targetEntity=DDC1461User::class, fetch="EAGER") */
     public $user;
 }

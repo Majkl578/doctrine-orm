@@ -88,9 +88,7 @@ class DDC2494Currency
      */
     protected $id;
 
-    /**
-     * @ORM\Column(name="temp", type="ddc2494_tinyint", nullable=false)
-     */
+    /** @ORM\Column(name="temp", type="ddc2494_tinyint", nullable=false) */
     protected $temp;
 
     /**
@@ -195,7 +193,7 @@ class DDC2494TinyIntType extends Type
      */
     public function convertToPHPValue($value, AbstractPlatform $platform)
     {
-        $return = (integer) $value;
+        $return = (int) $value;
 
         self::$calls[__FUNCTION__][] = [
             'value'     => $value,

@@ -12,29 +12,19 @@ use Doctrine\ORM\Persisters\Entity\BasicEntityPersister;
  */
 class EntityPersisterMock extends BasicEntityPersister
 {
-    /**
-     * @var array
-     */
+    /** @var array */
     private $inserts = [];
 
-    /**
-     * @var array
-     */
+    /** @var array */
     private $updates = [];
 
-    /**
-     * @var array
-     */
+    /** @var array */
     private $deletes = [];
 
-    /**
-     * @var string|null
-     */
+    /** @var string|null */
     private $mockIdGeneratorType;
 
-    /**
-     * @var bool
-     */
+    /** @var bool */
     private $existsCalled = false;
 
     /**

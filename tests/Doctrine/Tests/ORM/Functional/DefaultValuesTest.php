@@ -100,17 +100,11 @@ class DefaultValueUser
      * @ORM\GeneratedValue(strategy="AUTO")
      */
     public $id;
-    /**
-     * @ORM\Column(type="string")
-     */
+    /** @ORM\Column(type="string") */
     public $name = '';
-    /**
-     * @ORM\Column(type="string")
-     */
+    /** @ORM\Column(type="string") */
     public $type = 'Poweruser';
-    /**
-     * @ORM\OneToOne(targetEntity=DefaultValueAddress::class, mappedBy="user", cascade={"persist"})
-     */
+    /** @ORM\OneToOne(targetEntity=DefaultValueAddress::class, mappedBy="user", cascade={"persist"}) */
     public $address;
 
     public function getId()
@@ -132,19 +126,13 @@ class DefaultValueAddress
      */
     public $id;
 
-    /**
-     * @ORM\Column(type="string", length=50)
-     */
+    /** @ORM\Column(type="string", length=50) */
     public $country;
 
-    /**
-     * @ORM\Column(type="string", length=50)
-     */
+    /** @ORM\Column(type="string", length=50) */
     public $zip;
 
-    /**
-     * @ORM\Column(type="string", length=50)
-     */
+    /** @ORM\Column(type="string", length=50) */
     public $city;
 
     /**

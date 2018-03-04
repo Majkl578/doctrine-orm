@@ -71,9 +71,7 @@ class CustomFunctionsTest extends OrmFunctionalTestCase
 
 class NoOp extends FunctionNode
 {
-    /**
-     * @var PathExpression
-     */
+    /** @var PathExpression */
     private $field;
 
     public function parse(Parser $parser)
@@ -92,9 +90,7 @@ class NoOp extends FunctionNode
 
 class CustomCount extends FunctionNode
 {
-    /**
-     * @var Query\AST\AggregateExpression
-     */
+    /** @var Query\AST\AggregateExpression */
     private $aggregateExpression;
 
     public function parse(Parser $parser) : void

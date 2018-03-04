@@ -16,9 +16,7 @@ use function next;
  */
 class HydratorMockStatement implements \IteratorAggregate, Statement
 {
-    /**
-     * @var array
-     */
+    /** @var array */
     private $resultSet;
 
     /**

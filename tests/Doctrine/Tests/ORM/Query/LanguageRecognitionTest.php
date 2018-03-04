@@ -14,9 +14,7 @@ use const PHP_EOL;
 
 class LanguageRecognitionTest extends OrmTestCase
 {
-    /**
-     * @var EntityManagerInterface
-     */
+    /** @var EntityManagerInterface */
     private $em;
 
     protected function setUp()

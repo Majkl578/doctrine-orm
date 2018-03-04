@@ -22,14 +22,10 @@ class Token
      */
     public $token;
 
-    /**
-     * @ORM\Column(type="date")
-     */
+    /** @ORM\Column(type="date") */
     public $expiresAt;
 
-    /**
-     * @ORM\OneToOne(targetEntity=Client::class)
-     */
+    /** @ORM\OneToOne(targetEntity=Client::class) */
     public $client;
 
     /**

@@ -12,9 +12,7 @@ use Doctrine\ORM\Mapping\ManyToOneAssociationMetadata;
 
 class DatabaseDriverTest extends DatabaseDriverTestCase
 {
-    /**
-     * @var AbstractSchemaManager
-     */
+    /** @var AbstractSchemaManager */
     protected $sm;
 
     public function setUp()

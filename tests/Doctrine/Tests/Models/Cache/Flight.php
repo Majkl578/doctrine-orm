@@ -29,9 +29,7 @@ class Flight
      */
     protected $goingTo;
 
-    /**
-     * @ORM\Column(type="date")
-     */
+    /** @ORM\Column(type="date") */
     protected $departure;
 
     public function __construct(City $leavingFrom, City $goingTo)

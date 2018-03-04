@@ -114,14 +114,10 @@ class GH5762Driver
      */
     public $id;
 
-    /**
-     * @ORM\Column(type="string", length=255);
-     */
+    /** @ORM\Column(type="string", length=255); */
     public $name;
 
-    /**
-     * @ORM\OneToMany(targetEntity=GH5762DriverRide::class, mappedBy="driver")
-     */
+    /** @ORM\OneToMany(targetEntity=GH5762DriverRide::class, mappedBy="driver") */
     public $driverRides;
 
     public function __construct($id, $name)
@@ -175,14 +171,10 @@ class GH5762Car
      */
     public $brand;
 
-    /**
-     * @ORM\Column(type="string", length=255);
-     */
+    /** @ORM\Column(type="string", length=255); */
     public $model;
 
-    /**
-     * @ORM\OneToMany(targetEntity=GH5762DriverRide::class, mappedBy="car")
-     */
+    /** @ORM\OneToMany(targetEntity=GH5762DriverRide::class, mappedBy="car") */
     public $carRides;
 
     public function __construct($brand, $model)

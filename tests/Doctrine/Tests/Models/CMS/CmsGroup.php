@@ -20,13 +20,9 @@ class CmsGroup
      * @ORM\GeneratedValue
      */
     public $id;
-    /**
-     * @ORM\Column(length=50)
-     */
+    /** @ORM\Column(length=50) */
     public $name;
-    /**
-     * @ORM\ManyToMany(targetEntity=CmsUser::class, mappedBy="groups")
-     */
+    /** @ORM\ManyToMany(targetEntity=CmsUser::class, mappedBy="groups") */
     public $users;
 
     public function setName($name)

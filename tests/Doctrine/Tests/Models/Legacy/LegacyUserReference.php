@@ -26,14 +26,10 @@ class LegacyUserReference
      */
     private $target;
 
-    /**
-     * @ORM\Column(type="string", name="description")
-     */
+    /** @ORM\Column(type="string", name="description") */
     private $description;
 
-    /**
-     * @ORM\Column(type="datetime", name="created")
-     */
+    /** @ORM\Column(type="datetime", name="created") */
     private $created;
 
     public function __construct(LegacyUser $source, LegacyUser $target, $description)

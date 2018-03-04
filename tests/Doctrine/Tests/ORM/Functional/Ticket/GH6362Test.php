@@ -92,9 +92,7 @@ class GH6362Start
      */
     protected $id;
 
-    /**
-     * @ORM\ManyToOne(targetEntity=GH6362Base::class, inversedBy="starts")
-     */
+    /** @ORM\ManyToOne(targetEntity=GH6362Base::class, inversedBy="starts") */
     private $bases;
 }
 
@@ -113,9 +111,7 @@ abstract class GH6362Base
      */
     protected $id;
 
-    /**
-     * @ORM\OneToMany(targetEntity=GH6362Start::class, mappedBy="bases")
-     */
+    /** @ORM\OneToMany(targetEntity=GH6362Start::class, mappedBy="bases") */
     private $starts;
 }
 
@@ -124,9 +120,7 @@ abstract class GH6362Base
  */
 class GH6362Child extends GH6362Base
 {
-    /**
-     * @ORM\OneToMany(targetEntity=GH6362Join::class, mappedBy="child")
-     */
+    /** @ORM\OneToMany(targetEntity=GH6362Join::class, mappedBy="child") */
     private $joins;
 }
 
@@ -142,8 +136,6 @@ class GH6362Join
      */
     private $id;
 
-    /**
-     * @ORM\ManyToOne(targetEntity=GH6362Child::class, inversedBy="joins")
-     */
+    /** @ORM\ManyToOne(targetEntity=GH6362Child::class, inversedBy="joins") */
     private $child;
 }

@@ -21,9 +21,7 @@ class CustomIdObjectTypeParent
      */
     public $id;
 
-    /**
-     * @ORM\OneToMany(targetEntity=CustomIdObjectTypeChild::class, cascade={"persist", "remove"}, mappedBy="parent")
-     */
+    /** @ORM\OneToMany(targetEntity=CustomIdObjectTypeChild::class, cascade={"persist", "remove"}, mappedBy="parent") */
     public $children;
 
     public function __construct(CustomIdObject $id)

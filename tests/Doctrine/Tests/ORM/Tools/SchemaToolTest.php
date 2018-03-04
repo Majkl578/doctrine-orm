@@ -265,9 +265,7 @@ class TestEntityWithAnnotationOptionsAttribute
     /** @ORM\Id @ORM\Column */
     private $id;
 
-    /**
-     * @ORM\Column(type="string", options={"foo": "bar", "baz": {"key": "val"}})
-     */
+    /** @ORM\Column(type="string", options={"foo": "bar", "baz": {"key": "val"}}) */
     private $test;
 }
 
@@ -301,9 +299,7 @@ class UniqueConstraintAnnotationModel
     /** @ORM\Id @ORM\Column */
     private $id;
 
-    /**
-     * @ORM\Column(name="hash", type="string", length=8, nullable=false, unique=true)
-     */
+    /** @ORM\Column(name="hash", type="string", length=8, nullable=false, unique=true) */
     private $hash;
 }
 
@@ -325,9 +321,7 @@ class FirstEntity
      */
     public $secondEntity;
 
-    /**
-     * @ORM\Column(name="name")
-     */
+    /** @ORM\Column(name="name") */
     public $name;
 }
 
@@ -343,8 +337,6 @@ class SecondEntity
      */
     public $fist_entity_id;
 
-    /**
-     * @ORM\Column(name="name")
-     */
+    /** @ORM\Column(name="name") */
     public $name;
 }

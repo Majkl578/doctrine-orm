@@ -44,14 +44,10 @@ class DDC1787Test extends OrmFunctionalTestCase
  */
 class DDC1787Foo
 {
-    /**
-     * @ORM\Id @ORM\Column(type="integer") @ORM\GeneratedValue(strategy="AUTO")
-     */
+    /** @ORM\Id @ORM\Column(type="integer") @ORM\GeneratedValue(strategy="AUTO") */
     private $id;
 
-    /**
-     * @ORM\Version @ORM\Column(type="integer")
-     */
+    /** @ORM\Version @ORM\Column(type="integer") */
     private $version;
 
     public function getVersion()

@@ -17,14 +17,10 @@ use Doctrine\ORM\UnitOfWork;
  */
 class EntityManagerMock extends EntityManagerDecorator
 {
-    /**
-     * @var UnitOfWork|null
-     */
+    /** @var UnitOfWork|null */
     private $uowMock;
 
-    /**
-     * @var ProxyFactory|null
-     */
+    /** @var ProxyFactory|null */
     private $proxyFactoryMock;
 
     public function getWrappedEntityManager() : EntityManagerInterface

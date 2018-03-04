@@ -29,9 +29,7 @@ class CompanyPerson
      */
     private $id;
 
-    /**
-     * @ORM\Column
-     */
+    /** @ORM\Column */
     private $name;
 
     /**

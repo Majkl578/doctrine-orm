@@ -112,9 +112,7 @@ final class SharedArrayCache extends ArrayCache
     public function createChild() : Cache
     {
         return new class ($this) extends CacheProvider {
-            /**
-             * @var ArrayCache
-             */
+            /** @var ArrayCache */
             private $parent;
 
             public function __construct(ArrayCache $parent)

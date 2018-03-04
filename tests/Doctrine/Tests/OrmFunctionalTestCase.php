@@ -66,19 +66,13 @@ abstract class OrmFunctionalTestCase extends OrmTestCase
      */
     protected static $sharedConn;
 
-    /**
-     * @var EntityManagerInterface
-     */
+    /** @var EntityManagerInterface */
     protected $em;
 
-    /**
-     * @var SchemaTool
-     */
+    /** @var SchemaTool */
     protected $schemaTool;
 
-    /**
-     * @var DebugStack
-     */
+    /** @var DebugStack */
     protected $sqlLoggerStack;
 
     /**

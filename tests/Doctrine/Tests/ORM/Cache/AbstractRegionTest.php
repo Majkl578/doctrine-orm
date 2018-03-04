@@ -15,14 +15,10 @@ use Doctrine\Tests\OrmFunctionalTestCase;
  */
 abstract class AbstractRegionTest extends OrmFunctionalTestCase
 {
-    /**
-     * @var Region
-     */
+    /** @var Region */
     protected $region;
 
-    /**
-     * @var ArrayCache
-     */
+    /** @var ArrayCache */
     protected $cache;
 
     protected function setUp()

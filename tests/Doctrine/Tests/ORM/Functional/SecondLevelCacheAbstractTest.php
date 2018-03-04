@@ -37,9 +37,7 @@ abstract class SecondLevelCacheAbstractTest extends OrmFunctionalTestCase
     protected $attractionsInfo      = [];
     protected $travelersWithProfile = [];
 
-    /**
-     * @var Cache
-     */
+    /** @var Cache */
     protected $cache;
 
     protected function setUp()

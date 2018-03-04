@@ -16,9 +16,7 @@ use Doctrine\Tests\OrmFunctionalTestCase;
  */
 class EntityListenersTest extends OrmFunctionalTestCase
 {
-    /**
-     * @var CompanyContractListener
-     */
+    /** @var CompanyContractListener */
     private $listener;
 
     protected function setUp()

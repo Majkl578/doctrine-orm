@@ -32,24 +32,16 @@ use function sprintf;
  */
 class DefaultQueryCacheTest extends OrmTestCase
 {
-    /**
-     * @var DefaultQueryCache
-     */
+    /** @var DefaultQueryCache */
     private $queryCache;
 
-    /**
-     * @var EntityManagerInterface
-     */
+    /** @var EntityManagerInterface */
     private $em;
 
-    /**
-     * @var CacheRegionMock
-     */
+    /** @var CacheRegionMock */
     private $region;
 
-    /**
-     * @var \Doctrine\Tests\ORM\Cache\CacheFactoryDefaultQueryCacheTest
-     */
+    /** @var \Doctrine\Tests\ORM\Cache\CacheFactoryDefaultQueryCacheTest */
     private $cacheFactory;
 
     protected function setUp()

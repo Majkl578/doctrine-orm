@@ -65,9 +65,7 @@ class DDC2138Structure
      */
     protected $id;
 
-    /**
-     * @ORM\Column(type="string", length=32, nullable=true)
-     */
+    /** @ORM\Column(type="string", length=32, nullable=true) */
     protected $name;
 }
 
@@ -210,9 +208,7 @@ class DDC2138User
      */
     protected $id;
 
-    /**
-     * @ORM\Column(type="string", length=32, nullable=true)
-     */
+    /** @ORM\Column(type="string", length=32, nullable=true) */
     protected $name;
 
     /**

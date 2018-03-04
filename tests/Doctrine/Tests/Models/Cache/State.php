@@ -21,9 +21,7 @@ class State
      */
     protected $id;
 
-    /**
-     * @ORM\Column(unique=true)
-     */
+    /** @ORM\Column(unique=true) */
     protected $name;
 
     /**

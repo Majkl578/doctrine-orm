@@ -103,19 +103,13 @@ class DDC2660Customer
 /** @ORM\Entity @ORM\Table(name="ddc_2660_customer_order") */
 class DDC2660CustomerOrder
 {
-    /**
-     * @ORM\Id @ORM\ManyToOne(targetEntity=DDC2660Product::class)
-     */
+    /** @ORM\Id @ORM\ManyToOne(targetEntity=DDC2660Product::class) */
     public $product;
 
-    /**
-     * @ORM\Id @ORM\ManyToOne(targetEntity=DDC2660Customer::class)
-     */
+    /** @ORM\Id @ORM\ManyToOne(targetEntity=DDC2660Customer::class) */
     public $customer;
 
-    /**
-     * @ORM\Column(type="string")
-     */
+    /** @ORM\Column(type="string") */
     public $name;
 
     public function __construct(DDC2660Product $product, DDC2660Customer $customer, $name)

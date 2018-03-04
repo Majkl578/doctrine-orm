@@ -15,9 +15,7 @@ class DbalFunctionalTestCase extends DbalTestCase
      */
     private static $sharedConn;
 
-    /**
-     * @var Connection
-     */
+    /** @var Connection */
     protected $conn;
 
     protected function resetSharedConn()

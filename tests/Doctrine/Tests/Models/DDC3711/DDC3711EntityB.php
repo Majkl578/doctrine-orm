@@ -8,19 +8,13 @@ use Doctrine\Common\Collections\ArrayCollection;
 
 class DDC3711EntityB
 {
-    /**
-     * @var int
-     */
+    /** @var int */
     private $id1;
 
-    /**
-     * @var int
-     */
+    /** @var int */
     private $id2;
 
-    /**
-     * @var ArrayCollection
-     */
+    /** @var ArrayCollection */
     private $entityA;
 
     /**

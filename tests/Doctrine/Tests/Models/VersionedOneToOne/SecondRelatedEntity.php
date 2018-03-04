@@ -19,9 +19,7 @@ class SecondRelatedEntity
      */
     public $id;
 
-    /**
-     * @ORM\Column(name="name")
-     */
+    /** @ORM\Column(name="name") */
     public $name;
 
     /**

@@ -22,14 +22,10 @@ use function array_merge;
  */
 class DefaultCacheTest extends OrmTestCase
 {
-    /**
-     * @var Cache
-     */
+    /** @var Cache */
     private $cache;
 
-    /**
-     * @var EntityManagerInterface
-     */
+    /** @var EntityManagerInterface */
     private $em;
 
     protected function setUp()

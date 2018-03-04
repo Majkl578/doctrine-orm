@@ -106,14 +106,10 @@ class DDC3634JTIChildEntity extends DDC3634JTIBaseEntity
 
 class DDC3634LastInsertIdMockingConnection extends Connection
 {
-    /**
-     * @var Connection
-     */
+    /** @var Connection */
     private $realConnection;
 
-    /**
-     * @var int
-     */
+    /** @var int */
     private $identifier;
 
     /**

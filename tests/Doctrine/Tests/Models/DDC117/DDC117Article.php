@@ -18,24 +18,16 @@ class DDC117Article
     /** @ORM\Column */
     private $title;
 
-    /**
-     * @ORM\OneToMany(targetEntity=DDC117Reference::class, mappedBy="source", cascade={"remove"})
-     */
+    /** @ORM\OneToMany(targetEntity=DDC117Reference::class, mappedBy="source", cascade={"remove"}) */
     private $references;
 
-    /**
-     * @ORM\OneToOne(targetEntity=DDC117ArticleDetails::class, mappedBy="article", cascade={"persist", "remove"})
-     */
+    /** @ORM\OneToOne(targetEntity=DDC117ArticleDetails::class, mappedBy="article", cascade={"persist", "remove"}) */
     private $details;
 
-    /**
-     * @ORM\OneToMany(targetEntity=DDC117Translation::class, mappedBy="article", cascade={"persist", "remove"})
-     */
+    /** @ORM\OneToMany(targetEntity=DDC117Translation::class, mappedBy="article", cascade={"persist", "remove"}) */
     private $translations;
 
-    /**
-     * @ORM\OneToMany(targetEntity=DDC117Link::class, mappedBy="source", indexBy="target_id", cascade={"persist", "remove"})
-     */
+    /** @ORM\OneToMany(targetEntity=DDC117Link::class, mappedBy="source", indexBy="target_id", cascade={"persist", "remove"}) */
     private $links;
 
     public function __construct($title)

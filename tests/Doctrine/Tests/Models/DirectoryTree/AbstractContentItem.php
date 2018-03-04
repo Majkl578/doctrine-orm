@@ -11,14 +11,10 @@ use Doctrine\ORM\Annotation as ORM;
  */
 abstract class AbstractContentItem
 {
-    /**
-     * @ORM\Id @ORM\Column(type="integer") @ORM\GeneratedValue
-     */
+    /** @ORM\Id @ORM\Column(type="integer") @ORM\GeneratedValue */
     private $id;
 
-    /**
-     * @ORM\ManyToOne(targetEntity=Directory::class)
-     */
+    /** @ORM\ManyToOne(targetEntity=Directory::class) */
     protected $parentDirectory;
 
     /** @ORM\Column(type="string") */

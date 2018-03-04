@@ -20,14 +20,10 @@ class User
      */
     public $id;
 
-    /**
-     * @ORM\Column(type="string", name="user-name")
-     */
+    /** @ORM\Column(type="string", name="user-name") */
     public $name;
 
-    /**
-     * @ORM\OneToMany(targetEntity=Phone::class, mappedBy="user", cascade={"persist"})
-     */
+    /** @ORM\OneToMany(targetEntity=Phone::class, mappedBy="user", cascade={"persist"}) */
     public $phones;
 
     /**

@@ -17,14 +17,10 @@ use Doctrine\Tests\Models\Cache\State;
  */
 class CacheLoggerChainTest extends DoctrineTestCase
 {
-    /**
-     * @var CacheLoggerChain
-     */
+    /** @var CacheLoggerChain */
     private $logger;
 
-    /**
-     * @var \PHPUnit_Framework_MockObject_MockObject|CacheLogger
-     */
+    /** @var \PHPUnit_Framework_MockObject_MockObject|CacheLogger */
     private $mock;
 
     protected function setUp()

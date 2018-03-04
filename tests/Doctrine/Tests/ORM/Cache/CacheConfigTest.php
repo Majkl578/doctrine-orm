@@ -19,9 +19,7 @@ use Doctrine\Tests\DoctrineTestCase;
  */
 class CacheConfigTest extends DoctrineTestCase
 {
-    /**
-     * @var CacheConfiguration
-     */
+    /** @var CacheConfiguration */
     private $config;
 
     /**

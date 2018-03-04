@@ -54,9 +54,7 @@ class DDC2230User
     /** @ORM\Id @ORM\Column(type="integer") @ORM\GeneratedValue(strategy="AUTO") */
     public $id;
 
-    /**
-     * @ORM\OneToOne(targetEntity=DDC2230Address::class)
-     */
+    /** @ORM\OneToOne(targetEntity=DDC2230Address::class) */
     public $address;
 }
 
@@ -69,9 +67,7 @@ class DDC2230Address implements NotifyPropertyChanged
     /** @ORM\Id @ORM\Column(type="integer") @ORM\GeneratedValue(strategy="AUTO") */
     public $id;
 
-    /**
-     * @var PropertyChangedListener
-     */
+    /** @var PropertyChangedListener */
     public $listener;
 
     /** {@inheritDoc} */

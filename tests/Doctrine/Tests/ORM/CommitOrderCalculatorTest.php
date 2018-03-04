@@ -20,14 +20,10 @@ use Doctrine\Tests\OrmTestCase;
  */
 class CommitOrderCalculatorTest extends OrmTestCase
 {
-    /**
-     * @var CommitOrderCalculator
-     */
+    /** @var CommitOrderCalculator */
     private $calc;
 
-    /**
-     * @var ClassMetadataBuildingContext|\PHPUnit_Framework_MockObject_MockObject
-     */
+    /** @var ClassMetadataBuildingContext|\PHPUnit_Framework_MockObject_MockObject */
     private $metadataBuildingContext;
 
     protected function setUp()

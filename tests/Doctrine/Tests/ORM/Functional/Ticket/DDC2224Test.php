@@ -83,13 +83,9 @@ class DDC2224Type extends Type
  */
 class DDC2224Entity
 {
-    /**
-     * @ORM\Id @ORM\GeneratedValue @ORM\Column(type="integer")
-     */
+    /** @ORM\Id @ORM\GeneratedValue @ORM\Column(type="integer") */
     public $id;
 
-    /**
-     * @ORM\Column(type="DDC2224Type")
-     */
+    /** @ORM\Column(type="DDC2224Type") */
     public $field;
 }

@@ -18,14 +18,10 @@ class DDC3579Group
      */
     private $id;
 
-    /**
-     * @ORM\Column
-     */
+    /** @ORM\Column */
     private $name;
 
-    /**
-     * @ORM\ManyToMany(targetEntity=DDC3579Admin::class, mappedBy="groups")
-     */
+    /** @ORM\ManyToMany(targetEntity=DDC3579Admin::class, mappedBy="groups") */
     private $admins;
 
     public function __construct($name = null)

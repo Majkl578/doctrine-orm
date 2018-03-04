@@ -61,9 +61,7 @@ class DDC735Test extends OrmFunctionalTestCase
  */
 class DDC735Product
 {
-    /**
-     * @ORM\Id @ORM\Column(type="integer") @ORM\GeneratedValue
-     */
+    /** @ORM\Id @ORM\Column(type="integer") @ORM\GeneratedValue */
     protected $id;
 
     /**
@@ -102,14 +100,10 @@ class DDC735Product
  */
 class DDC735Review
 {
-    /**
-     * @ORM\Id @ORM\Column(type="integer") @ORM\GeneratedValue
-     */
+    /** @ORM\Id @ORM\Column(type="integer") @ORM\GeneratedValue */
     protected $id;
 
-    /**
-     * @ORM\ManyToOne(targetEntity=DDC735Product::class, inversedBy="reviews")
-     */
+    /** @ORM\ManyToOne(targetEntity=DDC735Product::class, inversedBy="reviews") */
     protected $product;
 
     public function __construct(DDC735Product $product)

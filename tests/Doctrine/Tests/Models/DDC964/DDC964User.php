@@ -21,9 +21,7 @@ class DDC964User
      */
     protected $id;
 
-    /**
-     * @ORM\Column(name="user_name", nullable=true, unique=false, length=250)
-     */
+    /** @ORM\Column(name="user_name", nullable=true, unique=false, length=250) */
     protected $name;
 
     /**

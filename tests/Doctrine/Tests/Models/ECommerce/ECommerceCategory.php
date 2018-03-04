@@ -22,14 +22,10 @@ class ECommerceCategory
      */
     private $id;
 
-    /**
-     * @ORM\Column(type="string", length=50)
-     */
+    /** @ORM\Column(type="string", length=50) */
     private $name;
 
-    /**
-     * @ORM\ManyToMany(targetEntity=ECommerceProduct::class, mappedBy="categories")
-     */
+    /** @ORM\ManyToMany(targetEntity=ECommerceProduct::class, mappedBy="categories") */
     private $products;
 
     /**

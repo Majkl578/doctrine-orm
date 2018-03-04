@@ -14,9 +14,7 @@ use Doctrine\Tests\OrmFunctionalTestCase;
  */
 class IndexByAssociationTest extends OrmFunctionalTestCase
 {
-    /**
-     * @var Market
-     */
+    /** @var Market */
     private $market;
 
     private $bond;

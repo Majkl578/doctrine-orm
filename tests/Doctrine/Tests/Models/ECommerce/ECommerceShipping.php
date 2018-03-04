@@ -21,9 +21,7 @@ class ECommerceShipping
      */
     private $id;
 
-    /**
-     * @ORM\Column(type="integer")
-     */
+    /** @ORM\Column(type="integer") */
     private $days;
 
     public function getId()

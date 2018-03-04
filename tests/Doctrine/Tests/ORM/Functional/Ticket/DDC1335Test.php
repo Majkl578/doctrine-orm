@@ -163,19 +163,13 @@ class DDC1335User
      */
     public $id;
 
-    /**
-     * @ORM\Column(type="string", unique=true)
-     */
+    /** @ORM\Column(type="string", unique=true) */
     public $email;
 
-    /**
-     * @ORM\Column(type="string")
-     */
+    /** @ORM\Column(type="string") */
     public $name;
 
-    /**
-     * @ORM\OneToMany(targetEntity=DDC1335Phone::class, mappedBy="user", cascade={"persist", "remove"})
-     */
+    /** @ORM\OneToMany(targetEntity=DDC1335Phone::class, mappedBy="user", cascade={"persist", "remove"}) */
     public $phones;
 
     public function __construct($email, $name, array $numbers = [])
@@ -202,9 +196,7 @@ class DDC1335Phone
      */
     public $id;
 
-    /**
-     * @ORM\Column(name="numericalValue", type="string", nullable = false)
-     */
+    /** @ORM\Column(name="numericalValue", type="string", nullable = false) */
     public $numericalValue;
 
     /**

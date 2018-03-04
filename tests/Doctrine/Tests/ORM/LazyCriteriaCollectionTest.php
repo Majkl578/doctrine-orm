@@ -16,19 +16,13 @@ use stdClass;
  */
 class LazyCriteriaCollectionTest extends DoctrineTestCase
 {
-    /**
-     * @var EntityPersister|\PHPUnit_Framework_MockObject_MockObject
-     */
+    /** @var EntityPersister|\PHPUnit_Framework_MockObject_MockObject */
     private $persister;
 
-    /**
-     * @var Criteria
-     */
+    /** @var Criteria */
     private $criteria;
 
-    /**
-     * @var LazyCriteriaCollection
-     */
+    /** @var LazyCriteriaCollection */
     private $lazyCriteriaCollection;
 
     /**

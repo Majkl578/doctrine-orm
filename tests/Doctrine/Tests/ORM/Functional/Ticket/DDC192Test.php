@@ -46,9 +46,7 @@ class DDC192User
      */
     public $id;
 
-    /**
-     * @ORM\Column(name="name", type="string")
-     */
+    /** @ORM\Column(name="name", type="string") */
     public $name;
 }
 

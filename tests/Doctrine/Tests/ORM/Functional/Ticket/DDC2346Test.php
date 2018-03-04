@@ -15,9 +15,7 @@ use Doctrine\Tests\OrmFunctionalTestCase;
  */
 class DDC2346Test extends OrmFunctionalTestCase
 {
-    /**
-     * @var DebugStack
-     */
+    /** @var DebugStack */
     protected $logger;
 
     /**

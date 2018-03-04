@@ -100,14 +100,10 @@ class DDC2575Root
      */
     public $id;
 
-    /**
-     * @ORM\Column(type="integer")
-     */
+    /** @ORM\Column(type="integer") */
     public $sampleField;
 
-    /**
-     * @ORM\OneToOne(targetEntity=DDC2575A::class, mappedBy="rootRelation")
-     */
+    /** @ORM\OneToOne(targetEntity=DDC2575A::class, mappedBy="rootRelation") */
     public $aRelation;
 
     public function __construct($id, $value = 0)
@@ -153,9 +149,7 @@ class DDC2575B
      */
     public $id;
 
-    /**
-     * @ORM\Column(type="integer")
-     */
+    /** @ORM\Column(type="integer") */
     public $sampleField;
 
     public function __construct($id, $value = 0)

@@ -18,14 +18,10 @@ class DDC964Group
      */
     private $id;
 
-    /**
-     * @ORM\Column
-     */
+    /** @ORM\Column */
     private $name;
 
-    /**
-     * @ORM\ManyToMany(targetEntity=DDC964User::class, mappedBy="groups")
-     */
+    /** @ORM\ManyToMany(targetEntity=DDC964User::class, mappedBy="groups") */
     private $users;
 
     public function __construct($name = null)

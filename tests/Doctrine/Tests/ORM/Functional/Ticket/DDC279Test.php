@@ -78,9 +78,7 @@ abstract class DDC279EntityXAbstract
      */
     public $id;
 
-    /**
-     * @ORM\Column(type="string")
-     */
+    /** @ORM\Column(type="string") */
     public $data;
 }
 
@@ -107,9 +105,7 @@ class DDC279EntityY
      */
     public $id;
 
-    /**
-     * @ORM\Column(type="string")
-     */
+    /** @ORM\Column(type="string") */
     public $data;
 
     /**
@@ -130,8 +126,6 @@ class DDC279EntityZ
      */
     public $id;
 
-    /**
-     * @ORM\Column(type="string")
-     */
+    /** @ORM\Column(type="string") */
     public $data;
 }

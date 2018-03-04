@@ -22,19 +22,13 @@ class CmsAddress
      */
     public $id;
 
-    /**
-     * @ORM\Column(length=50)
-     */
+    /** @ORM\Column(length=50) */
     public $country;
 
-    /**
-     * @ORM\Column(length=50)
-     */
+    /** @ORM\Column(length=50) */
     public $zip;
 
-    /**
-     * @ORM\Column(length=50)
-     */
+    /** @ORM\Column(length=50) */
     public $city;
 
     /**

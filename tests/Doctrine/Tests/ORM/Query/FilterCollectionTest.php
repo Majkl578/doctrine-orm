@@ -14,9 +14,7 @@ use Doctrine\Tests\OrmTestCase;
  */
 class FilterCollectionTest extends OrmTestCase
 {
-    /**
-     * @var EntityManagerInterface
-     */
+    /** @var EntityManagerInterface */
     private $em;
 
     protected function setUp()

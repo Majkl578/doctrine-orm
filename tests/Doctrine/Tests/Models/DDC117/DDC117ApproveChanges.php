@@ -11,9 +11,7 @@ use Doctrine\ORM\Annotation as ORM;
  */
 class DDC117ApproveChanges
 {
-    /**
-     * @ORM\Id @ORM\Column(type="integer") @ORM\GeneratedValue
-     */
+    /** @ORM\Id @ORM\Column(type="integer") @ORM\GeneratedValue */
     private $id;
 
     /**

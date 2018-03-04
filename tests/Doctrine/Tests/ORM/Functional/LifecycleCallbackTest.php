@@ -444,9 +444,7 @@ class LifecycleCallbackTestEntity
      * @ORM\GeneratedValue(strategy="AUTO")
      */
     private $id;
-    /**
-     * @ORM\Column(type="string", nullable=true)
-     */
+    /** @ORM\Column(type="string", nullable=true) */
     public $value;
 
     /**
@@ -513,9 +511,7 @@ class LifecycleCallbackCascader
      */
     private $id;
 
-    /**
-     * @ORM\OneToMany(targetEntity=LifecycleCallbackTestEntity::class, mappedBy="cascader", cascade={"persist"})
-     */
+    /** @ORM\OneToMany(targetEntity=LifecycleCallbackTestEntity::class, mappedBy="cascader", cascade={"persist"}) */
     public $entities;
 
     public function __construct()

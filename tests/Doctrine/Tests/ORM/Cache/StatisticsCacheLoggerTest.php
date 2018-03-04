@@ -16,9 +16,7 @@ use Doctrine\Tests\Models\Cache\State;
  */
 class StatisticsCacheLoggerTest extends DoctrineTestCase
 {
-    /**
-     * @var StatisticsCacheLogger
-     */
+    /** @var StatisticsCacheLogger */
     private $logger;
 
     protected function setUp()

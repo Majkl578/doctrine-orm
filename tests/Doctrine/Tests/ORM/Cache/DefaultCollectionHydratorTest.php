@@ -22,9 +22,7 @@ use Doctrine\Tests\OrmFunctionalTestCase;
  */
 class DefaultCollectionHydratorTest extends OrmFunctionalTestCase
 {
-    /**
-     * @var CollectionHydrator
-     */
+    /** @var CollectionHydrator */
     private $structure;
 
     protected function setUp()

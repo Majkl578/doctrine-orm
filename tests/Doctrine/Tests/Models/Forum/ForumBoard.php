@@ -19,9 +19,7 @@ class ForumBoard
      * @ORM\Column(type="integer")
      */
     public $id;
-    /**
-     * @ORM\Column(type="integer")
-     */
+    /** @ORM\Column(type="integer") */
     public $position;
     /**
      * @ORM\ManyToOne(targetEntity=ForumCategory::class, inversedBy="boards")

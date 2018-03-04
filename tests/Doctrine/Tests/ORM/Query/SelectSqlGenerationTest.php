@@ -2398,9 +2398,7 @@ class DDC1474Entity
      */
     protected $id;
 
-    /**
-     * @ORM\Column(type="float")
-     */
+    /** @ORM\Column(type="float") */
     private $value;
 
     /**

@@ -22,9 +22,7 @@ class Traveler
      */
     protected $id;
 
-    /**
-     * @ORM\Column
-     */
+    /** @ORM\Column */
     protected $name;
 
     /**

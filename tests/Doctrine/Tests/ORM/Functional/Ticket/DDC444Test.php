@@ -72,8 +72,6 @@ class DDC444User
      */
     public $id;
 
-    /**
-     * @ORM\Column(name="name", type="string")
-     */
+    /** @ORM\Column(name="name", type="string") */
     public $name;
 }

@@ -112,8 +112,6 @@ class GH5804Article
      */
     public $version;
 
-    /**
-     * @ORM\Column(type="text")
-     */
+    /** @ORM\Column(type="text") */
     public $text;
 }

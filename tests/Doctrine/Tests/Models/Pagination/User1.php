@@ -13,8 +13,6 @@ use Doctrine\ORM\Annotation as ORM;
  */
 class User1 extends User
 {
-    /**
-     * @ORM\Column(type="string")
-     */
+    /** @ORM\Column(type="string") */
     public $email;
 }

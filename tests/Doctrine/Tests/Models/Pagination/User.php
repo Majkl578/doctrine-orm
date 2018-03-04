@@ -21,8 +21,6 @@ abstract class User
      */
     private $id;
 
-    /**
-     * @ORM\Column(type="string")
-     */
+    /** @ORM\Column(type="string") */
     public $name;
 }

@@ -21,9 +21,7 @@ class City
      */
     protected $id;
 
-    /**
-     * @ORM\Column(unique=true)
-     */
+    /** @ORM\Column(unique=true) */
     protected $name;
 
     /**
@@ -33,9 +31,7 @@ class City
      */
     protected $state;
 
-    /**
-     * @ORM\ManyToMany(targetEntity=Travel::class, mappedBy="visitedCities")
-     */
+    /** @ORM\ManyToMany(targetEntity=Travel::class, mappedBy="visitedCities") */
     public $travels;
 
     /**

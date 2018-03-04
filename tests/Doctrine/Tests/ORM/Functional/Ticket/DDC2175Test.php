@@ -59,14 +59,10 @@ class DDC2175Test extends OrmFunctionalTestCase
  */
 class DDC2175Entity
 {
-    /**
-     * @ORM\Id @ORM\GeneratedValue @ORM\Column(type="integer")
-     */
+    /** @ORM\Id @ORM\GeneratedValue @ORM\Column(type="integer") */
     public $id;
 
-    /**
-     * @ORM\Column(type="string")
-     */
+    /** @ORM\Column(type="string") */
     public $field;
 
     /**

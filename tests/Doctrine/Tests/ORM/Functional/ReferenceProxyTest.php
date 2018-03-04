@@ -21,9 +21,7 @@ use function get_class;
  */
 class ReferenceProxyTest extends OrmFunctionalTestCase
 {
-    /**
-     * @var ProxyFactory
-     */
+    /** @var ProxyFactory */
     private $factory;
 
     protected function setUp()

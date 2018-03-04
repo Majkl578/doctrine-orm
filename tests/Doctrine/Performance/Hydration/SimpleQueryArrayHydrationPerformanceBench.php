@@ -16,19 +16,13 @@ use PhpBench\Benchmark\Metadata\Annotations\BeforeMethods;
  */
 final class SimpleQueryArrayHydrationPerformanceBench
 {
-    /**
-     * @var ArrayHydrator
-     */
+    /** @var ArrayHydrator */
     private $hydrator;
 
-    /**
-     * @var ResultSetMapping
-     */
+    /** @var ResultSetMapping */
     private $rsm;
 
-    /**
-     * @var HydratorMockStatement
-     */
+    /** @var HydratorMockStatement */
     private $stmt;
 
     public function init() : void

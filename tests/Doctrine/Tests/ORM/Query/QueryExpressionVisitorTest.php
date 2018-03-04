@@ -18,9 +18,7 @@ use Doctrine\Tests\DoctrineTestCase;
  */
 class QueryExpressionVisitorTest extends DoctrineTestCase
 {
-    /**
-     * @var QueryExpressionVisitor
-     */
+    /** @var QueryExpressionVisitor */
     private $visitor;
 
     /**

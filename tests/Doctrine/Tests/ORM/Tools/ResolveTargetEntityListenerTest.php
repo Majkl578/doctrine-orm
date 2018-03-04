@@ -14,19 +14,13 @@ use function iterator_to_array;
 
 class ResolveTargetEntityListenerTest extends OrmTestCase
 {
-    /**
-     * @var EntityManagerInterface
-     */
+    /** @var EntityManagerInterface */
     private $em;
 
-    /**
-     * @var ResolveTargetEntityListener
-     */
+    /** @var ResolveTargetEntityListener */
     private $listener;
 
-    /**
-     * @var ClassMetadataFactory
-     */
+    /** @var ClassMetadataFactory */
     private $factory;
 
     public function setUp()
@@ -138,19 +132,13 @@ class ResolveTargetEntity implements ResolveTargetInterface
      */
     private $id;
 
-    /**
-     * @ORM\ManyToMany(targetEntity=TargetInterface::class)
-     */
+    /** @ORM\ManyToMany(targetEntity=TargetInterface::class) */
     private $manyToMany;
 
-    /**
-     * @ORM\ManyToOne(targetEntity=ResolveTargetInterface::class, inversedBy="oneToMany")
-     */
+    /** @ORM\ManyToOne(targetEntity=ResolveTargetInterface::class, inversedBy="oneToMany") */
     private $manyToOne;
 
-    /**
-     * @ORM\OneToMany(targetEntity=ResolveTargetInterface::class, mappedBy="manyToOne")
-     */
+    /** @ORM\OneToMany(targetEntity=ResolveTargetInterface::class, mappedBy="manyToOne") */
     private $oneToMany;
 
     /**

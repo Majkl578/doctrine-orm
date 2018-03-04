@@ -61,13 +61,9 @@ class DDC1526Menu
      * @ORM\GeneratedValue
      */
     public $id;
-    /**
-     * @ORM\ManyToOne(targetEntity=DDC1526Menu::class, inversedBy="children")
-     */
+    /** @ORM\ManyToOne(targetEntity=DDC1526Menu::class, inversedBy="children") */
     public $parent;
 
-    /**
-     * @ORM\OneToMany(targetEntity=DDC1526Menu::class, mappedBy="parent")
-     */
+    /** @ORM\OneToMany(targetEntity=DDC1526Menu::class, mappedBy="parent") */
     public $children;
 }

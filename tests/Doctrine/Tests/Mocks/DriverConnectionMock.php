@@ -12,9 +12,7 @@ use Doctrine\DBAL\ParameterType;
  */
 class DriverConnectionMock implements Connection
 {
-    /**
-     * @var Statement
-     */
+    /** @var Statement */
     private $statementMock;
 
     /**

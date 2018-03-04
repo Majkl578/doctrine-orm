@@ -76,9 +76,7 @@ class DDC3330_Building
      */
     public $id;
 
-    /**
-     * @ORM\OneToMany(targetEntity=DDC3330_Hall::class, mappedBy="building", cascade={"persist"})
-     */
+    /** @ORM\OneToMany(targetEntity=DDC3330_Hall::class, mappedBy="building", cascade={"persist"}) */
     public $halls;
 
     public function addHall(DDC3330_Hall $hall)
@@ -99,13 +97,9 @@ class DDC3330_Hall
      */
     public $id;
 
-    /**
-     * @ORM\ManyToOne(targetEntity=DDC3330_Building::class, inversedBy="halls")
-     */
+    /** @ORM\ManyToOne(targetEntity=DDC3330_Building::class, inversedBy="halls") */
     public $building;
 
-    /**
-     * @ORM\Column(type="string", length=100)
-     */
+    /** @ORM\Column(type="string", length=100) */
     public $name;
 }

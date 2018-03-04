@@ -91,9 +91,7 @@ class DDC599Item
      */
     public $id;
 
-    /**
-     * @ORM\OneToMany(targetEntity=DDC599Child::class, mappedBy="parent", cascade={"remove"})
-     */
+    /** @ORM\OneToMany(targetEntity=DDC599Child::class, mappedBy="parent", cascade={"remove"}) */
     protected $children;
 
     public function __construct()
@@ -112,9 +110,7 @@ class DDC599Item
  */
 class DDC599Subitem extends DDC599Item
 {
-    /**
-     * @ORM\Column(type="string")
-     */
+    /** @ORM\Column(type="string") */
     public $elem;
 }
 

@@ -17,9 +17,7 @@ use function count;
  */
 class MetadataFilterTest extends OrmTestCase
 {
-    /**
-     * @var DisconnectedClassMetadataFactory
-     */
+    /** @var DisconnectedClassMetadataFactory */
     private $cmf;
 
     protected function setUp() : void

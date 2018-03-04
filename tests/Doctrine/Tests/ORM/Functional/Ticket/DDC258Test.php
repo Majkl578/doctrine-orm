@@ -97,14 +97,10 @@ abstract class DDC258Super
  */
 class DDC258Class1 extends DDC258Super
 {
-    /**
-     * @ORM\Column(name="title", type="string", length=150)
-     */
+    /** @ORM\Column(name="title", type="string", length=150) */
     public $title;
 
-    /**
-     * @ORM\Column(name="content", type="string", length=500)
-     */
+    /** @ORM\Column(name="content", type="string", length=500) */
     public $description;
 }
 
@@ -113,19 +109,13 @@ class DDC258Class1 extends DDC258Super
  */
 class DDC258Class2 extends DDC258Super
 {
-    /**
-     * @ORM\Column(name="title", type="string", length=150)
-     */
+    /** @ORM\Column(name="title", type="string", length=150) */
     public $title;
 
-    /**
-     * @ORM\Column(name="content", type="string", length=500)
-     */
+    /** @ORM\Column(name="content", type="string", length=500) */
     public $description;
 
-    /**
-     * @ORM\Column(name="text", type="text")
-     */
+    /** @ORM\Column(name="text", type="text") */
     public $text;
 }
 
@@ -136,13 +126,9 @@ class DDC258Class2 extends DDC258Super
  */
 class DDC258Class3 extends DDC258Super
 {
-    /**
-     * @ORM\Column(name="title", type="string", length=150)
-     */
+    /** @ORM\Column(name="title", type="string", length=150) */
     public $apples;
 
-    /**
-     * @ORM\Column(name="content", type="string", length=500)
-     */
+    /** @ORM\Column(name="content", type="string", length=500) */
     public $bananas;
 }

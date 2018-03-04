@@ -12,14 +12,10 @@ use function sprintf;
 
 class SchemaValidatorTest extends OrmTestCase
 {
-    /**
-     * @var EntityManagerInterface
-     */
+    /** @var EntityManagerInterface */
     private $em;
 
-    /**
-     * @var SchemaValidator
-     */
+    /** @var SchemaValidator */
     private $validator;
 
     public function setUp()
@@ -213,13 +209,9 @@ class SchemaValidatorTest extends OrmTestCase
  */
 class InvalidEntity1
 {
-    /**
-     * @ORM\Id @ORM\Column
-     */
+    /** @ORM\Id @ORM\Column */
     protected $key1;
-    /**
-     * @ORM\Id @ORM\Column
-     */
+    /** @ORM\Id @ORM\Column */
     protected $key2;
     /**
      * @ORM\ManyToMany (targetEntity=InvalidEntity2::class)
@@ -236,19 +228,13 @@ class InvalidEntity1
  */
 class InvalidEntity2
 {
-    /**
-     * @ORM\Id @ORM\Column
-     */
+    /** @ORM\Id @ORM\Column */
     protected $key3;
 
-    /**
-     * @ORM\Id @ORM\Column
-     */
+    /** @ORM\Id @ORM\Column */
     protected $key4;
 
-    /**
-     * @ORM\ManyToOne(targetEntity=InvalidEntity1::class)
-     */
+    /** @ORM\ManyToOne(targetEntity=InvalidEntity1::class) */
     protected $assoc;
 }
 
@@ -257,9 +243,7 @@ class InvalidEntity2
  */
 class InvalidEntity3
 {
-    /**
-     * @ORM\Id @ORM\Column
-     */
+    /** @ORM\Id @ORM\Column */
     protected $id3;
 
     /**
@@ -278,13 +262,9 @@ class InvalidEntity3
  */
 class InvalidEntity4
 {
-    /**
-     * @ORM\Id @ORM\Column
-     */
+    /** @ORM\Id @ORM\Column */
     protected $id4;
-    /**
-     * @ORM\Column
-     */
+    /** @ORM\Column */
     protected $nonId4;
 }
 
@@ -346,9 +326,7 @@ class DDC1587ValidEntity2
  */
 class DDC1649One
 {
-    /**
-     * @ORM\Id @ORM\Column @ORM\GeneratedValue
-     */
+    /** @ORM\Id @ORM\Column @ORM\GeneratedValue */
     public $id;
 }
 
@@ -376,14 +354,10 @@ class DDC1649Three
  */
 class DDC3274One
 {
-    /**
-     * @ORM\Id @ORM\Column @ORM\GeneratedValue
-     */
+    /** @ORM\Id @ORM\Column @ORM\GeneratedValue */
     private $id;
 
-    /**
-     * @ORM\OneToMany(targetEntity=DDC3274Two::class, mappedBy="one")
-     */
+    /** @ORM\OneToMany(targetEntity=DDC3274Two::class, mappedBy="one") */
     private $two;
 }
 
@@ -404,59 +378,37 @@ class DDC3274Two
  */
 class DDC3322ValidEntity1
 {
-    /**
-     * @ORM\Id @ORM\Column @ORM\GeneratedValue
-     */
+    /** @ORM\Id @ORM\Column @ORM\GeneratedValue */
     private $id;
 
-    /**
-     * @ORM\ManyToOne(targetEntity=DDC3322One::class, inversedBy="validAssoc")
-     */
+    /** @ORM\ManyToOne(targetEntity=DDC3322One::class, inversedBy="validAssoc") */
     private $oneValid;
 
-    /**
-     * @ORM\ManyToOne(targetEntity=DDC3322One::class, inversedBy="invalidAssoc")
-     */
+    /** @ORM\ManyToOne(targetEntity=DDC3322One::class, inversedBy="invalidAssoc") */
     private $oneInvalid;
 
-    /**
-     * @ORM\ManyToOne(targetEntity=DDC3322Two::class, inversedBy="validAssoc")
-     */
+    /** @ORM\ManyToOne(targetEntity=DDC3322Two::class, inversedBy="validAssoc") */
     private $twoValid;
 
-    /**
-     * @ORM\ManyToOne(targetEntity=DDC3322Two::class, inversedBy="invalidAssoc")
-     */
+    /** @ORM\ManyToOne(targetEntity=DDC3322Two::class, inversedBy="invalidAssoc") */
     private $twoInvalid;
 
-    /**
-     * @ORM\ManyToOne(targetEntity=DDC3322Three::class, inversedBy="validAssoc")
-     */
+    /** @ORM\ManyToOne(targetEntity=DDC3322Three::class, inversedBy="validAssoc") */
     private $threeValid;
 
-    /**
-     * @ORM\ManyToOne(targetEntity=DDC3322Three::class, inversedBy="invalidAssoc")
-     */
+    /** @ORM\ManyToOne(targetEntity=DDC3322Three::class, inversedBy="invalidAssoc") */
     private $threeInvalid;
 
-    /**
-     * @ORM\OneToMany(targetEntity=DDC3322ValidEntity2::class, mappedBy="manyToOne")
-     */
+    /** @ORM\OneToMany(targetEntity=DDC3322ValidEntity2::class, mappedBy="manyToOne") */
     private $oneToMany;
 
-    /**
-     * @ORM\ManyToOne(targetEntity=DDC3322ValidEntity2::class, inversedBy="oneToMany")
-     */
+    /** @ORM\ManyToOne(targetEntity=DDC3322ValidEntity2::class, inversedBy="oneToMany") */
     private $manyToOne;
 
-    /**
-     * @ORM\OneToOne(targetEntity=DDC3322ValidEntity2::class, mappedBy="oneToOneOwning")
-     */
+    /** @ORM\OneToOne(targetEntity=DDC3322ValidEntity2::class, mappedBy="oneToOneOwning") */
     private $oneToOneInverse;
 
-    /**
-     * @ORM\OneToOne(targetEntity=DDC3322ValidEntity2::class, inversedBy="oneToOneInverse")
-     */
+    /** @ORM\OneToOne(targetEntity=DDC3322ValidEntity2::class, inversedBy="oneToOneInverse") */
     private $oneToOneOwning;
 }
 
@@ -465,29 +417,19 @@ class DDC3322ValidEntity1
  */
 class DDC3322ValidEntity2
 {
-    /**
-     * @ORM\Id @ORM\Column @ORM\GeneratedValue
-     */
+    /** @ORM\Id @ORM\Column @ORM\GeneratedValue */
     private $id;
 
-    /**
-     * @ORM\ManyToOne(targetEntity=DDC3322ValidEntity1::class, inversedBy="oneToMany")
-     */
+    /** @ORM\ManyToOne(targetEntity=DDC3322ValidEntity1::class, inversedBy="oneToMany") */
     private $manyToOne;
 
-    /**
-     * @ORM\OneToMany(targetEntity=DDC3322ValidEntity1::class, mappedBy="manyToOne")
-     */
+    /** @ORM\OneToMany(targetEntity=DDC3322ValidEntity1::class, mappedBy="manyToOne") */
     private $oneToMany;
 
-    /**
-     * @ORM\OneToOne(targetEntity=DDC3322ValidEntity1::class, inversedBy="oneToOneInverse")
-     */
+    /** @ORM\OneToOne(targetEntity=DDC3322ValidEntity1::class, inversedBy="oneToOneInverse") */
     private $oneToOneOwning;
 
-    /**
-     * @ORM\OneToOne(targetEntity=DDC3322ValidEntity1::class, mappedBy="oneToOneOwning")
-     */
+    /** @ORM\OneToOne(targetEntity=DDC3322ValidEntity1::class, mappedBy="oneToOneOwning") */
     private $oneToOneInverse;
 }
 
@@ -496,9 +438,7 @@ class DDC3322ValidEntity2
  */
 class DDC3322One
 {
-    /**
-     * @ORM\Id @ORM\Column @ORM\GeneratedValue
-     */
+    /** @ORM\Id @ORM\Column @ORM\GeneratedValue */
     private $id;
 
     /**
@@ -519,9 +459,7 @@ class DDC3322One
  */
 class DDC3322Two
 {
-    /**
-     * @ORM\Id @ORM\Column @ORM\GeneratedValue
-     */
+    /** @ORM\Id @ORM\Column @ORM\GeneratedValue */
     private $id;
 
     /**
@@ -542,9 +480,7 @@ class DDC3322Two
  */
 class DDC3322Three
 {
-    /**
-     * @ORM\Id @ORM\Column @ORM\GeneratedValue
-     */
+    /** @ORM\Id @ORM\Column @ORM\GeneratedValue */
     private $id;
 
     /**

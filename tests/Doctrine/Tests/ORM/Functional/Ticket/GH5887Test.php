@@ -168,9 +168,7 @@ class GH5887Customer
 
 class GH5887CustomIdObject
 {
-    /**
-     * @var int
-     */
+    /** @var int */
     private $id;
 
     /**

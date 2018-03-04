@@ -21,24 +21,16 @@ use Doctrine\Tests\OrmTestCase;
  */
 abstract class AbstractCollectionPersisterTest extends OrmTestCase
 {
-    /**
-     * @var Region
-     */
+    /** @var Region */
     protected $region;
 
-    /**
-     * @var CollectionPersister
-     */
+    /** @var CollectionPersister */
     protected $collectionPersister;
 
-    /**
-     * @var EntityManagerInterface
-     */
+    /** @var EntityManagerInterface */
     protected $em;
 
-    /**
-     * @var array
-     */
+    /** @var array */
     protected $regionMockMethods = [
         'getName',
         'contains',
@@ -49,9 +41,7 @@ abstract class AbstractCollectionPersisterTest extends OrmTestCase
         'evictAll',
     ];
 
-    /**
-     * @var array
-     */
+    /** @var array */
     protected $collectionPersisterMockMethods = [
         'delete',
         'update',

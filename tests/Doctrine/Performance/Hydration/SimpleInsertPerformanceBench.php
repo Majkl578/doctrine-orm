@@ -14,19 +14,13 @@ use PhpBench\Benchmark\Metadata\Annotations\BeforeMethods;
  */
 final class SimpleInsertPerformanceBench
 {
-    /**
-     * @var EntityManagerInterface
-     */
+    /** @var EntityManagerInterface */
     private $entityManager;
 
-    /**
-     * @var CMS\CmsUser[]
-     */
+    /** @var CMS\CmsUser[] */
     private $users;
 
-    /**
-     * @var string
-     */
+    /** @var string */
     private $tableName;
 
     public function init() : void

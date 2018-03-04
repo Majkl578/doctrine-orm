@@ -19,9 +19,7 @@ use function count;
  */
 class NewOperatorTest extends OrmFunctionalTestCase
 {
-    /**
-     * @var array
-     */
+    /** @var array */
     private $fixtures;
 
     protected function setUp()

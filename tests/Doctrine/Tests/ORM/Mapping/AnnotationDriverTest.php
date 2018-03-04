@@ -261,9 +261,7 @@ class AnnotationDriverTest extends AbstractMappingDriverTest
  */
 class InvalidMappedSuperClass
 {
-    /**
-     * @ORM\ManyToMany(targetEntity=CmsUser::class, mappedBy="invalid")
-     */
+    /** @ORM\ManyToMany(targetEntity=CmsUser::class, mappedBy="invalid") */
     private $users;
 }
 
@@ -272,9 +270,7 @@ class InvalidMappedSuperClass
  */
 class UsingInvalidMappedSuperClass extends InvalidMappedSuperClass
 {
-    /**
-     * @ORM\Id @ORM\Column(type="integer") @ORM\GeneratedValue
-     */
+    /** @ORM\Id @ORM\Column(type="integer") @ORM\GeneratedValue */
     private $id;
 }
 
@@ -295,9 +291,7 @@ class ColumnWithoutType
  */
 class AnnotationParent
 {
-    /**
-     * @ORM\Id @ORM\Column(type="integer") @ORM\GeneratedValue
-     */
+    /** @ORM\Id @ORM\Column(type="integer") @ORM\GeneratedValue */
     private $id;
 
     /**
@@ -348,9 +342,7 @@ class MiddleMappedSuperclass extends SuperEntity
  */
 class ChildEntity extends MiddleMappedSuperclass
 {
-    /**
-     * @ORM\Column(type="string")
-     */
+    /** @ORM\Column(type="string") */
     private $text;
 }
 
@@ -359,9 +351,7 @@ class ChildEntity extends MiddleMappedSuperclass
  */
 class InvalidFetchOption
 {
-    /**
-     * @ORM\OneToMany(targetEntity=CmsUser::class, fetch="eager")
-     */
+    /** @ORM\OneToMany(targetEntity=CmsUser::class, fetch="eager") */
     private $collection;
 }
 
@@ -382,8 +372,6 @@ class AnnotationSLC
  */
 class AnnotationSLCFoo
 {
-    /**
-     * @ORM\Column(type="string")
-     */
+    /** @ORM\Column(type="string") */
     public $id;
 }

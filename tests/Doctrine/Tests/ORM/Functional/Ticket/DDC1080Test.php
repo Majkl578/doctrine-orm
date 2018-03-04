@@ -84,9 +84,7 @@ class DDC1080Foo
      */
     protected $fooID;
 
-    /**
-     * @ORM\Column(name="fooTitle", type="string")
-     */
+    /** @ORM\Column(name="fooTitle", type="string") */
 
     protected $fooTitle;
     /**
@@ -161,9 +159,7 @@ class DDC1080Bar
      */
     protected $barID;
 
-    /**
-     * @ORM\Column(name="barTitle", type="string")
-     */
+    /** @ORM\Column(name="barTitle", type="string") */
     protected $barTitle;
 
     /**

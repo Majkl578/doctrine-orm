@@ -21,19 +21,13 @@ use function in_array;
  */
 class HydrationCompleteHandlerTest extends DoctrineTestCase
 {
-    /**
-     * @var ListenersInvoker|\PHPUnit_Framework_MockObject_MockObject
-     */
+    /** @var ListenersInvoker|\PHPUnit_Framework_MockObject_MockObject */
     private $listenersInvoker;
 
-    /**
-     * @var EntityManagerInterface|\PHPUnit_Framework_MockObject_MockObject
-     */
+    /** @var EntityManagerInterface|\PHPUnit_Framework_MockObject_MockObject */
     private $entityManager;
 
-    /**
-     * @var HydrationCompleteHandler
-     */
+    /** @var HydrationCompleteHandler */
     private $handler;
 
     /**

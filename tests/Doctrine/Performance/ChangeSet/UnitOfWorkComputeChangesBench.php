@@ -15,14 +15,10 @@ use function str_replace;
  */
 final class UnitOfWorkComputeChangesBench
 {
-    /**
-     * @var CmsUser[]
-     */
+    /** @var CmsUser[] */
     private $users;
 
-    /**
-     * @var UnitOfWork
-     */
+    /** @var UnitOfWork */
     private $unitOfWork;
 
     public function init() : void

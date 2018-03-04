@@ -17,19 +17,13 @@ use PhpBench\Benchmark\Metadata\Annotations\BeforeMethods;
  */
 final class SimpleQueryFullObjectHydrationPerformanceBench
 {
-    /**
-     * @var ObjectHydrator
-     */
+    /** @var ObjectHydrator */
     private $hydrator;
 
-    /**
-     * @var ResultSetMapping
-     */
+    /** @var ResultSetMapping */
     private $rsm;
 
-    /**
-     * @var HydratorMockStatement
-     */
+    /** @var HydratorMockStatement */
     private $stmt;
 
     public function init() : void

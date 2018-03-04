@@ -15,14 +15,10 @@ use Doctrine\Tests\OrmTestCase;
 
 class BasicEntityPersisterCompositeTypeParametersTest extends OrmTestCase
 {
-    /**
-     * @var BasicEntityPersister
-     */
+    /** @var BasicEntityPersister */
     protected $persister;
 
-    /**
-     * @var EntityManagerInterface
-     */
+    /** @var EntityManagerInterface */
     protected $em;
 
     /**

@@ -25,14 +25,10 @@ class DDC117Reference
      */
     private $target;
 
-    /**
-     * @ORM\Column(type="string")
-     */
+    /** @ORM\Column(type="string") */
     private $description;
 
-    /**
-     * @ORM\Column(type="datetime")
-     */
+    /** @ORM\Column(type="datetime") */
     private $created;
 
     public function __construct($source, $target, $description)

@@ -73,14 +73,10 @@ abstract class Role
      */
     public $id;
 
-    /**
-     * @ORM\ManyToOne(targetEntity=User::class, inversedBy="roles")
-     */
+    /** @ORM\ManyToOne(targetEntity=User::class, inversedBy="roles") */
     public $user;
 
-    /**
-     * @ORM\OneToMany(targetEntity=Authorization::class, mappedBy="role", cascade={"all"}, orphanRemoval=true)
-     */
+    /** @ORM\OneToMany(targetEntity=Authorization::class, mappedBy="role", cascade={"all"}, orphanRemoval=true) */
     public $authorizations;
 
     public function addAuthorization(Authorization $authorization)
@@ -106,14 +102,10 @@ class Authorization
      */
     public $id;
 
-    /**
-     * @ORM\ManyToOne(targetEntity=User::class, inversedBy="authorizations")
-     */
+    /** @ORM\ManyToOne(targetEntity=User::class, inversedBy="authorizations") */
     public $user;
 
-    /**
-     * @ORM\ManyToOne(targetEntity=Role::class, inversedBy="authorizations")
-     */
+    /** @ORM\ManyToOne(targetEntity=Role::class, inversedBy="authorizations") */
     public $role;
 }
 
@@ -128,14 +120,10 @@ class User
      */
     public $id;
 
-    /**
-     * @ORM\OneToMany(targetEntity=Role::class, mappedBy="user", cascade={"all"}, orphanRemoval=true)
-     */
+    /** @ORM\OneToMany(targetEntity=Role::class, mappedBy="user", cascade={"all"}, orphanRemoval=true) */
     public $roles;
 
-    /**
-     * @ORM\OneToMany(targetEntity=Authorization::class, mappedBy="user", cascade={"all"}, orphanRemoval=true)
-     */
+    /** @ORM\OneToMany(targetEntity=Authorization::class, mappedBy="user", cascade={"all"}, orphanRemoval=true) */
     public $authorizations;
 
     public function addRole(Role $role)

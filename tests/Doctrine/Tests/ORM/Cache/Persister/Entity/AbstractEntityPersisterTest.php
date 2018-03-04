@@ -26,24 +26,16 @@ use Doctrine\Tests\OrmTestCase;
  */
 abstract class AbstractEntityPersisterTest extends OrmTestCase
 {
-    /**
-     * @var Region
-     */
+    /** @var Region */
     protected $region;
 
-    /**
-     * @var EntityPersister
-     */
+    /** @var EntityPersister */
     protected $entityPersister;
 
-    /**
-     * @var EntityManagerInterface
-     */
+    /** @var EntityManagerInterface */
     protected $em;
 
-    /**
-     * @var array
-     */
+    /** @var array */
     protected $regionMockMethods = [
         'getName',
         'contains',
@@ -54,9 +46,7 @@ abstract class AbstractEntityPersisterTest extends OrmTestCase
         'evictAll',
     ];
 
-    /**
-     * @var array
-     */
+    /** @var array */
     protected $entityPersisterMockMethods = [
         'getClassMetadata',
         'getResultSetMapping',

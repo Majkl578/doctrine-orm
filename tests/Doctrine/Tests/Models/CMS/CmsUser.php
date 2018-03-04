@@ -18,17 +18,11 @@ class CmsUser
      * @ORM\GeneratedValue
      */
     public $id;
-    /**
-     * @ORM\Column(type="string", length=50, nullable=true)
-     */
+    /** @ORM\Column(type="string", length=50, nullable=true) */
     public $status;
-    /**
-     * @ORM\Column(type="string", length=255, unique=true)
-     */
+    /** @ORM\Column(type="string", length=255, unique=true) */
     public $username;
-    /**
-     * @ORM\Column(type="string", length=255)
-     */
+    /** @ORM\Column(type="string", length=255) */
     public $name;
     /**
      * @ORM\OneToMany(

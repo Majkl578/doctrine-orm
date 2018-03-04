@@ -20,19 +20,13 @@ use function trim;
  */
 class RunDqlCommandTest extends OrmFunctionalTestCase
 {
-    /**
-     * @var Application
-     */
+    /** @var Application */
     private $application;
 
-    /**
-     * @var RunDqlCommand
-     */
+    /** @var RunDqlCommand */
     private $command;
 
-    /**
-     * @var CommandTester
-     */
+    /** @var CommandTester */
     private $tester;
 
     protected function setUp()

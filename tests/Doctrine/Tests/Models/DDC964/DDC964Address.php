@@ -17,24 +17,16 @@ class DDC964Address
      */
     private $id;
 
-    /**
-     * @ORM\Column
-     */
+    /** @ORM\Column */
     private $country;
 
-    /**
-     * @ORM\Column
-     */
+    /** @ORM\Column */
     private $zip;
 
-    /**
-     * @ORM\Column
-     */
+    /** @ORM\Column */
     private $city;
 
-    /**
-     * @ORM\Column
-     */
+    /** @ORM\Column */
     private $street;
 
     /**

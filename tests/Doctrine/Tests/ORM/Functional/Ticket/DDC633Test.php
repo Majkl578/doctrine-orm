@@ -83,9 +83,7 @@ class DDC633Appointment
     /** @ORM\Id @ORM\Column(type="integer") @ORM\GeneratedValue */
     public $id;
 
-    /**
-     * @ORM\OneToOne(targetEntity=DDC633Patient::class, inversedBy="appointment", fetch="EAGER")
-     */
+    /** @ORM\OneToOne(targetEntity=DDC633Patient::class, inversedBy="appointment", fetch="EAGER") */
     public $patient;
 }
 
@@ -97,8 +95,6 @@ class DDC633Patient
     /** @ORM\Id @ORM\Column(type="integer") @ORM\GeneratedValue */
     public $id;
 
-    /**
-     * @ORM\OneToOne(targetEntity=DDC633Appointment::class, mappedBy="patient")
-     */
+    /** @ORM\OneToOne(targetEntity=DDC633Appointment::class, mappedBy="patient") */
     public $appointment;
 }

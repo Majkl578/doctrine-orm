@@ -121,9 +121,7 @@ class DDC2984User
  */
 class DDC2984DomainUserId
 {
-    /**
-     * @var string
-     */
+    /** @var string */
     private $userIdString;
 
     /**
