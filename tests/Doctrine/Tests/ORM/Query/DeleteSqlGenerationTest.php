@@ -129,8 +129,9 @@ class DeleteSqlGenerationTest extends OrmTestCase
         );
     }
 
-    // ConditionalPrimary was already tested (see testSupportsWhereClause() and testSupportsWhereNot())
-
+    /**
+     * ConditionalPrimary was already tested (see testSupportsWhereClause() and testSupportsWhereNot())
+     */
     public function testSupportsGreaterThanComparisonClause()
     {
         // "id" = ? was already tested (see testDeleteWithWhere())

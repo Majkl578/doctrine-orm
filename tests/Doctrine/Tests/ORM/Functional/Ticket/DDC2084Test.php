@@ -110,9 +110,7 @@ class MyEntity2
      */
     private $id;
 
-    /**
-     * @ORM\Column
-     */
+    /** @ORM\Column */
     private $value;
 
     public function __construct($value)
