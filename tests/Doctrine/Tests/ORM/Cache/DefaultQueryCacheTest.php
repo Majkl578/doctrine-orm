@@ -41,7 +41,7 @@ class DefaultQueryCacheTest extends OrmTestCase
     /** @var CacheRegionMock */
     private $region;
 
-    /** @var \Doctrine\Tests\ORM\Cache\CacheFactoryDefaultQueryCacheTest */
+    /** @var CacheFactoryDefaultQueryCacheTest */
     private $cacheFactory;
 
     protected function setUp()

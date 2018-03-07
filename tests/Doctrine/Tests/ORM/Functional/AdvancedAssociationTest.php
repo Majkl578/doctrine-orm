@@ -189,6 +189,8 @@ class Lemma
 
     /**
      * @param string $lemma
+     *
+     * @return void
      */
     public function setLemma($lemma)
     {
@@ -203,6 +205,9 @@ class Lemma
         return $this->lemma;
     }
 
+    /**
+     * @return void
+     */
     public function addType(Type $type)
     {
         if (! $this->types->contains($type)) {
@@ -211,6 +216,9 @@ class Lemma
         }
     }
 
+    /**
+     * @return void
+     */
     public function removeType(Type $type)
     {
         $removed = $this->sources->removeElement($type);
@@ -281,6 +289,8 @@ class Type
 
     /**
      * @param string $type
+     *
+     * @return void
      */
     public function setType($type)
     {
@@ -297,6 +307,8 @@ class Type
 
     /**
      * @param string $abbreviation
+     *
+     * @return void
      */
     public function setAbbreviation($abbreviation)
     {
@@ -313,6 +325,8 @@ class Type
 
     /**
      * @param kateglo\application\models\Lemma $lemma
+     *
+     * @return void
      */
     public function addLemma(Lemma $lemma)
     {
@@ -324,6 +338,8 @@ class Type
 
     /**
      * @param kateglo\application\models\Lemma $lemma
+     *
+     * @return void
      */
     public function removeLEmma(Lemma $lemma)
     {
@@ -375,6 +391,9 @@ class Phrase
         $this->definitions = new ArrayCollection();
     }
 
+    /**
+     * @return void
+     */
     public function addDefinition(Definition $definition)
     {
         $this->definitions[] = $definition;
@@ -391,6 +410,8 @@ class Phrase
 
     /**
      * @param string $phrase
+     *
+     * @return void
      */
     public function setPhrase($phrase)
     {
@@ -405,6 +426,9 @@ class Phrase
         return $this->phrase;
     }
 
+    /**
+     * @return void
+     */
     public function setType(PhraseType $type)
     {
         $this->type = $type;
@@ -466,6 +490,8 @@ class PhraseType
 
     /**
      * @param string $type
+     *
+     * @return void
      */
     public function setType($type)
     {
@@ -482,6 +508,8 @@ class PhraseType
 
     /**
      * @param string $abbreviation
+     *
+     * @return void
      */
     public function setAbbreviation($abbreviation)
     {
@@ -498,6 +526,8 @@ class PhraseType
 
     /**
      * @param ArrayCollection $phrases
+     *
+     * @return void
      */
     public function setPhrases($phrases)
     {
@@ -545,6 +575,9 @@ class Definition
         return $this->id;
     }
 
+    /**
+     * @return void
+     */
     public function setPhrase(Phrase $phrase)
     {
         $this->phrase = $phrase;
@@ -570,6 +603,8 @@ class Definition
 
     /**
      * @param string $definition
+     *
+     * @return void
      */
     public function setDefinition($definition)
     {

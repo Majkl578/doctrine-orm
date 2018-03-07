@@ -41,6 +41,7 @@ class EntityManagerMock extends EntityManagerDecorator
      *
      * @param UnitOfWork $uow
      *
+     * @return void
      */
     public function setUnitOfWork($uow)
     {
@@ -50,6 +51,7 @@ class EntityManagerMock extends EntityManagerDecorator
     /**
      * @param ProxyFactory $proxyFactory
      *
+     * @return void
      */
     public function setProxyFactory($proxyFactory)
     {

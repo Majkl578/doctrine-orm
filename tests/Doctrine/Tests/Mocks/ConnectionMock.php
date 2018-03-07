@@ -122,12 +122,16 @@ class ConnectionMock extends Connection
     /**
      * @param mixed $fetchOneResult
      *
+     * @return void
      */
     public function setFetchOneResult($fetchOneResult)
     {
         $this->fetchOneResult = $fetchOneResult;
     }
 
+    /**
+     * @return void
+     */
     public function setFetchOneException(?\Exception $exception = null)
     {
         $this->fetchOneException = $exception;
@@ -136,6 +140,7 @@ class ConnectionMock extends Connection
     /**
      * @param AbstractPlatform $platform
      *
+     * @return void
      */
     public function setDatabasePlatform($platform)
     {
@@ -145,12 +150,16 @@ class ConnectionMock extends Connection
     /**
      * @param int $id
      *
+     * @return void
      */
     public function setLastInsertId($id)
     {
         $this->lastInsertId = $id;
     }
 
+    /**
+     * @return void
+     */
     public function setQueryResult(Statement $result)
     {
         $this->queryResult = $result;
@@ -172,6 +181,9 @@ class ConnectionMock extends Connection
         return $this->executeUpdates;
     }
 
+    /**
+     * @return void
+     */
     public function reset()
     {
         $this->inserts      = [];

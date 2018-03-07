@@ -4,7 +4,6 @@ declare(strict_types=1);
 
 namespace Doctrine\Tests\ORM\Functional;
 
-use Doctrine\ORM\Query;
 use Doctrine\ORM\Query\AST\Functions\FunctionNode;
 use Doctrine\ORM\Query\AST\PathExpression;
 use Doctrine\ORM\Query\Lexer;
@@ -90,7 +89,7 @@ class NoOp extends FunctionNode
 
 class CustomCount extends FunctionNode
 {
-    /** @var Query\AST\AggregateExpression */
+    /** @var AggregateExpression */
     private $aggregateExpression;
 
     public function parse(Parser $parser) : void

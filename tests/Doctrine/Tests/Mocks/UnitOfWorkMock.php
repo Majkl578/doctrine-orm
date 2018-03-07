@@ -53,6 +53,7 @@ class UnitOfWorkMock extends UnitOfWork
      * @param string               $entityName
      * @param BasicEntityPersister $persister
      *
+     * @return void
      */
     public function setEntityPersister($entityName, $persister)
     {
