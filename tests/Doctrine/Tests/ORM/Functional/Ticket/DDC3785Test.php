@@ -16,14 +16,14 @@ class DDC3785Test extends OrmFunctionalTestCase
     {
         parent::setUp();
 
-        Type::addType('ddc3785_asset_id', DDC3785_AssetIdType::class);
+        Type::addType('ddc3785_asset_id', DDC3785AssetIdType::class);
 
         try {
             $this->schemaTool->createSchema(
                 [
-                    $this->em->getClassMetadata(DDC3785_Asset::class),
-                    $this->em->getClassMetadata(DDC3785_AssetId::class),
-                    $this->em->getClassMetadata(DDC3785_Attribute::class),
+                    $this->em->getClassMetadata(DDC3785Asset::class),
+                    $this->em->getClassMetadata(DDC3785AssetId::class),
+                    $this->em->getClassMetadata(DDC3785Attribute::class),
                 ]
             );
         } catch (\Exception $e) {
@@ -36,14 +36,14 @@ class DDC3785Test extends OrmFunctionalTestCase
      */
     public function testOwningValueObjectIdIsCorrectlyTransformedWhenRemovingOrphanedChildEntities()
     {
-        $id = new DDC3785_AssetId('919609ba-57d9-4a13-be1d-d202521e858a');
+        $id = new DDC3785AssetId('919609ba-57d9-4a13-be1d-d202521e858a');
 
         $attributes = [
-            $attribute1 = new DDC3785_Attribute('foo1', 'bar1'),
-            $attribute2 = new DDC3785_Attribute('foo2', 'bar2'),
+            $attribute1 = new DDC3785Attribute('foo1', 'bar1'),
+            $attribute2 = new DDC3785Attribute('foo2', 'bar2'),
         ];
 
-        $this->em->persist($asset = new DDC3785_Asset($id, $attributes));
+        $this->em->persist($asset = new DDC3785Asset($id, $attributes));
         $this->em->flush();
 
         $asset->getAttributes()
@@ -54,8 +54,8 @@ class DDC3785Test extends OrmFunctionalTestCase
         $this->em->persist($asset);
         $this->em->flush();
 
-        self::assertNull($this->em->find(DDC3785_Attribute::class, $idToBeRemoved));
-        self::assertNotNull($this->em->find(DDC3785_Attribute::class, $attribute2->id));
+        self::assertNull($this->em->find(DDC3785Attribute::class, $idToBeRemoved));
+        self::assertNotNull($this->em->find(DDC3785Attribute::class, $attribute2->id));
     }
 }
 
@@ -63,13 +63,13 @@ class DDC3785Test extends OrmFunctionalTestCase
  * @ORM\Entity
  * @ORM\Table(name="asset")
  */
-class DDC3785_Asset
+class DDC3785Asset
 {
     /** @ORM\Id @ORM\GeneratedValue(strategy="NONE") @ORM\Column(type="ddc3785_asset_id") */
     private $id;
 
     /**
-     * @ORM\ManyToMany(targetEntity=DDC3785_Attribute::class, cascade={"persist"}, orphanRemoval=true)
+     * @ORM\ManyToMany(targetEntity=DDC3785Attribute::class, cascade={"persist"}, orphanRemoval=true)
      * @ORM\JoinTable(
      *     name="asset_attributes",
      *     joinColumns={@ORM\JoinColumn(name="asset_id", referencedColumnName="id")},
@@ -78,7 +78,7 @@ class DDC3785_Asset
      */
     private $attributes;
 
-    public function __construct(DDC3785_AssetId $id, $attributes = [])
+    public function __construct(DDC3785AssetId $id, $attributes = [])
     {
         $this->id         = $id;
         $this->attributes = new ArrayCollection();
@@ -103,7 +103,7 @@ class DDC3785_Asset
  * @ORM\Entity
  * @ORM\Table(name="attribute")
  */
-class DDC3785_Attribute
+class DDC3785Attribute
 {
     /**
      * @ORM\Id @ORM\Column(type="integer")
@@ -125,7 +125,7 @@ class DDC3785_Attribute
 }
 
 /** @ORM\Embeddable */
-class DDC3785_AssetId
+class DDC3785AssetId
 {
     /** @ORM\Column(type = "guid") */
     private $id;
@@ -141,7 +141,7 @@ class DDC3785_AssetId
     }
 }
 
-class DDC3785_AssetIdType extends Type
+class DDC3785AssetIdType extends Type
 {
     /**
      * {@inheritdoc}
@@ -164,7 +164,7 @@ class DDC3785_AssetIdType extends Type
      */
     public function convertToPHPValue($value, AbstractPlatform $platform)
     {
-        return new DDC3785_AssetId($value);
+        return new DDC3785AssetId($value);
     }
 
     /**

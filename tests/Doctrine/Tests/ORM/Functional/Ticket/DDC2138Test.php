@@ -233,7 +233,7 @@ class DDC2138User
      * Remove followers
      *
      */
-    private function removeFollower(UserFollowedUser $followers)
+    public function removeFollower(UserFollowedUser $followers)
     {
         $this->followers->removeElement($followers);
     }

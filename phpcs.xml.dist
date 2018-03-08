@@ -96,4 +96,41 @@
     <rule ref="SlevomatCodingStandard.TypeHints.TypeHintDeclaration.MissingTraversableReturnTypeHintSpecification">
         <exclude-pattern>*/tests/*</exclude-pattern>
     </rule>
+
+    <!-- intentionally without namespace -->
+    <rule ref="PSR1.Classes.ClassDeclaration.MissingNamespace">
+        <exclude-pattern>tests/Doctrine/Tests/Models/Global/GlobalNamespaceModel.php</exclude-pattern>
+        <exclude-pattern>tests/Doctrine/Tests/Models/DDC3231/DDC3231User1NoNamespace.php</exclude-pattern>
+        <exclude-pattern>tests/Doctrine/Tests/Models/DDC3231/DDC3231User2NoNamespace.php</exclude-pattern>
+    </rule>
+
+    <!-- file with multiple namespaces confuses the sniff -->
+    <rule ref="PSR2.Namespaces.UseDeclaration.UseAfterNamespace">
+        <exclude-pattern>tests/Doctrine/Tests/ORM/Functional/Ticket/DDC2084Test.php</exclude-pattern>
+    </rule>
+
+    <!-- file with multiple namespaces confuses the sniff -->
+    <rule ref="SlevomatCodingStandard.Namespaces.AlphabeticallySortedUses.IncorrectlyOrderedUses">
+        <exclude-pattern>tests/Doctrine/Tests/ORM/Functional/Ticket/DDC2084Test.php</exclude-pattern>
+    </rule>
+
+    <!-- false positive -->
+    <rule ref="SlevomatCodingStandard.TypeHints.TypeHintDeclaration">
+        <exclude-pattern>tests/Doctrine/Tests/Mocks/DatabasePlatformMock.php</exclude-pattern>
+        <exclude-pattern>tests/Doctrine/Tests/Mocks/UnitOfWorkMock.php</exclude-pattern>
+        <exclude-pattern>tests/Doctrine/Tests/Mocks/EntityPersisterMock.php</exclude-pattern>
+        <exclude-pattern>tests/Doctrine/Tests/Mocks/DriverMock.php</exclude-pattern>
+        <exclude-pattern>tests/Doctrine/Tests/Mocks/ConnectionMock.php</exclude-pattern>
+        <exclude-pattern>tests/Doctrine/Tests/Mocks/EntityManagerMock.php</exclude-pattern>
+        <exclude-pattern>tests/Doctrine/Tests/ORM/Functional/Ticket/DDC1301Test.php</exclude-pattern>
+        <exclude-pattern>tests/Doctrine/Tests/ORM/Functional/AdvancedAssociationTest.php</exclude-pattern>
+        <exclude-pattern>tests/Doctrine/Tests/DbalFunctionalTestCase.php</exclude-pattern>
+        <exclude-pattern>tests/Doctrine/Tests/ORM/Functional/ExtraLazyCollectionTest.php</exclude-pattern>
+    </rule>
+
+    <!-- intentionally empty blocks -->
+    <rule ref="Generic.CodeAnalysis.EmptyStatement.DetectedForeach">
+        <exclude-pattern>tests/Doctrine/Tests/ORM/Functional/Ticket/DDC1301Test.php</exclude-pattern>
+        <exclude-pattern>tests/Doctrine/Tests/ORM/Functional/ExtraLazyCollectionTest.php</exclude-pattern>
+    </rule>
 </ruleset>

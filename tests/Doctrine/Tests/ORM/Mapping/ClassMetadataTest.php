@@ -26,7 +26,7 @@ use Doctrine\Tests\Models\DDC964\DDC964Address;
 use Doctrine\Tests\Models\DDC964\DDC964Admin;
 use Doctrine\Tests\Models\DDC964\DDC964Guest;
 use Doctrine\Tests\OrmTestCase;
-use DoctrineGlobal_Article;
+use DoctrineGlobalArticle;
 use const CASE_UPPER;
 use function reset;
 use function serialize;
@@ -181,7 +181,7 @@ class ClassMetadataTest extends OrmTestCase
     {
         require_once __DIR__ . '/../../Models/Global/GlobalNamespaceModel.php';
 
-        $cm = new ClassMetadata(DoctrineGlobal_Article::class, $this->metadataBuildingContext);
+        $cm = new ClassMetadata(DoctrineGlobalArticle::class, $this->metadataBuildingContext);
         $cm->setTable(new Mapping\TableMetadata('doctrine_global_article'));
 
         $joinTable = new Mapping\JoinTableMetadata();
@@ -202,11 +202,11 @@ class ClassMetadataTest extends OrmTestCase
         $association = new Mapping\ManyToManyAssociationMetadata('author');
 
         $association->setJoinTable($joinTable);
-        $association->setTargetEntity('DoctrineGlobal_User');
+        $association->setTargetEntity('DoctrineGlobalUser');
 
         $cm->addProperty($association);
 
-        self::assertEquals('DoctrineGlobal_User', $cm->getProperty('author')->getTargetEntity());
+        self::assertEquals('DoctrineGlobalUser', $cm->getProperty('author')->getTargetEntity());
     }
 
     public function testMapManyToManyJoinTableDefaults()
@@ -277,13 +277,13 @@ class ClassMetadataTest extends OrmTestCase
     {
         require_once __DIR__ . '/../../Models/Global/GlobalNamespaceModel.php';
 
-        $cm = new ClassMetadata('DoctrineGlobal_User', $this->metadataBuildingContext);
+        $cm = new ClassMetadata('DoctrineGlobalUser', $this->metadataBuildingContext);
         $cm->setTable(new Mapping\TableMetadata('doctrine_global_user'));
 
-        $cm->setDiscriminatorMap(['descr' => 'DoctrineGlobal_Article', 'foo' => 'DoctrineGlobal_User']);
+        $cm->setDiscriminatorMap(['descr' => 'DoctrineGlobalArticle', 'foo' => 'DoctrineGlobalUser']);
 
-        self::assertEquals('DoctrineGlobal_Article', $cm->discriminatorMap['descr']);
-        self::assertEquals('DoctrineGlobal_User', $cm->discriminatorMap['foo']);
+        self::assertEquals('DoctrineGlobalArticle', $cm->discriminatorMap['descr']);
+        self::assertEquals('DoctrineGlobalUser', $cm->discriminatorMap['foo']);
     }
 
     /**
@@ -293,12 +293,12 @@ class ClassMetadataTest extends OrmTestCase
     {
         require_once __DIR__ . '/../../Models/Global/GlobalNamespaceModel.php';
 
-        $cm = new ClassMetadata('DoctrineGlobal_User', $this->metadataBuildingContext);
+        $cm = new ClassMetadata('DoctrineGlobalUser', $this->metadataBuildingContext);
         $cm->setTable(new Mapping\TableMetadata('doctrine_global_user'));
 
-        $cm->setSubclasses(['DoctrineGlobal_Article']);
+        $cm->setSubclasses(['DoctrineGlobalArticle']);
 
-        self::assertEquals('DoctrineGlobal_Article', $cm->getSubClasses()[0]);
+        self::assertEquals('DoctrineGlobalArticle', $cm->getSubClasses()[0]);
     }
 
     /**
@@ -668,7 +668,7 @@ class ClassMetadataTest extends OrmTestCase
         self::assertEquals('CMS_USER_ID', $inverseJoinColumn->getColumnName());
         self::assertEquals('ID', $inverseJoinColumn->getReferencedColumnName());
 
-        $cm = new ClassMetadata('DoctrineGlobal_Article', $this->metadataBuildingContext);
+        $cm = new ClassMetadata('DoctrineGlobalArticle', $this->metadataBuildingContext);
 
         $association = new Mapping\ManyToManyAssociationMetadata('author');
 
@@ -709,7 +709,7 @@ class ClassMetadataTest extends OrmTestCase
      */
     public function testJoinTableMappingDefaults()
     {
-        $cm = new ClassMetadata('DoctrineGlobal_Article', $this->metadataBuildingContext);
+        $cm = new ClassMetadata('DoctrineGlobalArticle', $this->metadataBuildingContext);
 
         $association = new Mapping\ManyToManyAssociationMetadata('author');
 
@@ -719,7 +719,7 @@ class ClassMetadataTest extends OrmTestCase
 
         $association = $cm->getProperty('author');
 
-        self::assertEquals('doctrineglobal_article_cmsuser', $association->getJoinTable()->getName());
+        self::assertEquals('doctrineglobalarticle_cmsuser', $association->getJoinTable()->getName());
     }
 
     /**

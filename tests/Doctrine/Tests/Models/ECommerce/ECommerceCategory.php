@@ -85,7 +85,7 @@ class ECommerceCategory
         return $this->products;
     }
 
-    private function setParent(ECommerceCategory $parent)
+    public function setParent(ECommerceCategory $parent)
     {
         $this->parent = $parent;
     }
@@ -121,7 +121,7 @@ class ECommerceCategory
         }
     }
 
-    private function removeParent()
+    public function removeParent()
     {
         $this->parent = null;
     }

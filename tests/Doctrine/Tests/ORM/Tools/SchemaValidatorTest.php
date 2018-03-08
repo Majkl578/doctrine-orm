@@ -344,8 +344,7 @@ class DDC1649Two
  */
 class DDC1649Three
 {
-    /** @ORM\Id @ORM\ManyToOne(targetEntity=DDC1649Two::class) @ORM\JoinColumn(name="id",
-     * referencedColumnName="id") */
+    /** @ORM\Id @ORM\ManyToOne(targetEntity=DDC1649Two::class) @ORM\JoinColumn(name="id",  referencedColumnName="id") */
     private $two;
 }
 

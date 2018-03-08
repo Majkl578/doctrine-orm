@@ -31,7 +31,7 @@ use Doctrine\Tests\Models\JoinedInheritanceType\ChildClass;
 use Doctrine\Tests\Models\JoinedInheritanceType\RootClass;
 use Doctrine\Tests\Models\Quote;
 use Doctrine\Tests\OrmTestCase;
-use DoctrineGlobal_Article;
+use DoctrineGlobalArticle;
 use function array_search;
 use function reset;
 use function sprintf;
@@ -123,11 +123,11 @@ class ClassMetadataFactoryTest extends OrmTestCase
         $mf = $entityManager->getMetadataFactory();
 
         self::assertSame(
-            $mf->getMetadataFor(DoctrineGlobal_Article::class),
-            $mf->getMetadataFor('\\' . DoctrineGlobal_Article::class)
+            $mf->getMetadataFor(DoctrineGlobalArticle::class),
+            $mf->getMetadataFor('\\' . DoctrineGlobalArticle::class)
         );
-        self::assertTrue($mf->hasMetadataFor(DoctrineGlobal_Article::class));
-        self::assertTrue($mf->hasMetadataFor('\\' . DoctrineGlobal_Article::class));
+        self::assertTrue($mf->hasMetadataFor(DoctrineGlobalArticle::class));
+        self::assertTrue($mf->hasMetadataFor('\\' . DoctrineGlobalArticle::class));
     }
 
     /**

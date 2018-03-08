@@ -7,7 +7,7 @@ namespace Doctrine\Tests\ORM;
 use Doctrine\Common\Cache\ArrayCache;
 use Doctrine\Common\Cache\Cache;
 use Doctrine\Common\Proxy\AbstractProxyFactory;
-use Doctrine\ORM\Annotation as AnnotationNamespace;
+use Doctrine\ORM\Annotation as ORM;
 use Doctrine\ORM\Cache\CacheConfiguration;
 use Doctrine\ORM\Configuration;
 use Doctrine\ORM\EntityRepository;
@@ -62,10 +62,10 @@ class ConfigurationTest extends DoctrineTestCase
         $reader           = $annotationDriver->getReader();
         $annotation       = $reader->getMethodAnnotation(
             $reflectionClass->getMethod('annotatedMethod'),
-            AnnotationNamespace\PrePersist::class
+            ORM\PrePersist::class
         );
 
-        self::assertInstanceOf(AnnotationNamespace\PrePersist::class, $annotation);
+        self::assertInstanceOf(ORM\PrePersist::class, $annotation);
     }
 
     public function testSetGetQueryCacheImpl()
@@ -398,7 +398,7 @@ class ConfigurationTest extends DoctrineTestCase
 
 class ConfigurationTestAnnotationReaderChecker
 {
-    /** @AnnotationNamespace\PrePersist */
+    /** @ORM\PrePersist */
     public function annotatedMethod()
     {
     }
