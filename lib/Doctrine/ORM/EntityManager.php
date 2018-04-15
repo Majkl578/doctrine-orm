@@ -10,6 +10,7 @@ use Doctrine\Common\Persistence\ObjectRepository;
 use Doctrine\DBAL\Connection;
 use Doctrine\DBAL\DriverManager;
 use Doctrine\DBAL\LockMode;
+use Doctrine\ORM\Mapping\ClassMetadata;
 use Doctrine\ORM\Mapping\ClassMetadataFactory;
 use Doctrine\ORM\Proxy\Factory\ProxyFactory;
 use Doctrine\ORM\Proxy\Factory\StaticProxyFactory;
@@ -385,18 +386,7 @@ final class EntityManager implements EntityManagerInterface
         $class     = $this->metadataFactory->getMetadataFor(ltrim($entityName, '\\'));
         $className = $class->getClassName();
 
-        switch ($lockMode) {
-            case LockMode::OPTIMISTIC:
-                if (! $class->isVersioned()) {
-                    throw OptimisticLockException::notVersioned($className);
-                }
-            // Intentional fallthrough
-            case LockMode::PESSIMISTIC_READ:
-            case LockMode::PESSIMISTIC_WRITE:
-                if (! $this->getConnection()->isTransactionActive()) {
-                    throw TransactionRequiredException::transactionRequired();
-                }
-        }
+        $this->checkLockRequirements($lockMode, $class);
 
         if (! is_array($id)) {
             if ($class->isIdentifierComposite()) {
@@ -908,5 +898,27 @@ final class EntityManager implements EntityManagerInterface
     public function hasFilters()
     {
         return $this->filterCollection !== null;
+    }
+
+    /**
+     * @param int $lockMode
+     * @param ClassMetadata $class
+     * @throws OptimisticLockException
+     * @throws TransactionRequiredException
+     */
+    private function checkLockRequirements(int $lockMode, ClassMetadata $class): void
+    {
+        switch ($lockMode) {
+            case LockMode::OPTIMISTIC:
+                if (!$class->isVersioned()) {
+                    throw OptimisticLockException::notVersioned($class->getClassName());
+                }
+            // Intentional fallthrough
+            case LockMode::PESSIMISTIC_READ:
+            case LockMode::PESSIMISTIC_WRITE:
+                if (!$this->getConnection()->isTransactionActive()) {
+                    throw TransactionRequiredException::transactionRequired();
+                }
+        }
     }
 }
