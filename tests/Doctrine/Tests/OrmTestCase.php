@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace Doctrine\Tests;
 
-use Doctrine\Common\Annotations;
+use Doctrine\Annotations;
 use Doctrine\Common\Cache\ArrayCache;
 use Doctrine\Common\Cache\Cache;
 use Doctrine\Common\EventManager;
@@ -63,8 +63,6 @@ abstract class OrmTestCase extends DoctrineTestCase
     protected function createAnnotationDriver($paths = [])
     {
         $reader = new Annotations\CachedReader(new Annotations\AnnotationReader(), new ArrayCache());
-
-        Annotations\AnnotationRegistry::registerFile(__DIR__ . '/../../../lib/Doctrine/ORM/Annotation/DoctrineAnnotations.php');
 
         return new AnnotationDriver($reader, (array) $paths);
     }

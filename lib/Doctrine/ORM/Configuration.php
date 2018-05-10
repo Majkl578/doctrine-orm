@@ -4,9 +4,8 @@ declare(strict_types=1);
 
 namespace Doctrine\ORM;
 
-use Doctrine\Common\Annotations\AnnotationReader;
-use Doctrine\Common\Annotations\AnnotationRegistry;
-use Doctrine\Common\Annotations\CachedReader;
+use Doctrine\Annotations\AnnotationReader;
+use Doctrine\Annotations\CachedReader;
 use Doctrine\Common\Cache\ArrayCache;
 use Doctrine\Common\Cache\Cache as CacheDriver;
 use Doctrine\Common\Persistence\ObjectRepository;
@@ -160,8 +159,6 @@ class Configuration extends DBALConfiguration
      */
     public function newDefaultAnnotationDriver(array $paths = []) : AnnotationDriver
     {
-        AnnotationRegistry::registerFile(__DIR__ . '/Annotation/DoctrineAnnotations.php');
-
         $reader = new CachedReader(new AnnotationReader(), new ArrayCache());
 
         return new AnnotationDriver($reader, $paths);

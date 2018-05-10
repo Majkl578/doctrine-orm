@@ -17,7 +17,7 @@
     },
     "require": {
         "php": "^7.2",
-        "doctrine/annotations": "~1.5",
+        "doctrine/annotations": "dev-master as 1.99999",
         "doctrine/cache": "~1.6",
         "doctrine/collections": "^1.4",
         "doctrine/common": "^2.7.1",

@@ -4,8 +4,8 @@ declare(strict_types=1);
 
 namespace Doctrine\ORM\Mapping\Driver;
 
-use Doctrine\Common\Annotations\AnnotationReader;
-use Doctrine\Common\Annotations\Reader;
+use Doctrine\Annotations\AnnotationReader;
+use Doctrine\Annotations\Reader;
 use Doctrine\DBAL\Types\Type;
 use Doctrine\ORM\Annotation;
 use Doctrine\ORM\Cache\Exception\CacheException;

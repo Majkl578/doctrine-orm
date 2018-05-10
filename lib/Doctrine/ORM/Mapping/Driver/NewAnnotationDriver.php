@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace Doctrine\ORM\Mapping\Driver;
 
-use Doctrine\Common\Annotations\AnnotationReader;
+use Doctrine\Annotations\AnnotationReader;
 use Doctrine\Common\Persistence\Mapping\Driver\FileLocator;
 use Doctrine\DBAL\Types\Type;
 use Doctrine\ORM\Annotation;
